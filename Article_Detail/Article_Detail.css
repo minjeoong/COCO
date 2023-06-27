@@ -1,0 +1,211 @@
+@media only screen and (max-width: 1030px) {
+    body{
+        width:max-content;
+    }
+    .footer{
+        width: max-content;
+    }
+
+}
+/* @media only screen and (max-width: px) {
+    body{
+        width:max-content;
+    }
+
+} */
+/* reset */
+
+*{
+    margin:0;   
+    padding:0;   
+    box-sizing: border-box; 
+}
+a {
+    text-decoration:none;  
+    color: #000;
+}
+ul {
+    list-style: none;
+}
+
+/* Header */
+header{
+    height : 5em;
+    width: 100%;
+    position: relative;
+    padding: 0 0 0 2rem;
+}
+.header_div{
+    width:100%;
+    position:relative;
+    top:42%;
+}
+.inline{
+    display:inline-block;
+    margin: 0 2rem 0 0;
+}
+
+.coco{
+    width: 98px;
+    height:26px;
+}
+
+.search_img{
+    width: 27px;
+    height:24px;
+    margin: 3px;
+}
+.searchbo{
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    background-color: #EFEFF4;
+    border-radius:7px;
+}
+input[type="search"]{
+    position:absolute;
+    height: 28px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    padding: 5px 0 0 10px;
+}
+
+
+/* header right */
+.size{
+    width: 26px;
+    height:26px;
+}
+.layout{
+    display:flex;
+    float: right;
+    margin-right: 3rem;
+}
+.layout > li{
+    margin: 0 2.5rem;
+
+
+}
+.layout > li > a{
+    position:absolute;
+    padding:5px 0 0 5px;
+} 
+#menu{
+    padding:0;
+}
+
+/* main */
+.main{
+    margin:1.2rem 0 1rem 0 ;
+    height:95px;
+    width: 100%;
+
+    background-color: #FFCD29;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+.where{
+    width: 600px;
+    height: 40px;
+    background-color: #ffffff92;
+    position:relative;
+    margin-right:2rem;
+    margin-left: 2rem;
+    margin:0 auto;
+    display: flex;
+    border-radius: 30px;
+}
+.location_div{
+    display: flex;
+    align-items: center;
+    padding: 0 13px 0 15px;
+    height:40px;
+}
+.location_img{
+    width: 16px;
+    height: 23px
+}
+.location{
+    padding-top: 3px;
+    background: none;
+    border:none;
+    width:540px;
+    outline: none;
+    font-size: 18px;
+}
+
+/* 게시물 Create 페이지 */
+
+/* 디폴트 */
+.container{
+    margin: 6rem 0 8rem 0;
+    display:flex;
+    justify-content: center;
+}
+.maxsize{
+    max-width: 900px;
+    width: 100%;
+}
+.flex{
+    display: flex;
+}
+
+
+/* 게시물 제목 */
+.article{
+    margin-bottom: 5rem;
+}
+
+.title{
+    font-size: 2.5rem;
+}
+.detail{
+    justify-content: space-between;
+
+    margin-top: 0.5rem;
+}
+.createuser2{
+    margin-left:0.5rem;
+}
+.image{
+    width:100%;
+    margin:1.8rem 0;
+}
+
+
+/* 좋아요 */
+.like{
+    align-items: center;
+    gap:12px;
+}
+.like_img{
+    width:32px;
+}
+
+/* 메세지 */
+.massage{
+    background-color: #e6e6e6;
+    border-radius: 25px;
+    min-height: 8rem;
+    padding:1.5rem;
+    gap:2rem;
+    margin: 1.5rem 0;
+}
+
+.profile_img{
+    width:65px;
+    border-radius: 100%;
+}
+.username{
+    font-size: 22px;
+    font:bold;
+}
+.massagedate{
+    margin-left:6rem;
+}
+.msg_contents{
+    margin-top:14px;
+}

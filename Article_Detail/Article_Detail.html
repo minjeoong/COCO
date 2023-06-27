@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Article_Detail.css">
+    
+    <!-- <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"> -->
+    <title>Document</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header_div">
+            <div class="logo inline">
+                <img src="img/COCO.png" alt="" class="coco">
+            </div>
+            <div class="searchbo inline">
+                <form class="search" method="POST" action="{% url 'search' %}">
+                    <!-- {% csrf_token %} -->
+                        <img src="img/Search Glyph.png" alt="" class="search_img">
+                        <input class="search_input" type="search" placeholder="Search" name="searched" >                
+                </form>
+            </div>
+            <ul class="layout">
+                <li>
+                    <img src="img/home.png" alt="" class="size">
+                    <a href="" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="img/building_.jpg" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
+                    <a href="" class="mytown">Mytown</a>
+                </li>
+                <li>
+                    <img src="img/article.png" alt="" class="size">
+                    <a href="" class="thread">게시판</a>
+                </li>
+                <li>
+                    <img src="img/perm_identity.png" alt="" class="size">
+                    <a href="" class="login">Log in</a>
+                </li>
+                <li>
+                    <img src="img/Setting.png" style="width:23px;height:23px;margin-right:5px;" alt="">
+                    <a href="" class="menu">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <div class="where">
+            <div class="location_div">
+                <img src="img/location.png" alt="" class="location_img">
+            </div>
+            <input type="text" class="location" placeholder="Location" >
+        </div>
+    </div>
+
+    <div class="container"> 
+        <div class="maxsize">
+            <!-- 글 본문 -->
+            <div class="article">
+                <div class="title">
+                    Article Title
+                </div>
+                <div class="detail flex">
+                    <span class="date">2023.06.28</span>
+                    <div>
+                        <span style="color:#11111183">작성자</span>
+                        <span class="createuser2">김민정</span>
+                    </div>
+
+                </div>
+                <div class="image">
+                    <img src="img/image.png" alt="" class="image">
+                </div>
+                <div class="content">
+                    여기가 게시물 내용
+                </div>
+    
+            </div>
+            <!-- 좋아요 -->
+            <div class="like flex">
+                <!-- 좋아요 눌렀을 때 -->
+                <img src="img/heart (1).png" alt="" class="like_img">
+                <!-- 좋아요 안눌렀을 때 -->
+                <img src="img/heart.png" alt="" class="like_img">
+                <span>좋아요 00개 </span>
+            </div>
+            <!-- 댓글 작성 칸 -->
+            <div class="massage flex">
+                <!-- 댓글 다는 유저 프로필 -->
+                <div class="profile_div">
+                    <img src="img/image.png" alt="" class="profile_img">
+                </div>
+                <div class="msg">
+                    <span class="username">댓글을 사람 username</span>
+                    <span class="massagedate">2023.06.29 현재 시간? </span>
+                    <div class="msg_contents"><input type="text" class="input_massage"> </div>
+                </div>
+
+
+            </div>
+            <!-- 이미 달린 댓글 -->
+            <div class="massage flex">
+                <!-- 댓글 달린 유저 프로필 -->
+                <div class="profile_div">
+                    <img src="img/image.png" alt="" class="profile_img">
+                </div>
+                <div class="msg">
+                    <span class="username">username</span>
+                    <span class="massagedate">2023.06.29</span>
+                    <div class="msg_contents">메세지 내용</div> 
+                </div>
+
+
+            </div>
+
+            
+            
+        </div>
+        
+    </div>
+
+
+    
+
+
+
+
+</body>
+
+
+</html>

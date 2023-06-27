@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Article_Create.css">
+    
+    <!-- <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"> -->
+    <title>Document</title>
+<!-- 
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const layoutElement = document.querySelector('.layout');
+            const searchElement = document.querySelector('.searchbo');
+            if (window.innerWidth < 800) {
+                removeAllChildren(layoutElement);
+                addLoginLink(layoutElement);
+                searchElement.remove();
+            }
+        });
+
+        function removeAllChildren(element) {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+        }
+
+        function addLoginLink(parentElement) {
+            const liElement = document.createElement('li');
+            const loginLink = document.createElement('a');
+            const loginImg = document.createElement('img');
+            loginImg.src = 'img/reorder.png';
+            loginImg.alt = '';
+            loginImg.className = 'size';
+            loginLink.href = '';
+            loginLink.className = 'reorder';
+            loginLink.appendChild(loginImg);
+            liElement.appendChild(loginLink);
+            parentElement.appendChild(liElement);
+        }
+    </script> -->
+    <script>
+        function autoResize(textarea) {
+          textarea.style.height = "auto";
+          textarea.style.height = textarea.scrollHeight + "px";
+        }
+      </script>
+</head>
+<body>
+    <header id="header">
+        <div class="header_div">
+            <div class="logo inline">
+                <img src="img/COCO.png" alt="" class="coco">
+            </div>
+            <div class="searchbo inline">
+                <form class="search" method="POST" action="{% url 'search' %}">
+                    <!-- {% csrf_token %} -->
+                        <img src="img/Search Glyph.png" alt="" class="search_img">
+                        <input class="search_input" type="search" placeholder="Search" name="searched" >                
+                </form>
+            </div>
+            <ul class="layout">
+                <li>
+                    <img src="img/home.png" alt="" class="size">
+                    <a href="" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="img/building_.jpg" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
+                    <a href="" class="mytown">Mytown</a>
+                </li>
+                <li>
+                    <img src="img/article.png" alt="" class="size">
+                    <a href="" class="thread">게시판</a>
+                </li>
+                <li>
+                    <img src="img/perm_identity.png" alt="" class="size">
+                    <a href="" class="login">Log in</a>
+                </li>
+                <li>
+                    <img src="img/Setting.png" style="width:23px;height:23px;margin-right:5px;" alt="">
+                    <a href="" class="menu">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <div class="where">
+            <div class="location_div">
+                <img src="img/location.png" alt="" class="location_img">
+            </div>
+            <input type="text" class="location" placeholder="Location" >
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="maxsize">
+            <div class="top flex">
+                <div class="category_div">
+                    <select id="category">
+                        <option value="배달">배달</option>
+                        <option value="식재료">식재료</option>
+                        <option value="생필품">생필품</option>
+                    </select>
+                </div>
+                <div >
+                    <!-- 이미지 첨부 링크 여기다가 걸고 -->
+                    <a href="" class="imgadd flex">
+                        <img src="img/image.png" alt="" class="img">
+                        <span style="padding-top:3px;">이미지 첨부</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="title_div">
+                <input type="text" class = "title" placeholder="제목을 입력하세요">
+            </div>
+            <hr>
+
+            <div class="contents_div">
+
+                <textarea name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요"></textarea>
+
+
+            </div>
+            
+            
+        </div>
+        
+    </div>
+
+    <div class="footer flex">
+        <img src="img/COCO.png" alt="" class="logo">
+        <div class="button">
+            <a href="" class="close">취소</a>
+            <a href="" class="close finish">완료</a>
+        </div>
+    </div>
+    
+
+
+
+
+</body>
+
+
+</html>

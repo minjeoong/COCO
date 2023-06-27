@@ -1,0 +1,204 @@
+/* reset */
+* {
+    margin:0;   
+    padding:0;   
+    box-sizing: border-box; 
+}
+a {
+    text-decoration:none;  
+    color: #000;
+}
+ul {
+    list-style: none;
+}
+
+/* Header */
+header{
+    height : 90px;
+    width: 100%;
+    position: relative;
+    padding: 0 0 0 2rem;
+}
+.header_div{
+    width:100%;
+    position:relative;
+    top:42%;
+}
+.inline{
+    display:inline-block;
+    margin: 0 2rem 0 0;
+}
+
+.coco{
+    width: 98px;
+    height:26px;
+
+}
+.search_img{
+    width: 27px;
+    height:24px;
+    margin: 3px;
+}
+.searchbo{
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    background-color: #EFEFF4;
+    border-radius:7px;
+}
+input[type="search"]{
+    position:absolute;
+    height: 38px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    padding: 5px 0 0 10px;
+}
+/* input[type="search"]:focus{
+    border:none;
+} */
+
+/* header right */
+.size{
+    width: 26px;
+    height:26px;
+}
+.layout{
+    display:inline-flex;
+    float: right;
+    margin-right: 3rem;
+}
+.layout > li{
+    margin: 0 2.5rem;
+
+
+}
+.layout > li > a{
+    position:absolute;
+    padding:5px 0 0 10px;
+} 
+#menu{
+    padding:0;
+}
+
+/* main */
+.main{
+    margin:1.2rem 0 1rem 0 ;
+    height:95px;
+    background-color: #FFCD29;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+.where{
+    width: 600px;
+    height: 40px;
+    background-color: #ffffff92;
+    position:relative;
+    margin-right:2rem;
+    margin-left: 2rem;
+    margin:0 auto;
+    display: flex;
+    border-radius: 30px;
+}
+.location_div{
+    display: flex;
+    align-items: center;
+    padding: 0 13px 0 15px;
+    height:40px;
+}
+.location_img{
+    width: 16px;
+    height: 23px
+}
+.location{
+    padding-top: 3px;
+    background: none;
+    border:none;
+    width:540px;
+    outline: none;
+    font-size: 18px;
+}
+
+
+/* 타운 리스트  */
+.title{
+    margin:0 15px 0px 15px;
+    font-size: 19px;
+    display: flex;
+    
+    justify-content: space-between;
+}
+.Townlist{
+    padding: 10px 50px;
+}
+.create{
+    float: right;
+    padding: 10px 50px;
+    position: relative;
+}
+.hr_c{
+    margin: 1.5rem 0 0 0;
+}
+
+.create::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #000;
+    -webkit-transform: scaleX(.3);
+    transform: scaleX(.3);
+    opacity: 0;
+    transition: all .3s
+  }
+.create:hover::before{
+    opacity: 1;
+    background-color: #FFCD29;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+    transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}
+
+.container{
+    margin: 6rem 0 8rem 0;
+    display:flex;
+    width: 100vw;
+    justify-content: center;
+}
+.maxsize{
+    max-width: 900px;
+    width: 100%;
+}
+.town{
+    display: flex;
+}
+.town:hover{
+    background-color: #e5e5e5;
+    transition:0.5s;
+}
+.town_img{
+    margin: 2rem;
+    width: 130px;
+    height: 120px;
+}
+.town_name{
+    display: block;
+    font-size: 30px;
+    margin-bottom: 0.6rem;
+
+}
+
+.town_div{
+    display: flex;
+    margin-left: 1rem;
+    flex-direction: column;
+    justify-content: center;
+}
+

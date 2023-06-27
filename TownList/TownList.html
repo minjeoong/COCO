@@ -1,0 +1,77 @@
+
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="TownList.css">
+    <!-- <link rel="stylesheet" href="{% static 'css/townList.css'%}"> -->
+    <title>townList</title>
+</head>
+<body>
+    <header id="header">
+        <a href="{%url 'user:signout'%}">로그아웃하기</a>
+        <div class="header_div">
+            <div class="logo inline">
+                <a href="">
+                    <img src="{% static 'image/COCO.png'%}" alt="" class="coco">
+                </a>
+            </div>
+            <ul class="layout">
+                <li>
+                    <img src="img/home.png" alt="" class="size">
+                    <a href="{% url 'myPage:myPage' %}" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="{% static 'image/perm_identity.png'%}" alt="" class="size">
+                    <a href="" class="login">Log in</a>
+                </li>
+                <li>
+                    <img src="{% static 'image/Setting.png'%}" alt="" class="size">
+                    <a href="" class ="setting">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="where">
+            <div class="location_div">
+                <img src="{% static 'image/location.png'%}" alt="" class="location_img">
+            </div>
+            
+            <form class="search" method="POST" action="">
+                <input type="search" class="location" placeholder="Location" >
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="maxsize">
+            <div class="title">
+                <span class = "Townlist">Town List</span>
+                <a href="{%url 'town:newTown'%}" class= "create">Create</a>
+            </div>
+            <hr class = "hr_c">
+    
+            <div>
+                {%for town in townlist %}
+                <a href="{%url 'town:setTown' town.id %}" class="town">
+
+                    <img src="{% static 'image/building_.png'%}" alt="" class="town_img">
+                    <div class="town_div">
+                        <div class="town_name"> {{town.townname}} </div>
+                        <div class="town_count"> {{town.usercount}} 명 참여</div>
+                    </div>
+                </a>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
