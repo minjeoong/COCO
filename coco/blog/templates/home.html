@@ -1,0 +1,22 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>coco</title>
+</head>
+
+<body>
+  <a href="{% url 'blog:new' %}">새 글 작성하기</a>
+  <div>
+      {% for blog in blogs %}
+      <a class="home" href="{% url 'blog:detail' blog.id %}">
+        <h2>{{blog.title}}</h2>
+        <p>{{blog.summary}}</p>
+        <p>{{blog.created_at}}</p>
+        <p>{{blog.hit}}</p>
+      </a>
+      {% endfor %}
+  </div>
+</body>
+
+</html>

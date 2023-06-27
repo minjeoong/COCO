@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>댓글</title>
+</head>
+<body>
+    <h1>댓글 작성</h1>
+    <form method="GET" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">작성</button>
+    </form>
+</body>
+</html>

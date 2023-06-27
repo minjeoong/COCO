@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <title>새 글</title>
+  </head>
+
+<h1>새 글 작성</h1>
+<form action="{% url 'blog:create' %}" method="POST">
+    {% csrf_token %}
+    제목 : <input type="text" name="title" />
+    본문 : <textarea name="content" id="" cols="30" rows="10"></textarea>
+
+    <label for="tags">Tags:</label>
+    <select name="tags" id="tags" multiple>
+      {% for tag in tags %}
+        <option value="{{ tag.id }}">{{ tag.name }}</option>
+      {% endfor %}
+    </select>
+
+    <input type="submit" value="작성하기"/>
+</form>
+
+<a href="{% url 'blog:home' %}">홈으로 가기</a>
+
+
