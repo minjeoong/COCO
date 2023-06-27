@@ -7,9 +7,13 @@
 
 <body>
   <a href="{% url 'blog:new' %}">새 글 작성하기</a>
+  <a href="{% url 'blog:home' %}">배달</a>
+  <a href="{% url 'blog:product' %}">생필품</a>
+  <a href="{% url 'blog:ingredient' %}">식재료</a>
+  <a href="{% url 'blog:etc' %}">기타</a>
   <div>
-      {% for blog in blogs %}
-      <a class="home" href="{% url 'blog:detail' blog.id %}">
+      {% for blog in delivery_blogs %}
+      <a href="{% url 'blog:detail' blog.id %}">
         <h2>{{blog.title}}</h2>
         <p>{{blog.summary}}</p>
         <p>{{blog.created_at}}</p>
@@ -18,5 +22,19 @@
       {% endfor %}
   </div>
 </body>
+
+<span>
+  {% if delivery_blogs.has_previous %}
+    <a href="?page=1">처음</a>
+    <a href="?page={{ delivery_blogs.previous_page_number }}">이전</a>
+  {% endif %}
+  
+  <p>{{ delivery_blogs.number }} / {{ delivery_blogs.paginator.num_pages }}</p>
+  
+  {% if delivery_blogs.has_next %}
+    <a href="?page={{ delivery_blogs.next_page_number }}">다음</a>
+    <a href="?page={{ delivery_blogs.paginator.num_pages }}">마지막</a>
+  {% endif %}
+</span>
 
 </html>

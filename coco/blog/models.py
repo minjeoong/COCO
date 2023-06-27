@@ -47,3 +47,13 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Like(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        db_table = 'like'
+    
+    def __str__(self):
+        return self.blog.title

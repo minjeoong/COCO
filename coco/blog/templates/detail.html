@@ -27,6 +27,9 @@
 <a href="{% url 'blog:edit' blog.id %}">수정하기</a>
 <a href="{% url 'blog:delete' blog.id %}">삭제하기</a>
 
+<a href="{% url 'blog:like' blog.id %}">👍</a>
+<span>좋아요 개수:{{likes}}</span>
+
 {% for comment in blog.comments.all %}
   <div class="comment">
       <div class="date">{{ comment.created_at }}</div>
