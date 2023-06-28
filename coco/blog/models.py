@@ -1,13 +1,18 @@
 from django.db import models
 from django.utils import timezone
 
-# Create your models here.
 class Blog(models.Model):
     title = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     hit = models.PositiveIntegerField(default=0)
     tag = models.ManyToManyField('Tag', blank=True)
+    image = models.ImageField(upload_to='blog/', null=True)
+    # 글 삭제 시 media 파일 동시 삭제
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete()
+        super().delete(*args, **kwargs)
 
     class Meta:
         db_table = 'blog'

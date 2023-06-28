@@ -25,6 +25,7 @@ def create(request):
    form = BlogForm(request.POST)
    if form.is_valid():
         new_blog = form.save(commit=False)
+        new_blog.image = request.FILES.get('imgfile')
         new_blog.save()
         tags = request.POST.getlist('tags')
         for tag_id in tags:
@@ -42,6 +43,8 @@ def update(request, blog_id):
     form = BlogForm(request.POST, instance=old_blog)
     if form.is_valid():
        new_blog = form.save(commit=False)
+       if request.FILES.get('imgfile'):
+          old_blog.image = request.FILES.get('imgfile')
        new_blog.save()
        return redirect('blog:detail', old_blog.id)
     return redirect('blog:home')
@@ -49,7 +52,7 @@ def update(request, blog_id):
 def delete(request, blog_id):
     delete_blog = get_object_or_404(Blog, pk=blog_id)
     delete_blog.delete()
-    return redirect('home')
+    return redirect('blog:home')
 
 def add_comment_to_post(request, blog_id):
     blog=get_object_or_404(Blog, pk=blog_id)

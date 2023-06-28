@@ -20,6 +20,11 @@
 <hr/>
 
 <p class="content">{{blog.content}}</p>
+
+{% if blog.image %}
+  <img src="{{blog.image.url}}" alt="이미지"/>
+{% endif %}
+
 <p class="created">{{blog.created_at}}</p>
 <p>{{blog.update_counter}}</p>
 

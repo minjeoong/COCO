@@ -16,6 +16,9 @@
         <a href="{% url 'blog:detail' blog.id %}">
           <h2>{{blog.title}}</h2>
           <p>{{blog.summary}}</p>
+          {% if blog.image %}
+            <img src="{{blog.image.url}}" width="50rpm" height="50rpm" alt="이미지"/>
+          {% endif %}
           <p>{{blog.created_at}}</p>
           <p>{{blog.hit}}</p>
         </a>

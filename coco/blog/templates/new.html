@@ -4,10 +4,11 @@
   </head>
 
 <h1>새 글 작성</h1>
-<form action="{% url 'blog:create' %}" method="POST">
+<form action="{% url 'blog:create' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     제목 : <input type="text" name="title" />
     본문 : <textarea name="content" id="" cols="30" rows="10"></textarea>
+    사진: <input type="file" name="imgfile" />
 
     <label for="tags">Tags:</label>
     <select name="tags" id="tags" multiple>
