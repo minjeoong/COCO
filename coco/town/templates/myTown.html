@@ -1,0 +1,11 @@
+{%for user in users %}
+<a href="{%url 'myPage:myPage' user.id%}">
+  {{user.profile.nickname}} {% if user.profile.image %}
+  <img
+    src="{{user.profile.image.url}}"
+    style="width: 80px; aspect-ratio: 1/1"
+  />
+  {% endif %}
+</a>
+
+{% endfor %}

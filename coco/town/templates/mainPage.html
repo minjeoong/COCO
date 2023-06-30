@@ -1,0 +1,30 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/townList.css'%}">
+<header id="header">
+        
+    <div class="header_div">
+        <div class="logo inline">
+            <a href="">
+                <img src="{% static 'image/COCO.png'%}" alt="" class="coco">
+            </a>
+        </div>
+        <ul class="layout">
+            <li>
+                <img src="{% static 'image/home.png'%}" alt="" class="size">
+                <a href="{% url 'myPage:myPage' request.user.id %}" class="mypage">Mypage</a>
+            </li>
+            <li>
+                <img src="{% static 'image/perm_identity.png'%}" alt="" class="size">
+                <a class="login" href="{%url 'user:signout'%}">Sign Out</a>
+            </li>
+            <li>
+                <img src="{% static 'image/Setting.png'%}" alt="" class="size">
+                <a href="" class ="setting">설정</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<a href="{%url 'user:signout'%}">로그아웃하기</a>
+<a href="{% url 'town:myTown'%}">마이타운</a>
+<h1>타운이름:{{town.townname}}</h1>
+<h2>유저수:{{town.usercount}}</h2>

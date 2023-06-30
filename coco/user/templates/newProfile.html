@@ -9,6 +9,8 @@
     <label for="nickname">닉네임:</label>
     <input type="text" name="nickname" id="nickname" value="{{profile.nickname}}"><br><br>
 
+    <label for="nickname">한줄소개:</label>
+    <input type="text" name="introduce" id="introduce" value="{{profile.introduce}}"><br><br>
     <label for="image">프로필 사진:</label>
     {% if profile.image %}
     <img src="{{profile.image.url}}" alt="프로필사진" width="100"><br>

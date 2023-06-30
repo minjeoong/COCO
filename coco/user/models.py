@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-
+from town.models import Town
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, username, age, **kwargs):
         user = self.model(email=email, username=username, age=age, **kwargs)
         user.set_password(password)
         user.save()
-
+        return user
     def create_normaluser(self, email, password, username, age, **kwargs):
         self.create_user(email, password, username, age, **kwargs)
 
@@ -28,17 +28,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     age = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    town = models.ForeignKey(Town, on_delete=models.CASCADE, null=True, related_name='users')
+
 
     @property
     def is_staff(self):
         return self.is_superuser
+    
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        CustomUser, on_delete=models.CASCADE, null=True, to_field='email', db_constraint=False)
-    nickname = models.CharField(max_length=20, null=True)
+        CustomUser, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=20, unique=True)
+    introduce = models.CharField(max_length=30, default='',blank=True)
     image = models.ImageField(upload_to='profile/', null=True)
-    
     class Meta:
         db_table = 'profile'
 

@@ -1,0 +1,44 @@
+닉네임:{{profile.nickname}} 한줄소개:{{profile.introduce}} 
+{% if profile.image%}
+<img
+  src="{{ profile.image.url }}"
+  alt="Profile Picture"
+  style="height: 80px; aspect-ratio: 1/1"
+/>
+{% endif %}
+{%if owner == request.user %}
+<a href="{%url 'user:new_profile'%}">프로필 수정</a>
+{%endif%}
+<hr />
+
+{% for article in articles %} 
+{% if owner == request.user %}
+<a href="{%url 'myPage:deleteArticle' article.id %}">글삭제</a>
+{% endif %}
+<h2>{{ article }}</h2>
+<p>좋아요 수: {{ article.like_count }}</p>
+<a href="{% url 'myPage:like_article' article.id %}">
+  {% if article.is_liked %} 좋아요 취소 {% else %} 좋아요 {% endif %}
+</a>
+<form method="post" action="{% url 'myPage:create_comment' article.id %}">
+  {% csrf_token %}
+  <textarea name="comment_text" rows="3" cols="40"></textarea>
+  <button type="submit">댓글 작성</button>
+</form>
+
+{% for comment in article.comments.all %}
+<p>{{ comment.user.profile.nickname }}: {{ comment.text }}</p>
+{% if comment.user.id == request.user.id%}
+<a href="{%url 'myPage:delete_comment' comment.id%}">댓글삭제</a>
+{%endif%}
+{% endfor %} 
+<hr>
+{% endfor %}
+
+<br />
+<hr />
+{% if owner == request.user %}
+<a href="{%url 'myPage:newArticle' %}">글쓰기</a>
+<br />
+<hr />
+{% endif %}

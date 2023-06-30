@@ -1,0 +1,5 @@
+<form action="{%url 'town:createTown' %}" method="post">
+    {% csrf_token %}
+    타운이름 : <input type="text" name="townname"/>
+    <input type="submit" value="만들기"/>
+</form>

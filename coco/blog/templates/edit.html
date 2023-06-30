@@ -1,0 +1,21 @@
+<head>
+    <meta charset="UTF-8">
+    <title>편집</title>
+  </head>
+  
+  <h1>편집 페이지</h1>
+  
+  <form method="POST" action="{% url 'blog:update' edit_blog.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="title" value="{{edit_blog.title}}"/>
+    <textarea name="content" id="" cols="30">{{edit_blog.content}}</textarea>
+    
+    <input type="file" name="image" />
+    카테고리
+    <select name="category">
+        <option value="배달">배달</option>
+        <option value="식재료">식재료</option>
+        <option value="생필품">생필품</option>
+    </select>
+    <input type="submit" value="수정하기"/>
+  </form>

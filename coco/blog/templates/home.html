@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header_div">
+            <div class="logo inline">
+                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+            </div>
+
+            <ul class="layout">
+                <li>
+                    <img src="{% static 'img/home.png'%}" alt="" class="size">
+                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
+                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/article.png'%}" alt="" class="size">
+                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
+                    <a href="" class="login">Log in</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
+                    <a href="" class="menu">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <div class="where">
+            <div class="location_div">
+                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
+            </div>
+            <input type="text" class="location" placeholder="Location" >
+        </div>
+    </div>
+
+
+
+    <div class="container"> 
+        <div class="maxsize">
+           
+            <div class="flex_mid">
+
+                <div class="searchbo">
+                    <img src="{% static 'img/Search Glyph.png'%}" alt="" class="search_img">
+                    <div class="search">
+                        
+                    </div>
+                </div>
+                <div class="toptop">
+
+                    <div class="top flex">
+                        <a href="{% url 'blog:home' %}" class="button"><button class = "category"> 전체 </button></a>
+                        <a href="{% url 'blog:category_home' '배달' %}" class="button"><button class = "category"> 배달 </button></a>
+                        <a href="{% url 'blog:category_home' '생필품' %}" class="button"><button class = "category"> 생필품 </button></a>
+                        <a href="{% url 'blog:category_home' '식재료' %}" class="button"><button class = "category"> 식재료 </button></a>
+                        <a href="{% url 'blog:category_home' '기타' %}" class="button"><button class = "category"> 기타 </button></a>  
+                    </div>
+                    <div>
+                        <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
+                    </div>
+                </div>
+                
+
+
+            </div>
+   
+            {% for blog in delivery_blogs %}
+            <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
+                <div >
+                    {% if blog.image %}
+                    <img src="{{blog.image.url}}" class="img" />
+                    {% else %}
+                    <img src="{% static 'img/image.png' %}" alt="" class="img">
+                    {% endif %}
+                </div>
+                <div class="article_contents flex">
+                    <div class="title">
+                        {{blog.title}}
+                    </div>
+                    <div class="contents">
+                        {{blog.summary}}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            <span>
+                {% if delivery_blogs.has_previous %}
+                  <a href="?page=1">처음</a>
+                  <a href="?page={{ delivery_blogs.previous_page_number }}">이전</a>
+                {% endif %}
+                
+                <p>{{ delivery_blogs.number }} / {{ delivery_blogs.paginator.num_pages }}</p>
+                
+                {% if delivery_blogs.has_next %}
+                  <a href="?page={{ delivery_blogs.next_page_number }}">다음</a>
+                  <a href="?page={{ delivery_blogs.paginator.num_pages }}">마지막</a>
+                {% endif %}
+              </span>
+
+        </div>
+    </div>
+
+    
+</body>
+</html>
