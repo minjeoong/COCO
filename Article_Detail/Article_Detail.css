@@ -7,13 +7,6 @@
     }
 
 }
-/* @media only screen and (max-width: px) {
-    body{
-        width:max-content;
-    }
-
-} */
-/* reset */
 
 *{
     margin:0;   
@@ -27,6 +20,7 @@ a {
 ul {
     list-style: none;
 }
+
 
 /* Header */
 header{
@@ -185,15 +179,39 @@ input[type="search"]{
     width:32px;
 }
 
-/* 메세지 */
+/* 댓글 */
 .massage{
     background-color: #e6e6e6;
+    border:#e6e6e6 solid 4px;
     border-radius: 25px;
     min-height: 8rem;
     padding:1.5rem;
     gap:2rem;
     margin: 1.5rem 0;
 }
+.massage_create{
+    border:#e6e6e6 solid 4px;
+    border-radius: 25px;
+    min-height: 8rem;
+    padding:1.5rem;
+    gap:2rem;
+    margin: 1.5rem 0;
+
+}
+.input_massage{
+    border:none;
+    /* background-color: #e6e6e6; */
+    width:40rem;
+    resize: none;
+    font-size:16px;
+    
+}
+.input_massage:focus{
+
+    outline:none;
+}
+
+
 
 .profile_img{
     width:65px;
@@ -205,7 +223,77 @@ input[type="search"]{
 }
 .massagedate{
     margin-left:6rem;
+    color:#d3aa22;
 }
 .msg_contents{
     margin-top:14px;
+    max-height: 100px; 
+    max-width:745px;
+    overflow: auto;
+    overflow-x: hidden;
+    /* padding-right:15px; */
+    
+}
+.msg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.submit{
+    padding:2.5rem 1.5rem;
+    border-radius: 25px;
+    background-color: #FFCD29;
+    transition: 0.3s;
+}
+.submit:hover{
+    background-color: #000000;
+    color:#fff;
+    
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    margin-left:9px;
+    
+}
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+::-webkit-scrollbar-track{
+    background-color: #e6e6e6;
+}
+.msg{
+    width:100%;
+}
+
+.Userdetail{
+    gap:15px;
+    margin-bottom:10px;
+}
+
+.more{
+    float:right;
+    
+}
+.delete{
+    margin:5px;
+}
+.btn{
+    padding:5px 10px;
+    background-color: #FFCD29;
+    border-radius: 25px;
+    transition: 0.3s;
+    border:none;
+}
+.btn:hover{
+    background-color: #000000;
+    color:#fff;
+}
+.max{
+    width:100%;
+}
+
+
+.hidden{
+    display: none;
 }

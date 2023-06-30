@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Article_Detail.css">
-    
+    <link rel="stylesheet" href="Article_Detail.css">  <!-- 얘는 지워야함 -->
     <!-- <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"> -->
     <title>Document</title>
 </head>
@@ -15,13 +14,7 @@
             <div class="logo inline">
                 <img src="img/COCO.png" alt="" class="coco">
             </div>
-            <div class="searchbo inline">
-                <form class="search" method="POST" action="{% url 'search' %}">
-                    <!-- {% csrf_token %} -->
-                        <img src="img/Search Glyph.png" alt="" class="search_img">
-                        <input class="search_input" type="search" placeholder="Search" name="searched" >                
-                </form>
-            </div>
+
             <ul class="layout">
                 <li>
                     <img src="img/home.png" alt="" class="size">
@@ -87,18 +80,21 @@
                 <span>좋아요 00개 </span>
             </div>
             <!-- 댓글 작성 칸 -->
-            <div class="massage flex">
+            <div class="massage_create flex">
                 <!-- 댓글 다는 유저 프로필 -->
                 <div class="profile_div">
                     <img src="img/image.png" alt="" class="profile_img">
                 </div>
                 <div class="msg">
-                    <span class="username">댓글을 사람 username</span>
-                    <span class="massagedate">2023.06.29 현재 시간? </span>
-                    <div class="msg_contents"><input type="text" class="input_massage"> </div>
+                    
+                    <div class="msg_contents">
+                        <textarea name="" cols="30" rows="4" class="input_massage" placeholder="댓글을 입력하세요."></textarea>
+                    </div>
+                    <div class="submitbtn">
+                        <a href="" class="submit">전송</a>
+                    </div>
+                    
                 </div>
-
-
             </div>
             <!-- 이미 달린 댓글 -->
             <div class="massage flex">
@@ -106,23 +102,63 @@
                 <div class="profile_div">
                     <img src="img/image.png" alt="" class="profile_img">
                 </div>
-                <div class="msg">
-                    <span class="username">username</span>
-                    <span class="massagedate">2023.06.29</span>
-                    <div class="msg_contents">메세지 내용</div> 
+                <div class="max">
+                    <div class = "Userdetail">
+                        <span class="username">username</span>
+                        <span class="massagedate">2023.06.29</span>
+                        <div class="more">
+                            <a href="" class= "edit btn"> 수정 </a>
+                            <a href="" class="delete btn"> 삭제 </a>
+                        </div>
+
+                    </div>
+                    <div class="msg_contents">메세시 내용</div> 
+
+                    <form class="edit-form hidden" >
+                        <textarea name="editedMessage" class="input_massage" placeholder="Edit your comment"></textarea>
+                        <button type="submit" class="btn">Save</button>
+                    </form>
                 </div>
-
-
+                
             </div>
-
-            
             
         </div>
         
     </div>
 
-
+    <script>
+        // Edit 버튼 - 댓글 수정
+        const editButtons = document.querySelectorAll('.massage .edit');
     
+
+        editButtons.forEach((editButton) => {
+          editButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const container = editButton.closest('.massage');
+            const commentContent = container.querySelector('.msg_contents');
+            const editForm = container.querySelector('.edit-form');
+    
+            commentContent.style.display = 'none';
+            editForm.classList.remove('hidden');
+          });
+        });
+    
+        const editForms = document.querySelectorAll('.massage .edit-form');
+        editForms.forEach((editForm) => {
+          editForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const container = editForm.closest('.massage');
+            const commentContent = container.querySelector('.msg_contents');
+            const editedMessage = editForm.querySelector('textarea[name="editedMessage"]').value;
+    
+            commentContent.textContent = editedMessage;
+    
+            editForm.classList.add('hidden');
+            commentContent.style.display = 'block';
+          });
+        });
+      </script>
+    <!-- ------------------------------------- -->
 
 
 

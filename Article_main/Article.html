@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Article.css">
-    
     <!-- <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"> -->
     <title>Document</title>
 </head>
@@ -15,13 +14,7 @@
             <div class="logo inline">
                 <img src="img/COCO.png" alt="" class="coco">
             </div>
-            <div class="searchbo inline">
-                <form class="search" method="POST" action="{% url 'search' %}">
-                    <!-- {% csrf_token %} -->
-                        <img src="img/Search Glyph.png" alt="" class="search_img">
-                        <input class="search_input" type="search" placeholder="Search" name="searched" >                
-                </form>
-            </div>
+
             <ul class="layout">
                 <li>
                     <img src="img/home.png" alt="" class="size">
@@ -54,114 +47,67 @@
             <input type="text" class="location" placeholder="Location" >
         </div>
     </div>
-    <!-- {% for article in articles %} -->
-    <div class="article">
-        <!-- {{article.title}}
-            {{article.content}}
-            {{article.author.username}} -->
-        <div class="title_div">
-            <span class="title">배달</span>
-        </div>
-        <div class="article_flex">
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap1.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
+
+
+
+    <div class="container"> 
+        <div class="maxsize">
+           
+            <div class="flex_mid">
+
+                <div class="searchbo">
+                    <img src="img/Search Glyph.png" alt="" class="search_img">
+                    <div class="search">
+                        <!-- 여기가 검색기능 입니다 -->
+                        <form method="POST" action="{% url 'search' %}">
+                            <!-- {% csrf_token %} -->
+                                <input class="search_input" type="search" placeholder="Search" name="searched" >                
+                        </form>
+                    </div>
+                </div>
+                <div class="toptop">
+
+                    <div class="top flex">
+                        <a href="" class="button"><button class = "category"> 전체 </button></a>
+                        <a href="" class="button"><button class = "category"> 배달 </button></a>
+                        <a href="" class="button"><button class = "category"> 생필품 </button></a>
+                        <a href="" class="button"><button class = "category"> 식재료 </button></a>
+                        <a href="" class="button"><button class = "category"> 기타 </button></a>  
+                    </div>
+                    <div>
+                        <a href="" class="create">글쓰기</a>
+                    </div>
+                </div>
+                
+
+
             </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap2.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap3.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap1.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap3.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap2.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
+
+            <!-- {% for article in articles %} -->
+            <div class="middle flex">
+                    <!-- {{article.title}}
+                    {{article.content}}
+                    {{article.author.username}} -->
+                <div class="article_img">
+                    <!-- 게시물 이미지 -->
+                    <img src="tap1.jpg" alt="" class="img">
+                </div>
+                <div class="article_contents flex">
+                    <div class="title">
+                        <!-- 게시물 타이틀 -->
+                    </div>
+                    <div class="contents">
+                        <!-- 게시물 내용 -->
+
+
+                    </div>
+                </div>
             </div>
 
 
         </div>
-
     </div>
-    <div class="article">
-        <div class="title_div">
-            <span class="title">생필품</span>
-        </div>
-        <div class="article_flex">
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap1.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap2.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap3.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap1.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap3.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
-            <div class="tap1">
-                <a href="" class="link">
-                    <img src="tap2.jpg" alt="" class="tapimg">
-                    <span class="content">배달 같이 시켜먹어요</span>
-                </a>
-            </div>
 
-
-
-        </div>
-
-
-    </div>
-    <div class="article">
-        
-        <div>
-
-            
-
-        </div>
-
-
-    </div>
     <!-- {% endfor %} -->
 </body>
 </html>
