@@ -160,14 +160,14 @@ input[type="search"]{
 .detail{
     justify-content: space-between;
 
-    margin-top: 1rem;
+    margin:1rem 0 4.5rem 0;
 }
 .createuser2{
     margin-left:0.5rem;
 }
 .image{
     width:100%;
-    margin:1.8rem 0;
+    /* margin:1.8rem 0; */
 }
 .date{
     margin-right:3rem;
@@ -318,3 +318,5 @@ input[type="search"]{
     background-color: #FFCD29;
 
 }
+
+

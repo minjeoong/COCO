@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
+                    <a href="" class="login">Log in</a>
                 </li>
                 <li>
                     <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
@@ -66,7 +66,7 @@
                     {% if user == blog.user%}
                     <div>
                         <a href="{% url 'blog:edit' blog.id %}" class= "edit btn2">수정</a>
-                        <a href="{% url 'blog:delete' blog.id %}" class="delete btn2">삭제</a>
+                        <a href="{% url 'blog:delete' blog.id %}" class="delete btn2" onclick="return confirmDelete(event)">삭제</a>
                     </div>
                     {% endif %}
 
@@ -176,7 +176,16 @@
           });
         });
 
-        
+        // 삭제 버튼 팝업창 
+        function confirmDelete(event) {
+            event.preventDefault();
+            const confirmation = confirm("정말로 삭제 하시겠습니까?");
+            if (confirmation) {
+                window.location.href = event.target.href;
+            } else {
+            }
+        }
+      
     
       </script>
     
