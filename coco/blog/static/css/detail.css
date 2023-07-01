@@ -1,4 +1,4 @@
-@media only screen and (max-width: 1030px) {
+@media only screen and (max-width: 744px) {
     body{
         width:max-content;
     }
@@ -154,12 +154,13 @@ input[type="search"]{
 }
 
 .title{
-    font-size: 2.5rem;
+    font-size: 2.7rem;
+    font-weight: 600;
 }
 .detail{
     justify-content: space-between;
 
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 .createuser2{
     margin-left:0.5rem;
@@ -168,7 +169,9 @@ input[type="search"]{
     width:100%;
     margin:1.8rem 0;
 }
-
+.date{
+    margin-right:3rem;
+}
 
 /* 좋아요 */
 .like{
@@ -184,26 +187,28 @@ input[type="search"]{
     background-color: #e6e6e6;
     border:#e6e6e6 solid 4px;
     border-radius: 25px;
-    min-height: 8rem;
-    padding:1.5rem;
+    min-height: 6rem;
+    padding:1.4rem;
     gap:2rem;
     margin: 1.5rem 0;
 }
 .massage_create{
+    height:80px;
     border:#e6e6e6 solid 4px;
     border-radius: 25px;
-    min-height: 8rem;
-    padding:1.5rem;
+    min-height: 7rem;
+    padding:1rem;
     gap:2rem;
-    margin: 1.5rem 0;
-
+    margin: 1rem 0;
 }
 .input_massage{
     border:none;
     /* background-color: #e6e6e6; */
-    width:40rem;
+    min-width:500px;
+    width:auto;
     resize: none;
     font-size:16px;
+    
     
 }
 .input_massage:focus{
@@ -218,14 +223,14 @@ input[type="search"]{
 }
 .username{
     font-size: 22px;
-    font:bold;
+    font-weight: 500;
 }
 .massagedate{
-    margin-left:6rem;
-    color:#d3aa22;
+    margin-top:3px;
+    color:#8d8d8d;
 }
 .msg_contents{
-    margin-top:14px;
+   
     max-height: 100px; 
     max-width:745px;
     overflow: auto;
@@ -236,10 +241,11 @@ input[type="search"]{
 .msg{
     display: flex;
     justify-content: space-between;
+    /* padding:10px; */
     align-items: center;
 }
 .submit{
-    padding:2.5rem 1.5rem;
+    padding:1.75rem 1.5rem;
     border-radius: 25px;
     background-color: #FFCD29;
     transition: 0.3s;
@@ -278,6 +284,16 @@ input[type="search"]{
 .delete{
     margin:5px;
 }
+.max{
+    width:100%;
+}
+
+
+.hidden{
+    display: none;
+}
+
+/* 버튼 */
 .btn{
     padding:5px 10px;
     background-color: #FFCD29;
@@ -289,11 +305,16 @@ input[type="search"]{
     background-color: #000000;
     color:#fff;
 }
-.max{
-    width:100%;
+
+.btn2{
+    padding:5px 17px;
+    /* background-color: #FFCD29; */
+    border:#FFCD29 3px solid;
+    border-radius: 10px;
+    transition: 0.3s;
+    /* border:none; */
 }
+.btn2:hover{
+    background-color: #FFCD29;
 
-
-.hidden{
-    display: none;
 }

@@ -23,12 +23,11 @@ def newArticle(request):
 
 def createArticle(request):
     if request.method == 'POST':
-        content = request.POST.get('content')
+        title = request.POST.get('title')
+        content = request.POST.get('content')        
         mypage = Mypage.objects.get(user=request.user)
-        article = MypageArticle(mypage=mypage, content_text=content)
+        article = MypageArticle(mypage=mypage, content_text=content, title=title)
         article.save()
-        category = request.POST.get('category')
-        print(category)
         return redirect('myPage:myPage', request.user.id)
     else:
         return render(request, 'newArticle.html')

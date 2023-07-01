@@ -1,5 +1,106 @@
-<form action="{%url 'town:createTown' %}" method="post">
-    {% csrf_token %}
-    타운이름 : <input type="text" name="townname"/>
-    <input type="submit" value="만들기"/>
-</form>
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/newTown.css'%}">
+  </head>
+  <body>
+    <header id="header">
+        <div class="header_div">
+          <div class="logo inline">
+            <img src="{% static 'img/COCO.png'%}" alt="" class="coco" />
+          </div>
+  
+          <ul class="layout">
+            <li>
+              <img src="{% static 'img/home.png'%}" alt="" class="size" />
+              <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage"
+                >Mypage</a
+              >
+            </li>
+            <li>
+              <img
+                src="{% static 'img/building_.jpg'%}"
+                style="
+                  width: 22px;
+                  height: 22px;
+                  padding-top: 3px;
+                  margin-right: 5px;
+                "
+                alt=""
+              />
+              <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+            </li>
+            <li>
+              <img src="{% static 'img/article.png'%}" alt="" class="size" />
+              <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+            </li>
+            <li>
+              <img
+                src="{% static 'img/perm_identity.png'%}"
+                alt=""
+                class="size"
+              />
+              <a href="" class="login">Log in</a>
+            </li>
+            <li>
+              <img
+                src="{% static 'img/Setting.png'%}"
+                style="width: 23px; height: 23px; margin-right: 5px"
+                alt=""
+              />
+              <a href="" class="menu">설정</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <article>
+        <p>Town Create</p>
+        <div class="line"></div>
+        <div class="address-container">
+          <form action="{%url 'town:createTown' %}" method="post">
+            {% csrf_token %}
+            <input
+              id="member_post"
+              type="text"
+              placeholder="클릭하세요"
+              readonly
+              onclick="findAddr()"
+              class="input"
+            />
+            <input
+              id="member_addr"
+              class="input"
+              type="text"
+              placeholder="Address"
+              readonly
+            />
+            <input name="townname" class="input" type="text" placeholder="거주지를 입력하세요(ex:반포 자이)" />
+            <input class="button" type="submit" value="Create"></input>
+          </form>
+        </div>
+      </article>
+  </body>
+  <script>
+    function findAddr() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          console.log(data);
+          var roadAddr = data.roadAddress; // 도로명 주소 변수
+          var jibunAddr = data.jibunAddress; // 지번 주소 변수
+          document.getElementById("member_post").value = data.zonecode;
+          if (roadAddr !== "") {
+            document.getElementById("member_addr").value = roadAddr;
+          } else if (jibunAddr !== "") {
+            document.getElementById("member_addr").value = jibunAddr;
+          }
+        },
+      }).open();
+    }
+  </script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</html>

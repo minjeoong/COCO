@@ -1,21 +1,143 @@
-<head>
-    <meta charset="UTF-8">
-    <title>편집</title>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{% static 'css/new.css'%}" />
+    <title>Document</title>
+
+    <script>
+      function autoResize(textarea) {
+        textarea.style.height = "auto";
+        textarea.style.height = textarea.scrollHeight + "px";
+      }
+      const submitButton = (id) => {
+        const categoryValue = document.getElementById("category").value;
+        const titleValue = document.getElementById("title").value;
+        const contentValue = document.getElementById("content").value;
+        const imageFile = document.getElementById("image").files[0];
+        const formData = new FormData();
+        formData.append("title", titleValue);
+        formData.append("content", contentValue);
+        formData.append("category", categoryValue);
+        formData.append("image", imageFile);
+
+        fetch(`/blog/update/${id}/`, {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"), 
+          },
+        }).then((response) => {
+          if (response.redirected) {
+            window.location.href = response.url; // 리다이렉션 처리
+          } else {
+            // 응답 처리
+          }
+        });
+      };
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+    </script>
   </head>
-  
-  <h1>편집 페이지</h1>
-  
-  <form method="POST" action="{% url 'blog:update' edit_blog.id %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="text" name="title" value="{{edit_blog.title}}"/>
-    <textarea name="content" id="" cols="30">{{edit_blog.content}}</textarea>
-    
-    <input type="file" name="image" />
-    카테고리
-    <select name="category">
-        <option value="배달">배달</option>
-        <option value="식재료">식재료</option>
-        <option value="생필품">생필품</option>
-    </select>
-    <input type="submit" value="수정하기"/>
-  </form>
+  <body>
+    <header id="header">
+        <div class="header_div">
+            <div class="logo inline">
+                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+            </div>
+
+            <ul class="layout">
+                <li>
+                    <img src="{% static 'img/home.png'%}" alt="" class="size">
+                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
+                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/article.png'%}" alt="" class="size">
+                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
+                    <a href="" class="login">Log in</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
+                    <a href="" class="menu">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <div class="where">
+            <div class="location_div">
+                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
+            </div>
+            <input type="text" class="location" placeholder="Location" >
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="maxsize">
+        <div class="top flex">
+          <div class="category_div">
+            <select id="category">
+              <option value="배달" {% if edit_blog.category == "배달" %}selected{% endif %}>배달</option>
+              <option value="식재료" {% if edit_blog.category == "식재료" %}selected{% endif %}>식재료</option>
+              <option value="생필품" {% if edit_blog.category == "생필품" %}selected{% endif %}>생필품</option>
+            </select>
+          </div>
+          <div>
+            <!-- 이미지 첨부 링크 여기다가 걸고 -->
+            <input type="file" id="image" name="image" class="imgadd" />
+          </div>
+        </div>
+
+        <div class="title_div">
+          <input id = 'title' class="title" type="text" name="title" value="{{edit_blog.title}}" placeholder="제목 수정"/>
+        </div>
+        <hr />
+
+        <div class="contents_div">
+          <textarea
+            name="content"
+            class="content"
+            oninput="autoResize(this)"
+            placeholder="내용 수정"
+            id="content"
+          >{{edit_blog.content}}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer flex">
+      <img src="img/COCO.png" alt="" class="logo" />
+      <div class="button">
+        <a href="{% url 'blog:detail' edit_blog.id%}" class="close">취소</a>
+        <button class="close finish" onclick="submitButton('{{ edit_blog.id }}')">완료</button>
+      </div>
+    </div>
+  </body>
+</html>

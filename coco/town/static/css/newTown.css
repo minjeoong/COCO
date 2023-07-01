@@ -1,0 +1,105 @@
+@media only screen and (max-width: 900px) {
+    body{
+        width:max-content;
+    }
+  
+  }
+  
+  /* reset */
+  *
+  {
+    margin : 0;
+    padding:0;
+    box-sizing: border-box; 
+  }
+  a {
+    text-decoration:none;
+    color: #000;
+  }
+  ul {
+    list-style: none;
+  }
+  
+  /* Header */
+  header{
+    height : 5em;
+    width: 100%;
+    position: relative;
+    padding: 0 0 0 2rem;
+  }
+  .header_div{
+    width:100%;
+    position:relative;
+    top:42%;
+  }
+  
+  /*  header right  */
+  .size{
+    width: 26px;
+    height:26px;
+  }
+  .layout{
+    display:flex;
+    float: right;
+    margin-right: 3rem;
+  }
+  .layout > li{
+    margin: 0 2.5rem;
+  }
+  .layout > li > a{
+    position:absolute;
+    padding:5px 0 0 5px;
+  } 
+  #menu{
+    padding:0;
+  }
+  
+  
+  /* 검색기능 */
+  
+  .inline{
+    display:inline-block;
+    margin: 0 2rem 0 0;
+  }
+  .coco{
+    width: 98px;
+    height:26px;
+  }
+  
+  article{
+    margin: 5rem;
+  }
+  article p{
+    font-size: 2rem;
+  }
+  article .line{
+    width: 100%;
+    border: 1.5px solid #efefef;
+  }
+  article .address-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+  article input{
+    width: 30%;
+    border-radius: 2rem;
+    border: 2px solid #d9d9d9;
+  }
+  article .button{
+    position: absolute;
+    width: 10%;
+    right: 0;
+    bottom: -4rem;
+    background: #fff;
+    border-radius: 2rem;
+    border: 2px solid #d9d9d9;
+    cursor: pointer;
+  }
+  article .button:hover{
+    translate: ease 1s;
+    background: #FFCD29;
+  }

@@ -52,7 +52,7 @@ def update(request, blog_id):
     old_blog.category = request.POST.get('category')
     old_blog.image = request.FILES.get('image')
     old_blog.save()
-    return redirect('blog:home')
+    return redirect('blog:detail', old_blog.id)
 
 def delete(request, blog_id):
     delete_blog = get_object_or_404(Blog, pk=blog_id)

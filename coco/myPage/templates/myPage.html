@@ -1,44 +1,55 @@
-닉네임:{{profile.nickname}} 한줄소개:{{profile.introduce}} 
-{% if profile.image%}
-<img
-  src="{{ profile.image.url }}"
-  alt="Profile Picture"
-  style="height: 80px; aspect-ratio: 1/1"
-/>
-{% endif %}
-{%if owner == request.user %}
-<a href="{%url 'user:new_profile'%}">프로필 수정</a>
-{%endif%}
-<hr />
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/myPage.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header_div">
+            <div class="logo inline">
+                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+            </div>
 
-{% for article in articles %} 
-{% if owner == request.user %}
-<a href="{%url 'myPage:deleteArticle' article.id %}">글삭제</a>
-{% endif %}
-<h2>{{ article }}</h2>
-<p>좋아요 수: {{ article.like_count }}</p>
-<a href="{% url 'myPage:like_article' article.id %}">
-  {% if article.is_liked %} 좋아요 취소 {% else %} 좋아요 {% endif %}
-</a>
-<form method="post" action="{% url 'myPage:create_comment' article.id %}">
-  {% csrf_token %}
-  <textarea name="comment_text" rows="3" cols="40"></textarea>
-  <button type="submit">댓글 작성</button>
-</form>
+            <ul class="layout">
+                <li>
+                    <img src="{% static 'img/home.png'%}" alt="" class="size">
+                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
+                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/article.png'%}" alt="" class="size">
+                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
+                    <a href="" class="login">Log in</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
+                    <a href="" class="menu">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="mainContainer">
+      <div class="subContainer">
+        <img src="{% static 'img/palladio.jpg'%}" class="backgroundImage"/>
+        <div class="subBackgroundImage">
+          <img src="{% static 'img/qq.jpeg' %}" class="subImage"/>
+          <img src="{% static 'img/qq.jpeg' %}" class="subImage"/>
+          <img src="{% static 'img/qq.jpeg' %}" class="subImage"/>
+        </div>
+      </div>
+    </div>
 
-{% for comment in article.comments.all %}
-<p>{{ comment.user.profile.nickname }}: {{ comment.text }}</p>
-{% if comment.user.id == request.user.id%}
-<a href="{%url 'myPage:delete_comment' comment.id%}">댓글삭제</a>
-{%endif%}
-{% endfor %} 
-<hr>
-{% endfor %}
+  </body>
+</html>
 
-<br />
-<hr />
-{% if owner == request.user %}
-<a href="{%url 'myPage:newArticle' %}">글쓰기</a>
-<br />
-<hr />
-{% endif %}
