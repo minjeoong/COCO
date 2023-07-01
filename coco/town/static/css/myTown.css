@@ -1,93 +1,73 @@
-@import url(../../reset.css);
-a {
-  text-decoration: none;
-}
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: fit-content;
-}
-header .container {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 1rem;
-}
-header .logo-container {
-  top: 0;
-  bottom: 0;
-  margin: auto 0 auto 2rem;
-}
-header .logo {
-  color: #ffcd29;
-  margin: auto;
-}
-header .logo img {
-  max-width: 6rem;
-  height: auto;
-}
-header .sub-menu {
-  display: flex;
-  margin-right: 2rem;
-}
-header .sub-menu ul.menu {
-  font-family: Arial, sans-serif;
-  display: flex;
-}
-header .sub-menu ul.menu li {
-  position: relative;
-  list-style-type: none;
-}
-header .sub-menu ul.menu li:first-child::before {
-  display: none;
-}
-header .sub-menu ul.menu li a {
-  font-size: 0.8rem;
-  padding: 0.7rem 1rem;
-  display: block;
-  color: #655655;
-}
-/* 창 너비가 768px 이하일 때 폰트 크기 조정 */
-@media screen and (max-width: 768px) {
-  header .sub-menu ul.menu li a {
-    font-size: 0.7rem;
+@media only screen and (max-width: 900px) {
+  body{
+      width:max-content;
   }
+
 }
 
-/* 창 너비가 480px 이하일 때 폰트 크기 조정 */
-@media screen and (max-width: 480px) {
-  header .sub-menu ul.menu li a {
-    font-size: 0.6rem;
-  }
+/* reset */
+*
+{
+  margin : 0;
+  padding:0;
+  box-sizing: border-box; 
 }
-header .sub-menu ul.menu li a:hover {
+a {
+  text-decoration:none;
   color: #000;
 }
-header .header-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ffcd29;
-  width: 100%;
-  height: 5rem;
-  font-size: 2rem;
-  color: #fff;
-}
-/* 창 너비가 768px 이하일 때 폰트 크기 조정 */
-@media screen and (max-width: 768px) {
-  header .header-footer {
-    font-size: 1.2rem;
-  }
+ul {
+  list-style: none;
 }
 
-/* 창 너비가 480px 이하일 때 폰트 크기 조정 */
-@media screen and (max-width: 480px) {
-  header .header-footer {
-    font-size: 0.8rem;
-  }
+/* Header */
+header{
+  height : 5em;
+  width: 100%;
+  position: relative;
+  padding: 0 0 0 2rem;
+}
+.header_div{
+  width:100%;
+  position:relative;
+  top:42%;
+}
+
+
+
+/*  header right  */
+.size{
+  width: 26px;
+  height:26px;
+}
+.layout{
+  display:flex;
+  float: right;
+  margin-right: 3rem;
+}
+.layout > li{
+  margin: 0 2.5rem;
+
+
+}
+.layout > li > a{
+  position:absolute;
+  padding:5px 0 0 5px;
+} 
+#menu{
+  padding:0;
+}
+
+
+/* 검색기능 */
+
+.inline{
+  display:inline-block;
+  margin: 0 2rem 0 0;
+}
+.coco{
+  width: 98px;
+  height:26px;
 }
 article{
   position: relative;
@@ -173,4 +153,7 @@ article .card-container .card{
 .button-container{
   display: flex;
   align-items: center;
+}
+.button-container img{
+  width: 1rem;
 }

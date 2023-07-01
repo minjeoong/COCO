@@ -32,6 +32,10 @@ def createArticle(request):
     else:
         return render(request, 'newArticle.html')
     
+def detailArticle(request, article_id):
+    article = get_object_or_404(MypageArticle, id=article_id)
+    return render(request, 'detailArticle.html', {'article': article})
+    
 def deleteArticle(request, article_id):
     article = get_object_or_404(MypageArticle, id=article_id)
     

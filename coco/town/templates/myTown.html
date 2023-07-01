@@ -1,15 +1,4 @@
-{% load static %} {%for user in users %}
-<a href="{%url 'myPage:myPage' user.id%}">
-  {{user.profile.nickname}} {% if user.profile.image %}
-  <img
-    src="{{user.profile.image.url}}"
-    style="width: 80px; aspect-ratio: 1/1"
-  />
-  {% endif %}
-</a>
-
-{% endfor %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,30 +65,28 @@
         <div class="card">
           <div class="profile-background"></div>
           <div class="profile-footer">
-            <div class="profile-photo">
               {% if member.profile.image %}
               <img
+              class="profile-photo"
                 src="{{member.profile.image.url}}"
-                style="width: 80px; aspect-ratio: 1/1"
               />
               {% else %}
               <img
-                src="../../images/deafult-image"
-                style="width: 80px; aspect-ratio: 1/1"
+              class="profile-photo"
+                src="{% static 'image/COCO.png'%}"
               />
               {% endif %}
-            </div>
             <div class="profile">
               <p>Name</p>
               <div class="button-container">
                 <a href="{% url 'myPage:myPage' member.id%}">
-                  <img src="../../images/mypage.svg" alt="User Page" />
+                  <img src="{% static 'image/mypage.svg'%}" alt="User Page" />
                 </a>
                 <a href="#"
-                  ><img src="../../images/heart.svg" alt="User Page"
+                  ><img src="{% static 'image/heart.svg'%}" alt="User Page"
                 /></a>
                 <a href="#"
-                  ><img src="../../images/plus.svg" alt="User Page"
+                  ><img src="{% static 'image/plus.svg'%}" alt="User Page"
                 /></a>
               </div>
             </div>

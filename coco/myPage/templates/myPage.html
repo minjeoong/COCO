@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="{% static 'css/myPage.css'%}">
     <title>Document</title>
 </head>
+<script>
+    const goToDetail=(id)=>{
+        const url = `/myPage/detailArticle/${id}/`;
+        window.location.href = url;
+    }
+    const goToNewArticle=()=>{
+        window.location.href = '/myPage/newArticle'
+    }
+</script>
 <body>
     <header id="header">
         <div class="header_div">
@@ -30,7 +39,7 @@
                 </li>
                 <li>
                     <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="" class="login">Log in</a>
+                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
                 </li>
                 <li>
                     <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
@@ -41,14 +50,51 @@
     </header>
     <div class="mainContainer">
       <div class="subContainer">
-        <img src="{% static 'img/palladio.jpg'%}" class="backgroundImage"/>
+        <img src="{% static 'img/beach.jpg'%}" class="backgroundImage"/>
+            <div class="profileContainer">
+                <div class="profileHeader">
+                    <a href="{%url 'user:new_profile'%}">
+                        <img src="{% static 'img/settings.png' %}" class="settingBtn"/>
+                    </a>
+                </div>
+                {% if profile.image %}
+                <img src="{{ profile.image.url }}" class="profileImage"/>
+                {% else %}
+                <img src="{% static 'img/image.png' %}" class="profileImage"/>
+                {% endif %}
+                <h1 class="userName">{{profile.nickname}} </h1>
+                <div class="introBox">
+                    {{profile.introduce}}
+                </div>
+            </div>
         <div class="subBackgroundImage">
           <img src="{% static 'img/qq.jpeg' %}" class="subImage"/>
           <img src="{% static 'img/qq.jpeg' %}" class="subImage"/>
           <img src="{% static 'img/qq.jpeg' %}" class="subImage"/>
         </div>
+
+        <hr style="width: 100%;margin: 0 0 20px 0;"/>
+        <h2>내 게시글</h2>
+        
+        <div class="articleContainer">
+            {% for article in articles %} 
+            <div class="articleBox">
+                <div class="titleBox">
+                    {{article.title}}
+                    <button class="articleDetailBtn" onclick="goToDetail('{{article.id}}')">자세히 보기</button>
+                </div>
+                <div class="articleFooter">
+                    <p>{{article.created_at}}</p>
+                    <p>{{article.mypage.user.profile.nickname}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
       </div>
     </div>
+    <div class="articleAddBtnBox">
+        <button class="articleAddBtn" onclick="goToNewArticle()">게시글 작성</button>
+    </div>      
 
   </body>
 </html>
