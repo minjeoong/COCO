@@ -12,7 +12,9 @@
     <header id="header">
         <div class="header_div">
             <div class="logo inline">
-                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+                <a href="{% url 'town:mainPage'%}">
+                    <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+                </a>
             </div>
 
             <ul class="layout">
@@ -79,7 +81,7 @@
 
             </div>
    
-            {% for blog in delivery_blogs %}
+            {% for blog in delivery_blogs reversed %}
             <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
                 <div >
                     {% if blog.image %}

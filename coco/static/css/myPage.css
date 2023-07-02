@@ -125,7 +125,6 @@ header {
 .subImage {
   object-fit: cover;
   width: 280px;
-  aspect-ratio: 1/1;
   border-radius: 12px;
 }
 
@@ -175,7 +174,7 @@ header {
     flex-wrap: wrap; /* 요소가 너비를 초과하면 다음 줄로 이동 */
     justify-content: flex-start; /* 중앙 정렬 */
     gap: 24px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
   
   .articleBox {

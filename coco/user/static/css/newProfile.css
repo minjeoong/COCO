@@ -1,0 +1,269 @@
+@media only screen and (max-width: 742px) {
+    body{
+        width:max-content;
+    }
+    .footer{
+        width: max-content;
+    }
+
+}
+
+/* reset */
+
+.flex{
+    display: flex;
+}
+
+*{
+    margin:0;   
+    padding:0;   
+    box-sizing: border-box; 
+}
+a {
+    text-decoration:none;  
+    color: #000;
+}
+ul {
+    list-style: none;
+}
+body {
+    background-color: #eeeeee;
+}
+
+/* Header */
+header{
+    height : 5em;
+    width: 100%;
+    position: relative;
+    padding: 0 0 0 2rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+.header_div{
+    width:100%;
+    position:relative;
+    top:42%;
+}
+.inline{
+    display:inline-block;
+    margin: 0 2rem 0 0;
+}
+
+.coco{
+    width: 98px;
+    height:26px;
+}
+.logo {
+    width: 98px;
+    height: 29px;
+}
+
+.search_img{
+    width: 27px;
+    height:24px;
+    margin: 3px;
+}
+.searchbo{
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    background-color: #EFEFF4;
+    border-radius:7px;
+}
+input[type="search"]{
+    position:absolute;
+    height: 28px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    padding: 5px 0 0 10px;
+}
+
+
+/* header right */
+.size{
+    width: 26px;
+    height:26px;
+}
+.layout{
+    display:flex;
+    float: right;
+    margin-right: 3rem;
+}
+.layout > li{
+    margin: 0 2.5rem;
+
+
+}
+.layout > li > a{
+    position:absolute;
+    padding:5px 0 0 5px;
+} 
+#menu{
+    padding:0;
+}
+
+
+
+/* 디폴트 */
+.container{
+    margin: 6rem 0 8rem 0;
+    display:flex;
+    justify-content: center;
+}
+.maxsize{
+    max-width: 900px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20px;
+    padding:2rem;
+}
+.margin-top{
+
+}
+
+
+/* 프로필 상단 */
+
+
+.top{
+    height: 5rem;
+    align-items: center;
+}
+.back{
+    width: 42rem;
+}
+.backimg{
+    width: 2rem;
+}
+.topname{
+    justify-content: center;
+    width:100%
+}
+
+/* 프로필 메인 */
+
+.profile_main{
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile_img{
+    width:12rem;
+    height:12rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* 회원 정보 */
+
+.margin{
+    margin: 3rem;
+    flex-direction: column;
+    gap:2rem;
+}
+.gray{
+    color: #999;
+    font-size: 1.3rem;
+}
+.margintop{
+    margin-top:0.8rem;
+}
+
+.input_box{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color:#767676 ;
+    width:20rem;
+    height:1.3rem;
+    font-size: 16px;
+}
+.input_box:focus{
+    outline:none;
+}
+
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 30%;
+    color: #999999;
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    
+    margin-left: 10px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.submitbtn{
+    margin-top: 20px;
+    height:2rem;
+    border:none;
+    transition:0.3s;
+    border-radius:10px;
+
+
+}
+.submitbtn:hover{
+    background-color: #FFCD29;
+}
+
+
+/* 체크박스 */
+
+.chk_box { 
+    display: flex; 
+    position: relative; 
+    padding-left: 25px; 
+    margin-bottom: 10px; 
+    cursor: pointer; 
+    font-size: 14px; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    margin-top:1rem;
+}
+
+
+.chk_box input[type="checkbox"] { display: none; }
+
+/* 선택되지 않은 체크박스 */
+.on { 
+    width: 20px; 
+    height: 20px; 
+    background: #ddd; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+/* 선택된 체크박스 */
+.chk_box input[type="checkbox"]:checked + .on { background: #FFCD29; }
+.on:after { content: ""; position: absolute; display: none; }
+.chk_box input[type="checkbox"]:checked + .on:after { display: block; }
+.on:after { width: 6px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: absolute; left: 6px; top: 2px; }
+
+.imgdelete{
+    font-size:17px;
+}
+

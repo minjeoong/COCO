@@ -10,11 +10,11 @@
     <title>Document</title>
 
     <script>
-        function autoResize(textarea) {
+        document.addEventListener("DOMContentLoaded", function () {
+            function autoResize(textarea) {
             textarea.style.height = "auto";
             textarea.style.height = textarea.scrollHeight + "px";
-        }
-        document.addEventListener("DOMContentLoaded", function () {
+            }
             function previewImage(event) {
             var reader = new FileReader();
             reader.onload = function () {
@@ -29,15 +29,7 @@
 
             var imageInput = document.getElementById("image");
             imageInput.addEventListener("change", previewImage);
-
-            imageInput.addEventListener("change", function () {
-                var fileName = this.value.split("\\").pop();
-                var uploadName = document.querySelector(".upload-name");
-                uploadName.value = fileName;
-            });
-
         });
-
     </script>
   </head>
   <body>
@@ -80,7 +72,7 @@
         </div>
     </div>
 
-    <form action="{%url 'myPage:createArticle' %}" method="post" enctype="multipart/form-data">
+    <form action="{%url 'myPage:updateArticle' edit_article.id%}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
         <div class="maxsize">
@@ -88,20 +80,24 @@
             <div class="filebox">
                 <input class="upload-name"  value="첨부파일" placeholder="첨부파일">
                 <label for="image">파일찾기</label> 
-                <input name="image" type="file" id="image" class="imgadd" accept="image/*">            
+                <input name="image"type="file" id="image" class="imgadd" accept="image/*">            
             </div>
             <div class="title_div">
-                <input type='text' name="title" placeholder="제목을 입력하세요" class="title" id="title"/>
+                <input type='text' name="title" placeholder="제목을 입력하세요" class="title" id="title" value="{{edit_article.title}}"/>
             </div>
 
             <hr />
-            <div class="imgbox_div">                
-                <img id="preview" src="" alt="사진 Preview" />
-                
+            {% if edit_article.image %}
+            <div class="imgbox_div" style="display: block;">
+              <img id="preview" src="{{edit_article.image.url}}" alt="사진 Preview" />
             </div>
-
+            {% else %}
+            <div class="imgbox_div">
+              <img id="preview" src="" alt="사진 Preview" />
+            </div>
+            {% endif %}
             <div class="contents_div">
-                <textarea type='text' name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요" id="content"></textarea>
+                <textarea type='text' name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요" id="content">{{edit_article.content_text}}</textarea>
             </div>           
         </div>
         </div>
@@ -109,12 +105,10 @@
         <div class="footer flex">
         <img src="{%static 'img/COCO.png'%}" alt="" class="logo" />
         <div class="button">
-            <a href="{%url 'myPage:myPage' user.id%}" class="close">취소</a>
+            <a href="{% url 'myPage:detailArticle' edit_article.id %}" class="close">취소</a>
             <input type='submit' value="작성하기" class="close finish"/>
         </div>
         </div>
     </form>
-
-
   </body>
 </html>
