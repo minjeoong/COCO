@@ -23,8 +23,9 @@ def createArticle(request):
         article = MypageArticle(mypage = mypage)
         article.title = request.POST.get('title')
         article.content_text = request.POST.get('content')
-        print(request.FILES.get('image'))
-        article.image = request.FILES.get('image')        
+        if request.FILES.get('image'):
+            delete_image(article.image)
+            article.image = request.FILES.get('image')        
         article.save()
         return redirect('myPage:myPage', request.user.id)
     else:
@@ -44,7 +45,9 @@ def updateArticle(request, article_id):
     old_article = get_object_or_404(MypageArticle, pk=article_id)
     old_article.title = request.POST.get('title')
     old_article.content_text = request.POST.get('content')
-    old_article.image = request.FILES.get('image')
+    if request.FILES.get('image'):
+        delete_image(old_article.image.path)
+        old_article.image = request.FILES.get('image')
     old_article.save()
     return redirect('myPage:detailArticle', old_article.id)
 
@@ -92,7 +95,6 @@ def update_comment(request, comment_id):
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     id = comment.article.id
-    print(id, "dasjkfhsdjklfhaklsdfklasdfkj")
     # 현재 로그인한 사용자와 댓글의 작성자가 같을 때만 삭제 가능하도록 체크
     if request.user == comment.user:
         comment.delete()

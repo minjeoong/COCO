@@ -84,6 +84,7 @@ def create_profile(request):
         if request.POST.get('remove_image') == 'on':
             delete_image(profile)
         elif request.FILES.get('image'):
+            delete_image(profile)
             profile.image = request.FILES.get('image')
         profile.save()
         return redirect("user:new_profile")

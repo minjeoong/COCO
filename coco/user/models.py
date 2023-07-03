@@ -35,13 +35,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser
     
+def get_image_upload_path_profile(instance, filename):
+    return f"user/{instance.user.id}/profile/{filename}"
 
 class Profile(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=20, unique=True)
     introduce = models.CharField(max_length=30, default='',blank=True)
-    image = models.ImageField(upload_to='profile/', null=True)
+    # image = models.ImageField(upload_to='profile/', null=True)
+    image = models.ImageField(upload_to=get_image_upload_path_profile, null=True)
     class Meta:
         db_table = 'profile'
 

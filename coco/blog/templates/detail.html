@@ -14,7 +14,9 @@
     <header id="header">
         <div class="header_div">
             <div class="logo inline">
-                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+                <a href="{% url 'town:mainPage'%}">
+                    <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+                </a>
             </div>
 
             <ul class="layout">
@@ -32,7 +34,7 @@
                 </li>
                 <li>
                     <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="" class="login">Log in</a>
+                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
                 </li>
                 <li>
                     <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
@@ -54,33 +56,42 @@
         <div class="maxsize">
             <!-- 글 본문 -->
             <div class="article">
-                <div class="title">
+                <div class="category font1">
+                    {{blog.category}}
+                </div>
+                <div class="title font">
                     {{blog.title}}
                 </div>
                 <div class="detail flex">
                     <div>
-                        <span class="date">{{blog.created_at}}</span>
-                        <span style="color:#11111183">작성자</span>
+                        <span class="date font">{{blog.created_at}}</span>
+
+                        <span style="color:#11111183" class="cu font">작성자</span>
                         <span class="createuser2">{{blog.user.profile.nickname}}</span>
+                        <span style="color:#11111183" class="cu font">조회수</span>
+                        <span class="createuser2">{{blog.hit}}</span>
+
                     </div>
                     {% if user == blog.user%}
                     <div>
-                        <a href="{% url 'blog:edit' blog.id %}" class= "edit btn2">수정</a>
-                        <a href="{% url 'blog:delete' blog.id %}" class="delete btn2" onclick="return confirmDelete(event)">삭제</a>
+                        <a href="{% url 'blog:edit' blog.id %}" class= "edit btn2 font">수정</a>
+                        <a href="{% url 'blog:delete' blog.id %}" class="delete btn2 font" onclick="return confirmDelete(event)">삭제</a>
                     </div>
                     {% endif %}
 
                 </div>
+                
                 {% if blog.image %}
                 <div class="image">
                     <img src="{{blog.image.url}}" alt="" class="image">
                 </div>
                 {% endif %}
-                <div class="content">
+                <div class="content font">
                     {{blog.content}}
                 </div>
     
             </div>
+
             <!-- 좋아요 -->
             <div class="like flex">
                 <!-- 좋아요 눌렀을 때 -->
@@ -92,7 +103,7 @@
                     <img src="{% static 'img/heart.png' %}" alt="" class="like_img">
                     {% endif %}
                 </a>
-                <span>좋아요 {{ blog.like_count }}개 </span>
+                <span class = "font">좋아요 {{ blog.like_count }}개 </span>
             </div>
 
             
@@ -109,10 +120,10 @@
                 <form action="{% url 'blog:add_comment' blog.id %}" method="post" class="msg">
                     {% csrf_token %}
                     <div class="msg_contents">
-                        <input type="text" name="comment_text" id="mag" class="input_massage" placeholder="댓글을 입력하세요."></input>
+                        <input type="text" name="comment_text" id="mag" class="input_massage font" placeholder="댓글을 입력하세요."></input>
                     </div>
                     <div class="submitbtn">
-                        <input type="submit" class="submit" value="전송"/>
+                        <input type="submit" class="submit font" value="전송"/>
                     </div>
                 </form>
             </div>
@@ -185,6 +196,7 @@
             } else {
             }
         }
+
       
     
       </script>

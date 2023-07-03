@@ -81,7 +81,7 @@
 
             </div>
    
-            {% for blog in delivery_blogs reversed %}
+            {% for blog in delivery_blogs %}
             <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
                 <div >
                     {% if blog.image %}
@@ -101,17 +101,38 @@
             </a>
             {% endfor %}
             <span>
-                {% if delivery_blogs.has_previous %}
-                  <a href="?page=1">처음</a>
-                  <a href="?page={{ delivery_blogs.previous_page_number }}">이전</a>
-                {% endif %}
-                
-                <p>{{ delivery_blogs.number }} / {{ delivery_blogs.paginator.num_pages }}</p>
-                
-                {% if delivery_blogs.has_next %}
-                  <a href="?page={{ delivery_blogs.next_page_number }}">다음</a>
-                  <a href="?page={{ delivery_blogs.paginator.num_pages }}">마지막</a>
-                {% endif %}
+                <ul class="pagination">
+
+                    {% if delivery_blogs.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" tabindex="-1"  href="?page={{ delivery_blogs.previous_page_number }}">&#60;</a>
+                    </li>
+
+                    {% endif %}
+                    {% for page_number in delivery_blogs.paginator.page_range %}
+                    
+
+                    {% if page_number == delivery_blogs.number %} 
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link current-page" href="?page={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                   </li>
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% if delivery_blogs.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ delivery_blogs.next_page_number }}">&#62;</a>
+                    </li>
+
+                    {% endif %}
+
+                </ul>
+
               </span>
 
         </div>

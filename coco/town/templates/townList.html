@@ -37,38 +37,51 @@
     <div class="main">
         <div class="where">
             <div class="location_div">
-                <img src="{% static 'image/location.png'%}" alt="" class="location_img">
+              <img src="{% static 'image/location.png'%}" alt="" class="location_img">
             </div>
-            
-            <form class="search" method="POST" action="">
-                <input type="search" class="location" placeholder="Location" >
+          
+            <form class="search" method="GET" action="{% url 'town:townList' %}">
+              <input type="text" name="search_field" class="location" placeholder="Location" value="{{ search_query }}">
+              <input type="submit" value="Search">
             </form>
-        </div>
+          </div>
     </div>
 
     <div class="container">
         <div class="maxsize">
-            <div class="title">
-                <span class = "Townlist">Town List</span>
-                <a href="{%url 'town:newTown'%}" class= "create">Create</a>
-            </div>
-            <hr class = "hr_c">
-    
-            <div>
-                {%for town in townlist %}
-                <a href="{%url 'town:setTown' town.id %}" class="town">
-
-                    <img src="{% static 'image/building_.png'%}" alt="" class="town_img">
-                    <div class="town_div">
-                        <div class="town_name"> {{town.townname}} </div>
-                        <div class="town_count"> {{town.usercount}} 명 참여</div>
-                    </div>
+          <div class="title">
+            <span class="Townlist">Town List</span>
+            <a href="{% url 'town:newTown' %}" class="create">Create</a>
+          </div>
+          <hr class="hr_c">
+      
+          <div>
+            {% for town in townlist %}
+              {% if search_query and search_query|lower in town.townname|lower %}
+                <a href="{% url 'town:setTown' town.id %}" class="town">
+                  <img src="{% static 'image/building_.png'%}" alt="" class="town_img">
+                  <div class="town_div">
+                    <div class="town_name">{{ town.townname }}</div>
+                    <div class="town_count">{{ town.usercount }} 명 참여</div>
+                  </div>
                 </a>
                 <hr>
-                {% endfor %}
-            </div>
+              {% elif not search_query %}
+                <a href="{% url 'town:setTown' town.id %}" class="town">
+                  <img src="{% static 'image/building_.png'%}" alt="" class="town_img">
+                  <div class="town_div">
+                    <div class="town_name">{{ town.townname }}</div>
+                    <div class="town_count">{{ town.usercount }} 명 참여</div>
+                  </div>
+                </a>
+                <hr>
+              {% endif %}
+            {% empty %}
+              <p>검색 결과가 없습니다.</p>
+            {% endfor %}
+          </div>
         </div>
-    </div>
+      </div>
 
 
 </body>
