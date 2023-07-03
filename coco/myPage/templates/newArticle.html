@@ -1,6 +1,126 @@
-<form action="{%url 'myPage:createArticle' %}" method="post">
-    {% csrf_token %}
-    <input type='text' name="title" placeholder="제목입력"/>
-    <input type='text' name="content" placeholder="내용입력"/>
-    <input type='submit' value="작성하기"/>
-</form>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{% static 'css/newArticle.css'%}" />
+    <title>Document</title>
+
+    <script>
+
+        function autoResize(textarea) {
+            textarea.style.height = "auto";
+            textarea.style.height = textarea.scrollHeight + "px";
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var imagePreview = document.getElementById("preview");
+                imagePreview.src = reader.result;
+
+                var imgBoxdiv = document.querySelector(".imgbox_div");
+                imgBoxdiv.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+            }
+
+            var imageInput = document.getElementById("image");
+            imageInput.addEventListener("change", previewImage);
+
+            imageInput.addEventListener("change", function () {
+                var fileName = this.value.split("\\").pop();
+                var uploadName = document.querySelector(".upload-name");
+                uploadName.value = fileName;
+            });
+
+        });
+
+
+      
+    </script>
+  </head>
+  <body>
+    <header id="header">
+        <div class="header_div">
+            <div class="logo inline">
+                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+            </div>
+
+            <ul class="layout">
+                <li>
+                    <img src="{% static 'img/home.png'%}" alt="" class="size">
+                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
+                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/article.png'%}" alt="" class="size">
+                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
+                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
+                    <a href="" class="menu">설정</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <div class="where">
+            <div class="location_div">
+                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
+            </div>
+            <input type="text" class="location" placeholder="Location" >
+        </div>
+    </div>
+
+    <form action="{%url 'myPage:createArticle' %}" method="post">
+        {% csrf_token %}
+        <div class="container">
+        <div class="maxsize">
+
+            <div class="filebox">
+                <input class="upload-name"  value="첨부파일" placeholder="첨부파일">
+                <label for="image">파일찾기</label> 
+                <input type="file" id="image" class="imgadd" accept="image/*">            
+            </div>
+            <div class="title_div">
+                <input type='text' name="title" placeholder="제목을 입력하세요" class="title" id="title"/>
+            </div>
+
+            <hr />
+            <div class="imgbox_div">                
+                <img id="preview" src="" alt="사진 Preview" />
+                
+            </div>
+
+            <div class="contents_div">
+                <textarea type='text' name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요" id="content"></textarea>
+            </div>           
+        </div>
+        </div>
+
+        <div class="footer flex">
+        <img src="img/COCO.png" alt="" class="logo" />
+        <div class="button">
+            <a href="" class="close">취소</a>
+            <input type='submit' value="작성하기" class="close finish"/>
+        </div>
+        </div>
+    </form>
+
+
+  </body>
+</html>
