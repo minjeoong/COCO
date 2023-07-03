@@ -20,7 +20,7 @@
       </li>
       <li>
         <img src="{% static 'image/article.png'%}" alt="" class="size" />
-        <a href="{% url 'town:myTown'%}">게시판 </a>
+        <a href="{% url 'blog:home'%}">게시판 </a>
       </li>
       <li>
         <img src="{% static 'image/perm_identity.png'%}" alt="" class="size" />
@@ -31,16 +31,23 @@
         <a href="" class="setting">설정</a>
       </li>
     </ul>
+    <a href="#" class="setting" onclick="toggleLayout()"
+      ><img
+        src="{% static 'image/hamburger.png'%}"
+        alt=""
+        class="navbar__toggleBtn"
+    /></a>
   </div>
 </header>
 <article>
   <div class="article-container">
     <div class="name">
-      <h1>Welcome to COCO Town</h1>
+      <h1 id="greeting">Welcome to COCO Town</h1>
     </div>
     <div class="search-container">
-      <p>{{town.townname}} Town</p>
-      <p>유저수:{{town.usercount}}</p>
+      <p id="fade">
+        {{town.townname}} Town &ensp; 이웃 수 : {{town.usercount}}
+      </p>
     </div>
     <span class="article-footer">Today News</span>
   </div>
@@ -49,48 +56,38 @@
   <div class="footer-container">
     <div class="content">
       <p class="p-title new">New</p>
-      <p>콜라 나눔해요</p>
+      <p>{{latest_blog.title}}</p>
       <p>
-        어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라 나눔합니다!어제 산 콜라
-        나눔합니다!어제 산 콜라 나눔합니다!
+        {{latest_blog.content}}
       </p>
     </div>
     <div class="content hot">
       <p class="p-title hot">Hot</p>
-      <p>사이다 나눔해요</p>
+      <p>{{most_viewed_blog.title}}</p>
       <p>
-        어제 산 사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다
-        나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산
-        사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다
-        나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산
-        사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다
-        나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산
-        사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다
-        나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산
-        사이다 나눔합니다!어제 산 사이다 나눔합니다!어제 산 사이다 나눔합니다!
+        {{most_viewed_blog.content}}
       </p>
     </div>
     <div class="content attention">
       <p class="p-title attention">Attention</p>
-      <p>환타 나눔해요</p>
+      <p>{{most_liked_blog.title}}</p>
       <p>
-        어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!어제 산 환타 나눔합니다!어제 산 환타 나눔합니다!어제 산 환타
-        나눔합니다!
+        {{most_liked_blog.content}}
       </p>
     </div>
   </div>
 </footer>
+<script>
+  function toggleLayout() {
+  var layout = document.querySelector('.layout');
+  layout.classList.toggle('show');
+}
+  setTimeout(function () {
+    var greeting = document.getElementById("greeting");
+    greeting.style.opacity = 1;
+  }, 1000);
+  setTimeout(function () {
+    var fade = document.getElementById("fade");
+    fade.style.opacity = 1;
+  }, 1000);
+</script>
