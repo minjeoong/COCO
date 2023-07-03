@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,14 +10,11 @@
     <title>Document</title>
 
     <script>
-
         function autoResize(textarea) {
             textarea.style.height = "auto";
             textarea.style.height = textarea.scrollHeight + "px";
         }
         document.addEventListener("DOMContentLoaded", function () {
-
-
             function previewImage(event) {
             var reader = new FileReader();
             reader.onload = function () {
@@ -86,7 +82,7 @@
         </div>
     </div>
 
-    <form action="{%url 'myPage:createArticle' %}" method="post">
+    <form action="{%url 'myPage:createArticle' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
         <div class="maxsize">
@@ -94,7 +90,7 @@
             <div class="filebox">
                 <input class="upload-name"  value="첨부파일" placeholder="첨부파일">
                 <label for="image">파일찾기</label> 
-                <input type="file" id="image" class="imgadd" accept="image/*">            
+                <input name="image" type="file" id="image" class="imgadd" accept="image/*">            
             </div>
             <div class="title_div">
                 <input type='text' name="title" placeholder="제목을 입력하세요" class="title" id="title"/>
@@ -113,9 +109,9 @@
         </div>
 
         <div class="footer flex">
-        <img src="img/COCO.png" alt="" class="logo" />
+        <img src="{%static 'img/COCO.png'%}" alt="" class="logo" />
         <div class="button">
-            <a href="" class="close">취소</a>
+            <a href="{%url 'myPage:myPage' user.id%}" class="close">취소</a>
             <input type='submit' value="작성하기" class="close finish"/>
         </div>
         </div>

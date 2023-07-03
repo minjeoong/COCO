@@ -1,0 +1,241 @@
+@media only screen and (max-width: 900px) {
+  body {
+    width: max-content;
+  }
+}
+
+/* reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+ul {
+  list-style: none;
+}
+
+/* Header */
+header {
+  height: 5em;
+  width: 100%;
+  position: relative;
+  padding: 0 0 0 2rem;
+}
+.header_div {
+  width: 100%;
+  position: relative;
+  top: 42%;
+}
+
+/*  header right  */
+.size {
+  width: 26px;
+  height: 26px;
+}
+.layout {
+  display: flex;
+  float: right;
+  margin-right: 3rem;
+}
+.layout > li {
+  margin: 0 2.5rem;
+}
+.layout > li > a {
+  position: absolute;
+  padding: 5px 0 0 5px;
+}
+#menu {
+  padding: 0;
+}
+
+/* 검색기능 */
+
+.inline {
+  display: inline-block;
+  margin: 0 2rem 0 0;
+}
+.coco {
+  width: 98px;
+  height: 26px;
+}
+
+/* ---------------------------------------------------------------- */
+
+.mainContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.subContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+}
+
+.backgroundImage {
+  object-fit: cover;
+  width: 900px;
+  height: 500px;
+  margin-bottom: 40px;
+}
+.addBgButton{
+  position: absolute;
+  width: 200px;
+  display: none;
+}
+.addBgButton.mainBg{
+  top: 180px;
+}
+.addBgButton.subBg1{
+  top: 595px;
+  left: 40px;
+}
+.addBgButton.subBg2{
+  top: 595px;
+  left: 350px;
+}
+.addBgButton.subBg3{
+  top: 595px;
+  left: 660px;
+}
+.subBackgroundImage {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.addImageBtn{
+  position: absolute;
+  width: 60px;
+  aspect-ratio: 1/1;
+  right: 40px;
+  top: 460px;
+}
+.subImage {
+  object-fit: cover;
+  width: 280px;
+  border-radius: 12px;
+}
+
+.profileContainer {
+  position: absolute;
+  background-color: #ffcd29;
+  left: 28px;
+  top: 186px;
+  width: 240px;
+  aspect-ratio: 1/1.4;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.profileHeader {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.settingBtn {
+  width: 20px;
+  aspect-ratio: 1/1;
+}
+.profileImage {
+  width: 160px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+}
+.userName {
+  font-size: 1.4rem;
+}
+.introBox {
+  width: 200px;
+  aspect-ratio: 1/0.4;
+  background-color: aliceblue;
+  border-radius: 8px;
+  padding: 12px;
+}
+.articleContainer {
+    display: flex;
+    flex-wrap: wrap; /* 요소가 너비를 초과하면 다음 줄로 이동 */
+    justify-content: flex-start; /* 중앙 정렬 */
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .articleBox {
+    flex: 0 0 280px; /* 너비 280px로 고정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    aspect-ratio: 1/0.5;
+    background-color: #bde3ff;
+    padding: 12px;
+    border-radius: 12px;
+    word-break: break-word; /* 내용이 너비를 초과하면 줄바꿈 */
+  }
+  
+.titleBox {
+  background-color: #fff;
+  width: 260px;
+  aspect-ratio: 1/0.3;
+  padding: 12px;
+  border-radius: 12px;
+  position: relative;
+}
+.articleDetailBtn {
+  position: absolute;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
+  right: 8px;
+  bottom: 8px;
+  transition: 0.5s;
+}
+.articleDetailBtn:hover {
+  cursor: pointer;
+  background-color: #aaaaaa;
+}
+.articleFooter {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.articleAddBtnBox {
+  position: fixed;
+  bottom: 20px; /* 하단 여백 조정 */
+  left: 50%; /* 왼쪽에서 50% 위치로 이동 */
+  transform: translateX(
+    -50%
+  ); /* 가로 방향으로 -50% 이동하여 정중앙으로 위치 조정 */
+}
+.articleAddBtn{
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px 8px 12px;
+    color: #fff;
+    background-color:#15A1FF;
+    opacity: 0.7;
+    transition: 0.7s;
+}   
+
+.articleAddBtn:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}   

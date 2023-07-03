@@ -53,10 +53,6 @@ header{
     width: 98px;
     height:26px;
 }
-.logo {
-    width: 98px;
-    height: 29px;
-}
 
 .search_img{
     width: 27px;
@@ -282,7 +278,10 @@ textarea:focus{
     padding: 0 3rem;
 }
 
-
+.logo {
+    width: 98px;
+    height: 29px;
+}
 .close{
     padding:1rem 2.5rem 1rem 2.5rem;
     border:2px solid #00000081;

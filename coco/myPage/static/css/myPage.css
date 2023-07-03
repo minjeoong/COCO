@@ -87,6 +87,26 @@ header {
   height: 500px;
   margin-bottom: 40px;
 }
+.addBgButton{
+  position: absolute;
+  width: 200px;
+  display: none;
+}
+.addBgButton.mainBg{
+  top: 180px;
+}
+.addBgButton.subBg1{
+  top: 595px;
+  left: 40px;
+}
+.addBgButton.subBg2{
+  top: 595px;
+  left: 350px;
+}
+.addBgButton.subBg3{
+  top: 595px;
+  left: 660px;
+}
 .subBackgroundImage {
   display: flex;
   width: 100%;
@@ -95,10 +115,17 @@ header {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-
+.addImageBtn{
+  position: absolute;
+  width: 60px;
+  aspect-ratio: 1/1;
+  right: 40px;
+  top: 460px;
+}
 .subImage {
   object-fit: cover;
   width: 280px;
+  aspect-ratio: 1/1;
   border-radius: 12px;
 }
 
@@ -148,7 +175,7 @@ header {
     flex-wrap: wrap; /* 요소가 너비를 초과하면 다음 줄로 이동 */
     justify-content: flex-start; /* 중앙 정렬 */
     gap: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
   }
   
   .articleBox {
@@ -206,4 +233,11 @@ header {
     color: #fff;
     background-color:#15A1FF;
     opacity: 0.7;
+    transition: 0.7s;
 }   
+
+.articleAddBtn:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}   
+

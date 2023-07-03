@@ -12,7 +12,9 @@
     <header id="header">
       <div class="header_div">
         <div class="logo inline">
-          <img src="{% static 'img/COCO.png'%}" alt="" class="coco" />
+          <a href="{% url 'town:mainPage'%}">
+            <img src="{% static 'img/COCO.png'%}" alt="" class="coco" />
+          </a>
         </div>
 
         <ul class="layout">
@@ -73,7 +75,7 @@
               {% else %}
               <img
               class="profile-photo"
-                src="{% static 'image/COCO.png'%}"
+                src="{% static 'image/profile.png'%}"
               />
               {% endif %}
             <div class="profile">
