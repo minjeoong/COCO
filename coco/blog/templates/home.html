@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="{% static 'css/home.css'%}">
     <title>Document</title>
 </head>
@@ -39,6 +39,12 @@
                     <a href="" class="menu">설정</a>
                 </li>
             </ul>
+            <a href="#" class="setting" onclick="toggleLayout()"
+            ><img
+              src="{% static 'image/hamburger.png'%}"
+              alt=""
+              class="navbar__toggleBtn"
+          /></a>
         </div>
     </header>
     <div class="main">
@@ -52,7 +58,7 @@
 
 
 
-    <div class="container"> 
+    <div class="container font"> 
         <div class="maxsize">
            
             <div class="flex_mid">
@@ -67,12 +73,14 @@
 
                     <div class="top flex">
                         <a href="{% url 'blog:home' %}" class="button"><button class = "category"> 전체 </button></a>
-                        <a href="{% url 'blog:category_home' '배달' %}" class="button"><button class = "category"> 배달 </button></a>
-                        <a href="{% url 'blog:category_home' '생필품' %}" class="button"><button class = "category"> 생필품 </button></a>
-                        <a href="{% url 'blog:category_home' '식재료' %}" class="button"><button class = "category"> 식재료 </button></a>
-                        <a href="{% url 'blog:category_home' '기타' %}" class="button"><button class = "category"> 기타 </button></a>  
+                        <a href="{% url 'blog:category_home' '배달열차' %}" class="button"><button class = "category"> 배달열차 </button></a>
+                        <a href="{% url 'blog:category_home' '공구mate' %}" class="button"><button class = "category"> 공구 mate </button></a>
+                        <a href="{% url 'blog:category_home' '대신해드립니다' %}" class="button"><button class = "category"> 대신해드립니다 </button></a>
+                        <a href="{% url 'blog:category_home' '우리동네소식' %}" class="button"><button class = "category"> 우리동네소식 </button></a>  
+                        <a href="{% url 'blog:category_home' '공지사항' %}" class="button"><button class = "category"> 공지사항 </button></a>  
+
                     </div>
-                    <div>
+                    <div class= "create_div">
                         <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
                     </div>
                 </div>
@@ -137,7 +145,21 @@
 
         </div>
     </div>
+    <script>
+          function toggleLayout() {
+            var layout = document.querySelector('.layout');
+            layout.classList.toggle('show');
+            }
+            setTimeout(function () {
+                var greeting = document.getElementById("greeting");
+                greeting.style.opacity = 1;
+            }, 1000);
+            setTimeout(function () {
+                var fade = document.getElementById("fade");
+                fade.style.opacity = 1;
+            }, 1000);
 
+    </script>
     
 </body>
 </html>

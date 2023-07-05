@@ -299,6 +299,7 @@ input[type="search"]{
     background-color: #FFCD29;
     transition: 0.3s;
     border:none;
+    cursor:pointer;
 }
 .submit:hover{
     background-color: #000000;
@@ -367,5 +368,3 @@ input[type="search"]{
     background-color: #FFCD29;
 
 }
-
-

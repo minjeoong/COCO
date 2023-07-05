@@ -15,8 +15,12 @@
         >
       </li>
       <li>
-        <img src="{% static 'image/building_.png'%}" alt="" class="size" />
-        <a href="{% url 'town:myTown'%}">Mytown </a>
+        <img
+          src="{% static 'img/building_.jpg'%}"
+          style="width: 22px; height: 22px; padding-top: 3px; margin-right: 5px"
+          alt=""
+        />
+        <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
       </li>
       <li>
         <img src="{% static 'image/article.png'%}" alt="" class="size" />
@@ -39,7 +43,8 @@
     /></a>
   </div>
 </header>
-<article>
+
+<article class="font">
   <div class="article-container">
     <div class="name">
       <h1 id="greeting">Welcome to COCO Town</h1>
@@ -52,36 +57,36 @@
     <span class="article-footer">Today News</span>
   </div>
 </article>
-<footer>
+<footer class="font">
   <div class="footer-container">
     <div class="content">
       <p class="p-title new">New</p>
-      <p>{{latest_blog.title}}</p>
-      <p>
-        {{latest_blog.content}}
-      </p>
+      <a href="{% url 'blog:detail' latest_blog.id%}">
+        <p class="news-title">{{latest_blog.title}}</p>
+        <p class="news">{{latest_blog.content}}</p>
+      </a>
     </div>
-    <div class="content hot">
+    <div class="content">
       <p class="p-title hot">Hot</p>
-      <p>{{most_viewed_blog.title}}</p>
-      <p>
-        {{most_viewed_blog.content}}
-      </p>
+      <a href="{% url 'blog:detail' most_viewed_blog.id%}">
+        <p class="news-title">{{most_viewed_blog.title}}</p>
+        <p class="news">{{most_viewed_blog.content}}</p>
+      </a>
     </div>
-    <div class="content attention">
+    <div class="content">
       <p class="p-title attention">Attention</p>
-      <p>{{most_liked_blog.title}}</p>
-      <p>
-        {{most_liked_blog.content}}
-      </p>
+      <a href="{% url 'blog:detail' most_liked_blog.id%}">
+        <p class="news-title">{{most_liked_blog.title}}</p>
+        <p class="news">{{most_liked_blog.content}}</p>
+      </a>
     </div>
   </div>
 </footer>
 <script>
   function toggleLayout() {
-  var layout = document.querySelector('.layout');
-  layout.classList.toggle('show');
-}
+    var layout = document.querySelector(".layout");
+    layout.classList.toggle("show");
+  }
   setTimeout(function () {
     var greeting = document.getElementById("greeting");
     greeting.style.opacity = 1;

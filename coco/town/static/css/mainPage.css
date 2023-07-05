@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Roboto+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Kanit:wght@300&family=Nanum+Pen+Script&family=Roboto+Condensed:wght@300&display=swap");
 @media only screen and (max-width: 900px) {
   /* body{
         width:max-content;
@@ -44,6 +46,7 @@
   }
   #greeting {
     font-size: 3rem;
+    font-family: "Agdasima", sans-serif;
   }
   img:active {
     transform: scale(0.9); /* 이미지 크기를 0.9배로 축소 */
@@ -68,6 +71,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.font{
+  font-family: "Roboto Condensed", sans-serif;
+
 }
 a {
   text-decoration: none;
@@ -141,6 +148,7 @@ article .article-container {
 }
 #greeting {
   opacity: 0;
+  font-family: "Agdasima", sans-serif;
   transition: opacity 1s ease-in-out;
 }
 #fade {
@@ -214,22 +222,48 @@ article .search-button {
 }
 .footer-container .content {
   width: 22.2rem;
+  height: 20rem;
 }
 .footer-container > div {
   flex: 1;
 }
 footer .footer-container .content {
   margin: 1rem 3rem;
+  padding: 0 1rem;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: transform 0.7s ease-in-out;
+}
+footer .footer-container .content:hover {
+  transform: scale(1.1);
 }
 footer .footer-container .p-title {
-  font-size: 2rem;
-  margin: 1rem 0;
+  font-size: 2.5rem;
+  /* margin: 1rem 0; */
 }
 footer .footer-container .p-title {
 }
 footer .footer-container p {
   margin: 1rem 0;
 }
-p .p-title {
-  color: #fff;
+.content .p-title {
+  font-weight: bold;
+}
+.hot {
+  color: rgb(248, 0, 0);
+}
+.attention {
+  color: blue;
+}
+textarea {
+  border: none;
+}
+.news {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.news-title {
+  font-size: 1.5rem;
 }
