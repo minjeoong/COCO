@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 def home(request, category_name=None):
     townblog = TownBlog.objects.filter(town=request.user.town).first()
@@ -14,7 +15,12 @@ def home(request, category_name=None):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'home.html', {'delivery_blogs': page_obj})
+    search_query = request.GET.get('searched', '')
+    if search_query:
+        blog = blog.filter(Q(title__contains=search_query) | Q(content__contains=search_query))
+    page_obj = blog
+
+    return render(request, 'home.html', {'delivery_blogs': page_obj, 'searched': search_query})
 
 def detail(request,blog_id):
     blog = get_object_or_404(Blog,pk=blog_id)

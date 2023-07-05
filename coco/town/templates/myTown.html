@@ -4,7 +4,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/myTown.css' %}" />
     <title>My Town</title>
   </head>
@@ -79,7 +78,7 @@
               />
               {% endif %}
             <div class="profile">
-              <p>Name</p>
+              <p>{{member.profile.nickname}}</p>
               <div class="button-container">
                 <a href="{% url 'myPage:myPage' member.id%}">
                   <img src="{% static 'image/mypage.svg'%}" alt="User Page" />

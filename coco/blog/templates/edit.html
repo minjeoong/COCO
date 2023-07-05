@@ -106,9 +106,12 @@
         <div class="top flex">
           <div class="category_div">
             <select id="category">
-              <option value="배달" {% if edit_blog.category == "배달" %}selected{% endif %}>배달</option>
-              <option value="식재료" {% if edit_blog.category == "식재료" %}selected{% endif %}>식재료</option>
-              <option value="생필품" {% if edit_blog.category == "생필품" %}selected{% endif %}>생필품</option>
+
+              <option value="배열열차" {% if edit_blog.category == "배열열차" %}selected{% endif %}>배열열차</option>
+              <option value="공구mate" {% if edit_blog.category == "공구mate" %}selected{% endif %}>공구mate</option>
+              <option value="대신해드립니다" {% if edit_blog.category == "대신해드립니다" %}selected{% endif %}>대신 해드립니다</option>
+              <option value="우리동네소식" {% if edit_blog.category == "우리동네소식" %}selected{% endif %}>우리동네소식</option>
+              <option value="공지사항" {% if edit_blog.category == "공지사항" %}selected{% endif %}>공지사항</option>
             </select>
           </div>
           <div>

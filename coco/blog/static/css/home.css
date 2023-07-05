@@ -1,16 +1,4 @@
-/* @media only screen and (max-width: 744px) {
-    header{
-        width:max-content;
-    }
-    .footer{
-        width: max-content;
-    }
-
-} */
-@media only screen and (max-width: 950px) {
-
-
-
+@media only screen and (max-width: 900px) {
     .layout {
         display: none !important;
     }
@@ -85,7 +73,7 @@
 
 }
 
-@media only screen and (min-width: 950px) {
+@media only screen and (min-width: 900px) {
     /* body{
           width:max-content;
       } */
@@ -100,8 +88,6 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
-    
 }
 @font-face {
     font-family: 'designhouseOTFLight00';
@@ -250,6 +236,7 @@ button{
     font-size: 19px;
     font-family: 'designhouseOTFLight00';
     white-space: nowrap;
+    cursor: pointer;
 }
 .category:hover{
     opacity: 1;
