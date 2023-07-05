@@ -32,7 +32,7 @@
       </li>
       <li>
         <img src="{% static 'image/Setting.png'%}" alt="" class="size" />
-        <a href="" class="setting">설정</a>
+        <a href="{% url 'town:setting'%}" class="setting">설정</a>
       </li>
     </ul>
     <a href="#" class="setting" onclick="toggleLayout()"
@@ -61,24 +61,30 @@
   <div class="footer-container">
     <div class="content">
       <p class="p-title new">New</p>
+      {% if latest_blog %}
       <a href="{% url 'blog:detail' latest_blog.id%}">
         <p class="news-title">{{latest_blog.title}}</p>
         <p class="news">{{latest_blog.content}}</p>
       </a>
+      {% endif %}
     </div>
     <div class="content">
       <p class="p-title hot">Hot</p>
+      {% if most_viewed_blog %}
       <a href="{% url 'blog:detail' most_viewed_blog.id%}">
         <p class="news-title">{{most_viewed_blog.title}}</p>
         <p class="news">{{most_viewed_blog.content}}</p>
       </a>
+      {% endif %}
     </div>
     <div class="content">
       <p class="p-title attention">Attention</p>
+      {% if most_liked_blog %}
       <a href="{% url 'blog:detail' most_liked_blog.id%}">
         <p class="news-title">{{most_liked_blog.title}}</p>
         <p class="news">{{most_liked_blog.content}}</p>
       </a>
+      {% endif %}
     </div>
   </div>
 </footer>

@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/setting.css' %}" />
+    <title>비밀번호 변경</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="back">
+        <a href="{% url 'myPage:myPage' request.user.id%}" class="back"
+          ><img src="{% static 'image/arrow_back.png' %}" alt="back" class="backimg" />
+        </a>
+      </div>
+      <h1>비밀번호 변경</h1>
+      <form action="{% url 'town:change_password' %}" method="post">
+        {% csrf_token %}
+        <label for="currentPassword">현재 비밀번호</label>
+        <input name="currentPassword" type="password" id="currentPassword" required />
+        <label for="newPassword">새로운 비밀번호</label>
+        <input name="newPassword" type="password" id="newPassword" required />
+        <label for="confirmPassword">비밀번호 확인</label>
+        <input name="confirmPassword" type="password" id="confirmPassword" required />
+        <input type="submit" value="변경"/>
+      </form>
+    </div>
+  </body>
+</html>

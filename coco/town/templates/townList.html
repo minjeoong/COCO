@@ -10,7 +10,6 @@
 </head>
 <body>
     <header id="header">
-        
         <div class="header_div">
             <div class="logo inline">
                 <a href="">
@@ -28,7 +27,7 @@
                 </li>
                 <li>
                     <img src="{% static 'image/Setting.png'%}" alt="" class="size">
-                    <a href="" class ="setting">설정</a>
+                    <a href="{% url 'town:setting'%}" class="setting">설정</a>
                 </li>
             </ul>
         </div>
