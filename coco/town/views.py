@@ -2,6 +2,10 @@ from django.shortcuts import render
 from .models import Town
 from django.shortcuts import render, redirect, get_object_or_404
 from blog.models import TownBlog, Blog
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
+
 def townList(request):
     if request.user.town:
         return redirect('town:mainPage')
@@ -62,3 +66,34 @@ def myTown(request):
     users = town.users.all()
     return render(request, 'myTown.html', {'users':users})
     
+def setting(request):
+    return render(request, 'setting.html')
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST.get('currentPassword')
+        new_password = request.POST.get('newPassword')
+        confirm_password = request.POST.get('confirmPassword')
+
+        # 현재 비밀번호 확인
+        if not request.user.check_password(current_password):
+            messages.error(request, '현재 비밀번호가 일치하지 않습니다.')
+            return redirect('town:setting')
+
+        # 새로운 비밀번호와 비밀번호 확인 일치 여부 확인
+        if new_password != confirm_password:
+            messages.error(request, '새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.')
+            return redirect('town:setting')
+
+        # 비밀번호 변경
+        request.user.set_password(new_password)
+        request.user.save()
+
+        # 세션 업데이트
+        update_session_auth_hash(request, request.user)
+
+        messages.success(request, '비밀번호가 성공적으로 변경되었습니다.')
+        return redirect('town:mainPage')
+
+    return redirect('town:setting')
