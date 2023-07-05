@@ -15,7 +15,12 @@ def home(request, category_name=None):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'home.html', {'delivery_blogs': page_obj})
+    search_query = request.GET.get('searched', '')
+    if search_query:
+        blog = blog.filter(Q(title__contains=search_query) | Q(content__contains=search_query))
+    page_obj = blog
+
+    return render(request, 'home.html', {'delivery_blogs': page_obj, 'searched': search_query})
 
 def detail(request,blog_id):
     blog = get_object_or_404(Blog,pk=blog_id)
@@ -96,11 +101,3 @@ def like_blog(request, blog_id):
         liked.save()
 
     return redirect('blog:detail', blog_id)
-    
-def search(request):
-    if request.method == 'POST':
-        searched = request.POST.get('searched', '')        
-        blogs = Blog.objects.filter(Q(title__contains=searched) | Q(content__contains=searched))
-        return render(request, 'search.html', {'searched': searched, 'blogs': blogs})
-    else:
-        return render(request, 'search.html', {})
