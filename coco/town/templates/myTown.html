@@ -54,7 +54,7 @@
               style="width: 23px; height: 23px; margin-right: 5px"
               alt=""
             />
-            <a href="" class="menu">설정</a>
+            <a href="{% url 'town:setting'%}" class="setting">설정</a>
           </li>
         </ul>
       </div>
@@ -78,7 +78,7 @@
               />
               {% endif %}
             <div class="profile">
-              <p>{{member.profile.nickname}}</p>
+              <p>Name</p>
               <div class="button-container">
                 <a href="{% url 'myPage:myPage' member.id%}">
                   <img src="{% static 'image/mypage.svg'%}" alt="User Page" />
