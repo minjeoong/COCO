@@ -60,15 +60,17 @@
 
     <div class="container font"> 
         <div class="maxsize">
-           
-            <div class="flex_mid">
 
+            <div class="flex_mid">
                 <div class="searchbo">
                     <img src="{% static 'img/Search Glyph.png'%}" alt="" class="search_img">
-                    <div class="search">
-                        
-                    </div>
+                    <form method="GET" action="{% url 'blog:home' %}">
+                        {% csrf_token %}
+                        <input type="text" name="searched" placeholder="검색어를 입력하세요" value="{{ searched }}" class="location">
+                        <input type="submit" value="검색">
+                    </form>
                 </div>
+                
                 <div class="toptop">
 
                     <div class="top flex">
@@ -83,9 +85,7 @@
                     <div class= "create_div">
                         <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
                     </div>
-                </div>
-                
-
+                </div>          
 
             </div>
    
@@ -107,6 +107,26 @@
                     </div>
                 </div>
             </a>
+            {% empty %}
+                {% if searched %}
+                    <p>검색 결과가 없습니다.</p>
+                {% else %}
+                    <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
+                        {% if blog.image %}
+                            <img src="{{blog.image.url}}" class="img" />
+                        {% else %}
+                            <img src="{% static 'img/image.png' %}" alt="" class="img">
+                        {% endif %}
+                        <div class="article_contents flex">
+                            <div class="title">
+                                {{blog.title}}
+                            </div>
+                            <div class="contents">
+                                {{blog.summary}}
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
             {% endfor %}
             <span>
                 <ul class="pagination">

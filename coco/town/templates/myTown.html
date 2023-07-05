@@ -78,7 +78,7 @@
               />
               {% endif %}
             <div class="profile">
-              <p>Name</p>
+              <p>{{member.profile.nickname}}</p>
               <div class="button-container">
                 <a href="{% url 'myPage:myPage' member.id%}">
                   <img src="{% static 'image/mypage.svg'%}" alt="User Page" />

@@ -119,6 +119,7 @@
               >Mypage</a
             >
           </li>
+          {% if user.town %}
           <li>
             <img
               src="{% static 'img/building_.jpg'%}"
@@ -136,6 +137,7 @@
             <img src="{% static 'img/article.png'%}" alt="" class="size" />
             <a href="{% url 'blog:home' %}" class="thread">게시판</a>
           </li>
+          {% endif %}
           <li>
             <img
               src="{% static 'img/perm_identity.png'%}"
