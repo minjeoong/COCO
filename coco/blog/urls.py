@@ -17,4 +17,5 @@ urlpatterns = [
     path('delete_comment/<int:comment_id>/', login_required(delete_comment), name='delete_comment'),
     path('<int:blog_id>/', login_required(detail), name='detail'),
     path('like_blog/<int:blog_id>/', login_required(like_blog), name="like_blog"),
+    path('search/', login_required(search), name='search'),
 ]

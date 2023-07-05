@@ -54,15 +54,19 @@
 
     <div class="container"> 
         <div class="maxsize">
-           
+
             <div class="flex_mid">
 
+                {% comment %} 검색 추가 {% endcomment %}
                 <div class="searchbo">
                     <img src="{% static 'img/Search Glyph.png'%}" alt="" class="search_img">
-                    <div class="search">
-                        
-                    </div>
+                    <form method="POST" action="{% url 'blog:search' %}">
+                        {% csrf_token %}
+                        <input type="text" name="searched" placeholder="검색어를 입력하세요">
+                        <input type="submit" value="검색">
+                    </form>
                 </div>
+                
                 <div class="toptop">
 
                     <div class="top flex">
@@ -75,9 +79,7 @@
                     <div>
                         <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
                     </div>
-                </div>
-                
-
+                </div>          
 
             </div>
    

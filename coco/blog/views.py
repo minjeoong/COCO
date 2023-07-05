@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 def home(request, category_name=None):
     townblog = TownBlog.objects.filter(town=request.user.town).first()
@@ -95,3 +96,11 @@ def like_blog(request, blog_id):
         liked.save()
 
     return redirect('blog:detail', blog_id)
+    
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST.get('searched', '')        
+        blogs = Blog.objects.filter(Q(title__contains=searched) | Q(content__contains=searched))
+        return render(request, 'search.html', {'searched': searched, 'blogs': blogs})
+    else:
+        return render(request, 'search.html', {})
