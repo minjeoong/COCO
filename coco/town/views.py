@@ -1,12 +1,19 @@
 from django.shortcuts import render
 from .models import Town
 from django.shortcuts import render, redirect, get_object_or_404
-from blog.models import TownBlog
+from blog.models import TownBlog, Blog
 def townList(request):
     if request.user.town:
         return redirect('town:mainPage')
+
+    search_query = request.GET.get('search_field', '')
     townlist = Town.objects.all()
-    return render(request, 'townList.html', {'townlist':townlist})
+
+    if search_query:
+        townlist = townlist.filter(townname__icontains=search_query)
+
+    return render(request, 'townList.html', {'townlist': townlist, 'search_query': search_query})
+
 
 def newTown(request):
     if request.user.town:
@@ -36,7 +43,19 @@ def mainPage(request):
     if request.user.town is None:
         return redirect('town:townList')
     town = request.user.town
-    return render(request, 'mainPage.html', {'town': town})
+    townblog = get_object_or_404(TownBlog, town = town)
+    blogs = Blog.objects.filter(townblog=townblog)
+    
+    latest_blog = blogs.order_by('-created_at').first()
+    most_viewed_blog = blogs.order_by('-hit').first()
+    most_liked_blog = blogs.order_by('-likes').first()
+
+    return render(request, 'mainPage.html', {
+        'town': town,
+        'latest_blog': latest_blog,
+        'most_viewed_blog': most_viewed_blog,
+        'most_liked_blog': most_liked_blog
+    })
 
 def myTown(request):
     town = request.user.town

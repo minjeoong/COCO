@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request, category_name=None):
     townblog = TownBlog.objects.filter(town=request.user.town).first()
     blog = Blog.objects.filter(townblog=townblog)
-
+    blog = blog.order_by('-created_at')
     if category_name:
         blog = blog.filter(category=category_name)
 
@@ -18,6 +18,7 @@ def home(request, category_name=None):
 
 def detail(request,blog_id):
     blog = get_object_or_404(Blog,pk=blog_id)
+    blog.update_counter
     blog.is_liked = blog.likes.filter(user=request.user).exists()
     blog.like_count = blog.likes.count()
     return render(request,'detail.html', {'blog':blog})
@@ -70,7 +71,6 @@ def add_comment(request, blog_id):
     return redirect('blog:detail', blog.id)
 
 def update_comment(request, comment_id):
-    print("dsfhjkashdfjklasdfkahdsfkjl")
     if request.method == 'POST':
         comment = get_object_or_404(BlogComment, pk=comment_id)
         comment.comment_text = request.POST.get('comment_text')
@@ -86,7 +86,7 @@ def delete_comment(request, comment_id):
 def like_blog(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
     user = request.user
-    print(blog.likes)
+    
     if blog.likes.filter(user=user).exists():
         liked = BlogLike.objects.get(blog=blog, user=user)
         liked.delete()

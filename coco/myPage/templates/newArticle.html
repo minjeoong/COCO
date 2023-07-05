@@ -38,6 +38,17 @@
 
         });
 
+        function validateForm(event) {
+            var title = document.getElementById("title").value;
+            var content = document.getElementById("content").value;
+
+            if (title.trim() === "" || content.trim() === "") {
+                alert("Please fill in the required fields.");
+                return false;
+            }
+        }
+      
+
 
       
     </script>
@@ -46,7 +57,9 @@
     <header id="header">
         <div class="header_div">
             <div class="logo inline">
-                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
+                <a href="{% url 'town:mainPage'%}">
+                    <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
+                  </a>
             </div>
 
             <ul class="layout">
@@ -82,7 +95,7 @@
         </div>
     </div>
 
-    <form action="{%url 'myPage:createArticle' %}" method="post" enctype="multipart/form-data">
+    <form action="{%url 'myPage:createArticle' %}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
         {% csrf_token %}
         <div class="container">
         <div class="maxsize">

@@ -5,6 +5,11 @@ from user.models import CustomUser
 class TownBlog(models.Model):
     town = models.OneToOneField(Town, on_delete=models.CASCADE, related_name='blog')
 
+
+def get_image_upload_path_blog(instance, filename):
+    townname = instance.townblog.town.townname.lower().replace(" ", "_")
+    return f"{townname}/blog/{instance.user.id}/{filename}"
+
 class Blog(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user')
     townblog = models.ForeignKey(TownBlog, on_delete=models.CASCADE, related_name='blogs')
@@ -13,7 +18,8 @@ class Blog(models.Model):
     content = models.TextField()
     hit = models.PositiveIntegerField(default=0)
     category = models.CharField(max_length=10)
-    image = models.ImageField(upload_to='blog/', null=True)
+    image = models.ImageField(upload_to=get_image_upload_path_blog, null=True)
+
     
     # 글 삭제 시 media 파일 동시 삭제
     def delete(self, *args, **kwargs):
