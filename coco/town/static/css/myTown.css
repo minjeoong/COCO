@@ -1,8 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Roboto+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Kanit:wght@300&family=Nanum+Pen+Script&family=Roboto+Condensed:wght@300&display=swap");
 @media only screen and (max-width: 900px) {
-  body {
-    width: max-content;
+  /* body{
+        width:max-content;
+    } */
+  .layout {
+    display: none !important;
+  }
+  .layout.show {
+    display: flex !important;
+    z-index: 10;
+    width: 100vw;
+    /* height: 20rem; */
+    padding: 0.5rem;
+    background: #fff;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    top: 47px;
+    right: 0;
+    position: absolute;
+  }
+  .layout li {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 2.5rem;
+    margin: 0 !important;
+    /* border: 1px solid #000; */
+  }
+  .layout a {
+    position: relative !important;
+    /* width: 100%; */
+  }
+  .navbar__toggleBtn {
+    color: var(--accent-color);
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    width: 23px;
+    height: 23px;
+  }
+  #greeting {
+    font-size: 3rem;
+    font-family: "Agdasima", sans-serif;
+  }
+  img:active {
+    transform: scale(0.9); /* 이미지 크기를 0.9배로 축소 */
+    opacity: 0.7; /* 이미지의 투명도를 0.7로 조정 */
+  }
+  .layout li:hover {
+    /* transform: scale(0.9); 이미지 크기를 0.9배로 축소 */
+    background: #efefef; /* 이미지의 투명도를 0.7로 조정 */
   }
 }
+@media only screen and (min-width: 900px) {
+  /* body{
+        width:max-content;
+    } */
+  .navbar__toggleBtn {
+    display: none;
+  }
+}
+
 
 /* reset */
 * {
@@ -68,15 +131,15 @@ article {
   /* background: #ffcd29; */
 }
 article .article-header {
-  position: absolute;
-  top: 0;
-  left: 7.4rem;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 1.5rem;
 }
 article .card-container {
   display: flex;
-  justify-content: flex-start;
-  flex-grow: 1;
-  margin: 1rem 6.5rem 1rem 6.5rem;
+  justify-content: center;
+  margin: 1rem 6rem;
   flex-wrap: wrap;
   gap: 2rem;
   /* padding: 1rem; */
@@ -85,13 +148,19 @@ article .card-container > div {
   /* flex: 1 1 24%; */
 }
 article .card-container .card {
-  width: 22.2rem;
+  min-width: 18rem;
   height: 28rem;
   margin: 2rem 1rem;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #ebebeb;
   border-radius: 2rem;
   background: #fff;
 }
+/* @media only screen and (max-width: 1400px) {
+  article .card-container {
+    display: flex !important;
+    justify-content: center !important;
+  }
+} */
 .profile-background {
   /* width: 100%; */
   display: flex;
@@ -99,7 +168,8 @@ article .card-container .card {
   align-items: center;
   height: 40%;
   border-radius: 2rem 2rem 0 0;
-  background: linear-gradient(to right, #ffce2b, #bdff41);
+  background: #d9d9d9;
+  /* background: linear-gradient(to right, #ffce2b, #bdff41); */
 }
 .profile-photo {
   display: flex;
@@ -108,10 +178,11 @@ article .card-container .card {
   background: #fff;
   width: 50%;
   height: 70%;
-  border-radius: 50%;
+  border-radius:45%;
   position: absolute;
   top: -6.5rem;
   border: 1px solid #d9d9d9;
+  object-fit: cover;
 }
 
 .profile-footer {
@@ -139,6 +210,7 @@ article .card-container .card {
 }
 .profile-message {
   width: 80%;
+  height: 36px;
   margin-top: 0.5rem;
   background: #fff;
   word-wrap: break-word;
@@ -153,5 +225,5 @@ article .card-container .card {
   align-items: center;
 }
 .button-container img {
-  width: 1rem;
+  /* width: 1.5rem; */
 }

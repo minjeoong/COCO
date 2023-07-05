@@ -2,125 +2,192 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/newProfile.css'%}" />
     <title>Profile</title>
-</head>
-<body>
+  </head>
+  <body>
     <header id="header">
-        <div class="header_div">
-            <div class="logo inline">
-                <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
-            </div>
-
-            <ul class="layout">
-                <li>
-                    <img src="{% static 'img/home.png'%}" alt="" class="size">
-                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
-                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/article.png'%}" alt="" class="size">
-                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
-                    <a href="{% url 'town:setting'%}" class="setting">설정</a>
-                </li>
-            </ul>
+      <div class="header_div">
+        <div class="logo inline">
+          <a href="{% url 'town:mainPage'%}">
+            <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
+          </a>
         </div>
+
+        <ul class="layout">
+          <li>
+            <img src="{% static 'img/home.png'%}" alt="" class="size" />
+            <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage"
+              >Mypage</a
+            >
+          </li>
+          <li>
+            <img
+              src="{% static 'img/building_.jpg'%}"
+              style="
+                width: 22px;
+                height: 22px;
+                padding-top: 3px;
+                margin-right: 5px;
+              "
+              alt=""
+            />
+            <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+          </li>
+          <li>
+            <img src="{% static 'img/article.png'%}" alt="" class="size" />
+            <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+          </li>
+          <li>
+            <img
+              src="{% static 'img/perm_identity.png'%}"
+              alt=""
+              class="size"
+            />
+            <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
+          </li>
+          <li>
+            <img
+              src="{% static 'img/Setting.png'%}"
+              style="width: 23px; height: 23px; margin-right: 5px"
+              alt=""
+            />
+            <a href="{% url 'town:setting'%}" class="setting">설정</a>
+          </li>
+        </ul>
+      </div>
     </header>
     <div class="container">
-        <div class="maxsize">
-            <div class="top flex">
-                <div class="back"><a href="{% url 'myPage:myPage' request.user.id%}" class="back"><img src="{% static 'img/arrow_back.png'%}" alt="" class="backimg"></a></div>
-                <div class ="topname">
-                    <h1>PROFILE</h1>
-                </div>
-            </div>
-            <hr>
-            <form method="POST" enctype="multipart/form-data" action="{% url 'user:create_profile' %}" >
-                {% csrf_token %}
-                <div class="profile_main">
-
-                    {% if profile.image %}
-                        <img src="{{profile.image.url}}" class="profile_img" alt="프로필사진" width="100">
-                        <br>
-
-                        <label for="agree" class="chk_box">
-                            <input type="checkbox" name="remove_image" id="agree" />
-                            <span class="on"></span>
-                            <span class="imgdelete">사진삭제</span>
-                            
-                        </label>
-                    
-                    {% else %}
-
-                        <img src="{% static 'img/profile.png'%}" class="profile_img" alt="프로필사진" width="100">
-
-                    {% endif %}
-                </div>
-
-                <div class="margin flex">
-                    <h1 class = "">회원 정보</h1>
-                    <div class= "">
-                        <p class = "gray">아이디</p>
-                        <p class="margintop">{{user.email}}</p>
-                    </div>
-    
-                    <div >
-                        <label for="nickname" class = "gray">닉네임</label> <br>
-                        <input type="text" name="nickname" class="nickname input_box margintop" value="{{profile.nickname}}">
-                    </div>
-                    
-                    <div>
-                        <label for="nickname" class = "gray">한줄소개</label> <br>
-                        <input type="text" name="introduce" class="introduce input_box margintop" value="{{profile.introduce}}"> 
-                    </div>
-                    <div class = "filebox">
-                        <span for="image" class = "gray ">프로필 사진</span><br>
-                        <div class="margintop">
-                            <input class="upload-name"  value="첨부파일" placeholder="첨부파일">
-                            <label for="image">파일찾기</label> 
-                            <input type="file" name="image" id="image" class="imgadd " >
-                        </div>
-                    </div>
-
-                    <button type="submit" class="submitbtn">저장</button>
-
-
-                </div>
-            </form>
+      <div class="maxsize">
+        <div class="top flex">
+          <div class="back">
+            <a href="{% url 'myPage:myPage' request.user.id%}" class="back"
+              ><img
+                src="{% static 'img/arrow_back.png'%}"
+                alt=""
+                class="backimg"
+            /></a>
+          </div>
+          <div class="topname">
+            <h1>PROFILE</h1>
+          </div>
         </div>
+        <hr />
+        <form
+          method="POST"
+          enctype="multipart/form-data"
+          action="{% url 'user:create_profile' %}"
+          id="profileForm"
+        >
+          {% csrf_token %}
+          <div class="profile_main">
+            {% if profile.image %}
+            <img
+              src="{{profile.image.url}}"
+              class="profile_img"
+              alt="프로필사진"
+              width="100"
+              id="profileImage"
+            />
+            <br />
+
+            <label for="agree" class="chk_box">
+              <input type="checkbox" name="remove_image" id="agree" />
+              <span class="on"></span>
+              <span class="imgdelete">사진삭제</span>
+            </label>
+
+            {% else %}
+
+            <img
+              src="{% static 'img/profile.png'%}"
+              class="profile_img"
+              alt="프로필사진"
+              width="100"
+            />
+
+            {% endif %}
+          </div>
+
+          <div class="margin flex">
+            <h1 class="">회원 정보</h1>
+            <div class="">
+              <p class="gray">아이디</p>
+              <p class="margintop">{{user.email}}</p>
+            </div>
+
+            <div>
+              <label for="nickname" class="gray">닉네임</label> <br />
+              <input
+                type="text"
+                name="nickname"
+                class="nickname input_box margintop"
+                value="{{profile.nickname}}"
+              />
+            </div>
+
+            <div>
+              <label for="nickname" class="gray">한줄소개</label> <br />
+              <input
+                type="text"
+                name="introduce"
+                class="introduce input_box margintop"
+                value="{{profile.introduce}}"
+              />
+            </div>
+            <div class="filebox">
+              <span for="image" class="gray">프로필 사진</span><br />
+              <div class="margintop">
+                <input
+                  class="upload-name"
+                  value="첨부파일"
+                  placeholder="첨부파일"
+                />
+                <label for="image">파일찾기</label>
+                <input type="file" name="image" id="image" class="imgadd" />
+              </div>
+            </div>
+
+            <button type="submit" class="submitbtn">저장</button>
+          </div>
+        </form>
+      </div>
     </div>
-</body>
-<script>
+  </body>
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var imageInput = document.getElementById("image");
-        var uploadName = document.querySelector(".upload-name");
+      var imageInput = document.getElementById("image");
+      var uploadName = document.querySelector(".upload-name");
 
-        imageInput.addEventListener("change", function () {
-            var fileName = this.value.split("\\").pop();
-            uploadName.value = fileName;
-        });
+      imageInput.addEventListener("change", function () {
+        var fileName = this.value.split("\\").pop();
+        uploadName.value = fileName;
+      });
     });
-</script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var imageInput = document.getElementById("image");
+    var uploadName = document.querySelector(".upload-name");
+    var profileImage = document.getElementById("profileImage");
+
+    imageInput.addEventListener("change", function () {
+      var file = this.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        profileImage.src = e.target.result;
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+
+      var fileName = this.value.split("\\").pop();
+      uploadName.value = fileName;
+    });
+  });
+  </script>
 </html>
-
-
-
-
-
-
-
-

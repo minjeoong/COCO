@@ -245,8 +245,9 @@ input:focus{
     display:inline;
     position:relative;
     width:100%;
+    /* margin-left:auto; */
     height:100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* 게시뮬 내용 */

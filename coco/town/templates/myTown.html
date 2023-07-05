@@ -57,6 +57,12 @@
             <a href="{% url 'town:setting'%}" class="setting">설정</a>
           </li>
         </ul>
+        <a href="#" class="setting" onclick="toggleLayout()"
+      ><img
+        src="{% static 'image/hamburger.png'%}"
+        alt=""
+        class="navbar__toggleBtn"
+    /></a>
       </div>
     </header>
     <article>
@@ -78,17 +84,11 @@
               />
               {% endif %}
             <div class="profile">
-              <p>Name</p>
+              <h3>{{member.profile.nickname}}</h3>
               <div class="button-container">
                 <a href="{% url 'myPage:myPage' member.id%}">
                   <img src="{% static 'image/mypage.svg'%}" alt="User Page" />
                 </a>
-                <a href="#"
-                  ><img src="{% static 'image/heart.svg'%}" alt="User Page"
-                /></a>
-                <a href="#"
-                  ><img src="{% static 'image/plus.svg'%}" alt="User Page"
-                /></a>
               </div>
             </div>
             <div class="profile-message">
@@ -100,4 +100,18 @@
       </div>
     </article>
   </body>
+  <script>
+    function toggleLayout() {
+      var layout = document.querySelector(".layout");
+      layout.classList.toggle("show");
+    }
+    setTimeout(function () {
+      var greeting = document.getElementById("greeting");
+      greeting.style.opacity = 1;
+    }, 1000);
+    setTimeout(function () {
+      var fade = document.getElementById("fade");
+      fade.style.opacity = 1;
+    }, 1000);
+  </script>
 </html>

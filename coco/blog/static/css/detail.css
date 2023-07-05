@@ -162,6 +162,7 @@ input[type="search"]{
 }
 .maxsize{
     max-width: 900px;
+    padding: 0 20px 0 20px;
     width: 100%;
 }
 .flex{

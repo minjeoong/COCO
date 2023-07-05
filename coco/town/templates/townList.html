@@ -12,9 +12,9 @@
     <header id="header">
         <div class="header_div">
             <div class="logo inline">
-                <a href="">
-                    <img src="{% static 'image/COCO.png'%}" alt="" class="coco">
-                </a>
+              <a href="{% url 'town:mainPage'%}">
+                <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
+              </a>
             </div>
             <ul class="layout">
                 <li>
@@ -41,7 +41,6 @@
           
             <form class="search" method="GET" action="{% url 'town:townList' %}">
               <input type="text" name="search_field" class="location" placeholder="Location" value="{{ search_query }}">
-              <input type="submit" value="Search">
             </form>
           </div>
     </div>

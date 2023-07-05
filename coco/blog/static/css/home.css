@@ -1,4 +1,4 @@
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
     .layout {
         display: none !important;
     }
@@ -63,17 +63,17 @@
         margin-right:auto;
     }
     .create_div{
-        display: flex !important;
+        
         justify-content: center;
-        /* margin-top: 1rem; */
-        /* white-space: unset !important; */
-        width:64px;
-        margin:0;
+        margin-top: 1rem !important;
+        display: block !important;
+        align-self: flex-start;
+
     }
 
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1000px) {
     /* body{
           width:max-content;
       } */
@@ -174,6 +174,7 @@ header{
     margin:0 auto;
     display: flex;
     border-radius: 30px;
+    align-items: center;
 }
 .location_div{
     display: flex;
@@ -221,7 +222,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 11rem;
+    gap: 4rem;
 }
 
 .top{
@@ -250,14 +251,14 @@ button{
 
 /* 글쓰기 버튼 */
 
-.create_div{
+/* .create_div{
     border:2px solid transparent; 
     border-radius: 2px;
      -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1); */
     /* height:20px; */
-    padding: 15px 60px;
-    margin:10px 4px;
+    /* padding: 15px 60px; */
+    /* margin:10px 4px;
     color: #000;
     font-family: sans-serif;
     text-transform: uppercase;
@@ -277,6 +278,7 @@ button{
     z-index:-1;
     width: 0%;
     height:2px;
+    
     background: #FFCD29;
     box-shadow: inset 0px 0px 0px #FFCD29;
     display: block;
@@ -306,6 +308,41 @@ button{
 .create_div:hover{
     border-left:2px solid #FFCD29;
     border-right:2px solid #FFCD29;
+} */
+div.create_div
+{
+    display: block;
+
+    font-family: Raleway;
+    margin: 0 auto;
+    padding: 15px 30px;
+	text-align: center;
+    position:relative;
+    white-space: nowrap;
+    overflow-wrap: break-word;
+}
+div.create_div a:before
+{
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    left: 0px;
+    bottom: 0px;
+    content: '';
+    background: #FFCD29;
+    opacity: 0.4;
+    transition: all 0.3s;
+}
+
+div.create_div a:hover:before
+{
+    height: 100%;
+}
+
+
+.create{
+    height:2px;
+    padding: 10px 30px;
 }
 
 /* 검색기능 */

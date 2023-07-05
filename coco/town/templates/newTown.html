@@ -12,7 +12,9 @@
     <header id="header">
         <div class="header_div">
           <div class="logo inline">
-            <img src="{% static 'img/COCO.png'%}" alt="" class="coco" />
+            <a href="{% url 'town:mainPage'%}">
+              <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
+            </a>
           </div>
   
           <ul class="layout">
@@ -45,7 +47,7 @@
                 alt=""
                 class="size"
               />
-              <a href="{% url 'town:setting'%}" class="setting">설정</a>
+              <a href="" class="login">Log in</a>
             </li>
             <li>
               <img

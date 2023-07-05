@@ -52,11 +52,11 @@
             <div class="location_div">
                 <img src="{% static 'img/location.png'%}" alt="" class="location_img">
             </div>
-            <input type="text" class="location" placeholder="Location" >
+            <p class="location font">
+                {{user.town.townname}} Town
+            </p>
         </div>
     </div>
-
-
 
     <div class="container font"> 
         <div class="maxsize">
@@ -67,7 +67,6 @@
                     <form method="GET" action="{% url 'blog:home' %}">
                         {% csrf_token %}
                         <input type="text" name="searched" placeholder="검색어를 입력하세요" value="{{ searched }}" class="location">
-                        <input type="submit" value="검색">
                     </form>
                 </div>
                 
@@ -82,9 +81,13 @@
                         <a href="{% url 'blog:category_home' '공지사항' %}" class="button"><button class = "category"> 공지사항 </button></a>  
 
                     </div>
-                    <div class= "create_div">
-                        <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
+                    <div style="width:161px; height:40px; ">
+                        <div class= "create_div">
+                            <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
+                        </div>
+
                     </div>
+                    
                 </div>          
 
             </div>
@@ -95,7 +98,7 @@
                     {% if blog.image %}
                     <img src="{{blog.image.url}}" class="img" />
                     {% else %}
-                    <img src="{% static 'img/image.png' %}" alt="" class="img">
+                    <img src="{% static 'img/article_logo.png' %}" alt="" class="img">
                     {% endif %}
                 </div>
                 <div class="article_contents flex">
@@ -110,7 +113,7 @@
             {% empty %}
                 {% if searched %}
                     <p>검색 결과가 없습니다.</p>
-                {% else %}
+                {% elif blog%}
                     <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
                         {% if blog.image %}
                             <img src="{{blog.image.url}}" class="img" />

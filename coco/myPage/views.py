@@ -24,10 +24,9 @@ def createArticle(request):
         article.title = request.POST.get('title')
         article.content_text = request.POST.get('content')
         if request.FILES.get('image'):
-            delete_image(article.image)
             article.image = request.FILES.get('image')        
         article.save()
-        return redirect('myPage:myPage', request.user.id)
+        return redirect('myPage:detailArticle', article.id)
     else:
         return render(request, 'newArticle.html')
     
@@ -46,7 +45,8 @@ def updateArticle(request, article_id):
     old_article.title = request.POST.get('title')
     old_article.content_text = request.POST.get('content')
     if request.FILES.get('image'):
-        delete_image(old_article.image.path)
+        if old_article.image:
+            delete_image(old_article.image.path)
         old_article.image = request.FILES.get('image')
     old_article.save()
     return redirect('myPage:detailArticle', old_article.id)
@@ -56,8 +56,8 @@ def deleteArticle(request, article_id):
     
     # 현재 로그인한 사용자와 게시물의 소유자가 같을 때만 삭제 가능하도록 체크
     if request.user == article.mypage.user:
-        path = article.image.path
-        delete_image(path)
+        if article.image:
+            delete_image(article.image.path)
         article.delete()
     
     return redirect('myPage:myPage', user_id=request.user.id)

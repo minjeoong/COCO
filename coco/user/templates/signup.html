@@ -13,11 +13,15 @@
       <form action="" method="POST">
         {% csrf_token %}
         <p>Email</p>
-        <input type="text" name="email" />
+        <input type="email" name="email" />
         <p>Password</p>
         <input type="password" name="password" />
+        <p id="password_valid" style="display: none; color: green;">Pass</p>
+        <p id="password_invalid" style="display: none; color: red;">특수문자를 입력하세요</p>
         <p>Re:Password</p>
-        <input type="password" name="password_confirm" />
+        <input type="password" name="password_confirm" id="password_confirm" oninput="checkPasswordMatch()" />
+        <p id="password_match" style="display: none; color: green;">Match</p>
+        <p id="password_not_match" style="display: none; color: red;">Match</p>
         <p>Name</p>
         <input type="text" name="username" />
         <p>Age</p>
@@ -30,4 +34,45 @@
       </form>
     </div>
   </body>
+  <script>
+    function checkPasswordMatch() {
+      const password = document.querySelector('input[name="password"]').value;
+
+      const passwordValidElement = document.getElementById('password_valid');
+      const passwordInvalidElement = document.getElementById('password_invalid');
+      const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
+
+      const password_confirm = document.querySelector('input[name="password_confirm"]').value;
+      const passwordMatchElement = document.getElementById('password_match');
+      const passwordNotMatchElement = document.getElementById('password_not_match');
+
+      if (specialCharacters.test(password)) {
+          passwordValidElement.style.display = 'inline';
+          passwordInvalidElement.style.display = 'none';
+        } else {
+          passwordValidElement.style.display = 'none';
+          passwordInvalidElement.style.display = 'inline';
+        }
+
+      if (password === password_confirm) {
+        passwordMatchElement.style.display = 'inline';
+        passwordNotMatchElement.style.display = 'none';
+      } else {
+        passwordMatchElement.style.display = 'none';
+        passwordNotMatchElement.style.display = 'inline';
+      }
+    }
+
+    function validateForm() {
+      const password = document.querySelector('input[name="password"]').value;
+      const password_confirm = document.querySelector('input[name="password_confirm"]').value;
+
+      if (password !== password_confirm) {
+        alert("Passwords do not match");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 </html>

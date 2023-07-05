@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container" id="container">
-  {error_massage}
+  <!-- {error_massage} -->
   <div class="form-container sign-in-container">
     <form action="" method="POST">
         {% csrf_token %}
@@ -19,15 +19,14 @@
       <input type="email" placeholder="Email" name = 'email'/>
       <input type="password" placeholder="Password" name = 'password'/>
       <input type="submit" value="Sign In"/>
+      {% if error_message %}
+      <p class="error_message">{{ error_message }}</p>
+      {% endif %}
     </form>
+
   </div>
   <div class="overlay-container">
     <div class="overlay">
-      <div class="overlay-panel overlay-left">
-        <h1>Welcome Back!</h1>
-        <p>To keep connected with us please login with your personal info</p>
-        <button class="ghost" id="signIn">Sign In</button>
-      </div>
       <div class="overlay-panel overlay-right">
         <h1>Hello, Guys!</h1>
         <p>Enter your personal details and start</p>
@@ -39,6 +38,15 @@
 </body>
 </html>
 <script>
+  const signInForm = document.querySelector('.form-container.sign-in-container');
+  const errorElement = signInForm.querySelector('.error_message');
+  const error_message = "{{ error_message }}";
+
+  if (error_message) {
+    errorElement.textContent = error_message;
+    errorElement.style.display = 'block';
+  }
+
   function goToSignup() {
     const signup_url = `/user/signup/`;
     window.location.href = signup_url;
