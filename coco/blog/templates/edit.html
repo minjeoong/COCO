@@ -131,8 +131,13 @@
         }).then((response) => {
           if (response.redirected) {
             window.location.href = response.url; // 리다이렉션 처리
-          } else {
-            // 응답 처리
+          } else if (response.status === 400) {
+            // 오류 처리
+            response.json().then((data) => {
+              const errorMessage = data.error;
+              alert(errorMessage);
+              // 오류 메시지를 사용하여 필요한 동작 수행
+            });
           }
         });
       };

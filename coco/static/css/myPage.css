@@ -1,6 +1,84 @@
 @media only screen and (max-width: 900px) {
-  body {
-    width: max-content;
+  .layout {
+      display: none !important;
+  }
+
+  .layout.show {
+      display: flex !important;
+      z-index: 10;
+      width: 100vw;
+      /* height: 20rem; */
+      padding: 0.5rem;
+      background: #fff;
+      justify-content: center;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      top: 47px;
+      right: 0;
+      position: absolute;
+  }
+  .layout li {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      height: 2.5rem;
+      margin: 0 !important;
+      /* border: 1px solid #000; */
+  }
+  .layout a {
+      position: relative !important;
+      /* width: 100%; */
+  }
+  .navbar__toggleBtn {
+      color: var(--accent-color);
+      position: absolute;
+      top: 2px;
+      right: 15px;
+      width: 23px;
+      height: 23px;
+  }
+  #greeting {
+      font-size: 3rem;
+  }
+  img:active {
+      transform: scale(0.9); /* 이미지 크기를 0.9배로 축소 */
+      opacity: 0.7; /* 이미지의 투명도를 0.7로 조정 */
+  }
+  .layout li:hover {
+      /* transform: scale(0.9); 이미지 크기를 0.9배로 축소 */
+      background: #efefef; /* 이미지의 투명도를 0.7로 조정 */
+  }
+  
+  /* 카테고리와 글쓰기 */
+  .toptop {
+      /* display:  !important; */
+      flex-direction: column;
+      
+      gap:1rem !important;
+  }
+  .create{
+      margin-right:auto;
+  }
+  .create_div{
+      display: flex !important;
+      justify-content: center;
+      /* margin-top: 1rem; */
+      /* white-space: unset !important; */
+      width:64px;
+      margin:0;
+  }
+
+}
+
+@media only screen and (min-width: 900px) {
+  /* body{
+        width:max-content;
+    } */
+  .navbar__toggleBtn {
+    display: none;
   }
 }
 
@@ -25,6 +103,7 @@ header {
   width: 100%;
   position: relative;
   padding: 0 0 0 2rem;
+  margin-bottom: 28px;
 }
 .header_div {
   width: 100%;
@@ -83,9 +162,10 @@ header {
 
 .backgroundImage {
   object-fit: cover;
-  width: 900px;
+  width: 100%;
   height: 500px;
   margin-bottom: 40px;
+  border-radius: 8px;
 }
 .addBgButton{
   position: absolute;
@@ -109,12 +189,39 @@ header {
 }
 .subBackgroundImage {
   display: flex;
-  width: 100%;
-  gap: 20px;
   justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  align-items: flex-start; 
+  flex-wrap: wrap; 
+  margin-bottom: 40px;
+  gap: 20px;
 }
+
+.subBackgroundImage > div {
+  flex: 1; 
+}
+
+/* 화면 폭이 768px 이하일 때 스타일 적용 */
+@media screen and (max-width: 768px) {
+  .subBackgroundImage {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .subImage {
+    max-width: 100px;
+  }
+}
+
+/* 화면 폭이 480px 이하일 때 스타일 적용 */
+@media screen and (max-width: 480px) {
+  .subBackgroundImage {
+    gap: 5px;
+  }
+  .subImage {
+    max-width: 100px;
+  }
+}
+
 .addImageBtn{
   position: absolute;
   width: 60px;
@@ -124,15 +231,19 @@ header {
 }
 .subImage {
   object-fit: cover;
-  width: 280px;
+  
+  aspect-ratio: 1/1;
   border-radius: 12px;
+  transition: flex 0.3s ease;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .profileContainer {
   position: absolute;
   background-color: #ffcd29;
   left: 28px;
-  top: 186px;
+  top: 178px;
   width: 240px;
   aspect-ratio: 1/1.4;
   border-radius: 8px;
@@ -158,6 +269,7 @@ header {
   object-fit: cover;
   aspect-ratio: 1/1;
   border-radius: 100%;
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.3);
 }
 .userName {
   font-size: 1.4rem;
@@ -172,9 +284,11 @@ header {
 .articleContainer {
     display: flex;
     flex-wrap: wrap; /* 요소가 너비를 초과하면 다음 줄로 이동 */
-    justify-content: flex-start; /* 중앙 정렬 */
+    justify-content: center; /* 중앙 정렬 */
     gap: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
+    width: 100%;
+
   }
   
   .articleBox {
@@ -228,11 +342,12 @@ header {
 .articleAddBtn{
     border: none;
     border-radius: 8px;
-    padding: 8px 12px 8px 12px;
+    padding: 12px 16px 12px 16px;
     color: #fff;
     background-color:#15A1FF;
     opacity: 0.7;
     transition: 0.7s;
+    font-size: 16px;
 }   
 
 .articleAddBtn:hover{

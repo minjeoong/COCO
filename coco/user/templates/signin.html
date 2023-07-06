@@ -18,10 +18,13 @@
       <h1>Sign in</h1>
       <input type="email" placeholder="Email" name = 'email'/>
       <input type="password" placeholder="Password" name = 'password'/>
-      <input type="submit" value="Sign In"/>
-      {% if error_message %}
-      <p class="error_message">{{ error_message }}</p>
-      {% endif %}
+      <div class="sign-btn">
+        <input class="signin-btn"type="submit" value="Sign In"/>
+        <input class="signup-btn" type="button" value="Sign Up" onclick="goToSignup()"/>
+      </div>
+      <!-- <div class="error_container"> -->
+        <span class="error_message">{{ error_message }}</span>
+      <!-- </div> -->
     </form>
 
   </div>
@@ -42,13 +45,30 @@
   const errorElement = signInForm.querySelector('.error_message');
   const error_message = "{{ error_message }}";
 
-  if (error_message) {
-    errorElement.textContent = error_message;
-    errorElement.style.display = 'block';
-  }
+  // if (error_message) {
+  //   errorElement.textContent = error_message;
+  //   errorElement.style.display = 'inline';
 
-  function goToSignup() {
-    const signup_url = `/user/signup/`;
-    window.location.href = signup_url;
-  }
+  //   setTimeout(() => {
+  //     errorElement.style.display = 'none';
+  //   }, 3000); // 에러 메시지를 3초 후에 숨김
+  // }
+  if (error_message) {
+  errorElement.textContent = error_message;
+  errorElement.style.opacity = '1';
+
+  setTimeout(() => {
+    errorElement.style.opacity = '0';
+    setTimeout(() => {
+      errorElement.style.display = 'none';
+    }, 300); // 투명도가 0이 된 후에 요소를 숨김
+  }, 3000); // 에러 메시지를 3초 후에 숨김
+}
+
+function goToSignup() {
+  console.log("tlqkf")
+  const signup_url = `/user/signup/`;
+  window.location.href = signup_url;
+}
+
 </script>

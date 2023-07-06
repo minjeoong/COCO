@@ -51,14 +51,12 @@
       /* transform: scale(0.9); 이미지 크기를 0.9배로 축소 */
       background: #efefef; /* 이미지의 투명도를 0.7로 조정 */
   }
-  
+
 
 }
 
 @media only screen and (min-width: 900px) {
-  /* body{
-        width:max-content;
-    } */
+
   .navbar__toggleBtn {
     display: none;
   }
@@ -85,7 +83,6 @@ header {
   width: 100%;
   position: relative;
   padding: 0 0 0 2rem;
-  margin-bottom: 28px;
 }
 .header_div {
   width: 100%;
@@ -104,7 +101,7 @@ header {
   margin-right: 3rem;
 }
 .layout > li {
-  margin: 0 2.5rem;
+  padding: 0 2.5rem;
 }
 .layout > li > a {
   position: absolute;

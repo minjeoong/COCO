@@ -133,7 +133,31 @@ def upload(request):
     # 파일 업로드 실패 응답 반환
     return JsonResponse({'message': '파일 업로드 실패'}, status=400)
 
+def deleteImage(request):
+    imageId = request.POST.get('imageId')
+    print(imageId)
+    myPage = get_object_or_404(Mypage, user=request.user)
+    if imageId == 'mainImage':
+        path = myPage.mainImage.path
+        delete_image(path)
+        myPage.mainImage.delete()
+    elif imageId == 'subImage1':
+        path = myPage.subImage1.path
+        delete_image(path)
+        myPage.subImage1.delete()
+    elif imageId == 'subImage2':
+        path = myPage.subImage2.path
+        delete_image(path)
+        myPage.subImage2.delete()
+    elif imageId == 'subImage3':
+        path = myPage.subImage3.path
+        delete_image(path)
+        myPage.subImage3.delete()
+    myPage.save()
+    return redirect('myPage:myPage', request.user.id)
+
 def delete_image(path):
     # 이미지 파일 삭제
+    print(path,'삭제')
     if os.path.exists(path):
         os.remove(path)

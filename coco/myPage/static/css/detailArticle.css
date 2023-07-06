@@ -1,11 +1,12 @@
 @media only screen and (min-width: 900px) {
-  /* body{
-        width:max-content;
-    } */
-  .navbar__toggleBtn {
-    display: none;
-  }
+    /* body{
+          width:max-content;
+      } */
+    .navbar__toggleBtn {
+      display: none;
+    }
 }
+ 
 @media only screen and (max-width: 780px) {
     .detail{
         flex-direction: column !important;
@@ -118,15 +119,11 @@ ul {
 .backimg{
     width:25px;
 }
-.backcategory{
-    align-items: center;
-    margin-bottom: 2rem;
-    gap:15px;
-}
 div.pre img {
     margin-left: 20px;
     opacity: 0.5;
     transition: 0.15s;
+    margin-top:10px;
 }
 div.pre img:hover {
     opacity: 1;
@@ -244,7 +241,7 @@ div.pre img:hover {
     color:#8d8d8d;
 }
 .msg_contents{
-   
+    
     max-height: 100px; 
     max-width:745px;
     overflow: auto;
@@ -279,7 +276,7 @@ div.pre img:hover {
 }
 ::-webkit-scrollbar-thumb {
     background-color: gray;
-  }
+}
 ::-webkit-scrollbar-track{
     background-color: #e6e6e6;
 }

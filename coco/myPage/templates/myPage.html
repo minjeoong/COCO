@@ -1,37 +1,37 @@
-{% extends 'base.html' %} 
-{% load static %} 
-
-{% block csslink %}
+{% extends 'base.html' %} {% load static %} {% block csslink %}
 <link rel="stylesheet" href="{% static 'css/myPage.css'%}" />
+<link rel="stylesheet" href="{% static 'css/base.css'%}" />
 {% endblock csslink %} 
-
 {% block title %} 
 Mypage 
 {%endblock title%} 
-
 {% block extrabody %}
 
 <div class="mainContainer">
   <div class="subContainer">
-    {% if myPage.mainImage%}
-    <img
-      src="{{myPage.mainImage.url}}"
-      class="backgroundImage"
-      id="mainImage"
-    />
-    {% else %}
-    <img
-      src="{% static 'img/image.png'%}"
-      class="backgroundImage"
-      id="mainImage"
-    />
-    {% endif %}
+    <div class="imageBox">
+      {% if myPage.mainImage%}
+      <img
+        src="{{myPage.mainImage.url}}"
+        class="backgroundImage"
+        id="mainImage"
+      />
+      <img class="deleteImgBtn" src="{% static 'img/repeat.png'%}" onclick="confirmDeleteImage('mainImage')"/>
+      {% else %}
+      <img
+        src="{% static 'img/mainBgDf.jpg'%}"
+        class="backgroundImage"
+        id="mainImage"
+      />
+      {% endif %}
 
-    <img
-      src="{% static 'img/addBtn.png'%}"
-      class="addBgButton mainBg"
-      onclick="chooseFile('mainImage')"
-    />
+      <img
+        src="{% static 'img/addBtn.png'%}"
+        class="addBgButton mainBg"
+        onclick="chooseFile('mainImage')"
+      />
+      
+    </div>
     <div class="profileContainer">
       <div class="profileHeader">
         {% if user == owner%}
@@ -60,54 +60,57 @@ Mypage
     />
     {% endif %}
     <div class="subBackgroundImage">
-      <div style="width: 100%">
+      <div class="imageBox">
         {% if myPage.subImage1%}
         <img src="{{myPage.subImage1.url}}" class="subImage" id="subImage1" />
+        <img class="deleteImgBtn" src="{% static 'img/repeat.png'%}" onclick="confirmDeleteImage('subImage1')"/>
         {% else %}
         <img
-          src="{% static 'img/image.png'%}"
+          src="{% static 'img/subBgDf1.jpg'%}"
           class="subImage"
           id="subImage1"
         />
         {% endif %}
+        <img
+          src="{% static 'img/addBtn.png'%}"
+          class="addBgButton subBg1"
+          onclick="chooseFile('subImage1')"
+        />
       </div>
-      <div style="width: 100%">
+      <div class="imageBox">
         {% if myPage.subImage2%}
         <img src="{{myPage.subImage2.url}}" class="subImage" id="subImage2" />
+        <img class="deleteImgBtn" src="{% static 'img/repeat.png'%}" onclick="confirmDeleteImage('subImage2')"/>
         {% else %}
         <img
-          src="{% static 'img/image.png'%}"
+          src="{% static 'img/subBgDf2.jpg'%}"
           class="subImage"
           id="subImage2"
         />
         {% endif %}
+        <img
+          src="{% static 'img/addBtn.png'%}"
+          class="addBgButton subBg2"
+          onclick="chooseFile('subImage2')"
+        />
       </div>
-      <div style="width: 100%">
+      <div class="imageBox">
         {% if myPage.subImage3%}
         <img src="{{myPage.subImage3.url}}" class="subImage" id="subImage3" />
+        <img class="deleteImgBtn" src="{% static 'img/repeat.png'%}" onclick="confirmDeleteImage('subImage3')"/>
         {% else %}
         <img
-          src="{% static 'img/image.png'%}"
+          src="{% static 'img/subBgDf3.jpg'%}"
           class="subImage"
           id="subImage3"
         />
         {% endif %}
+        <img
+          src="{% static 'img/addBtn.png'%}"
+          class="addBgButton subBg3"
+          onclick="chooseFile('subImage3')"
+        />
       </div>
-      <img
-        src="{% static 'img/addBtn.png'%}"
-        class="addBgButton subBg1"
-        onclick="chooseFile('subImage1')"
-      />
-      <img
-        src="{% static 'img/addBtn.png'%}"
-        class="addBgButton subBg2"
-        onclick="chooseFile('subImage2')"
-      />
-      <img
-        src="{% static 'img/addBtn.png'%}"
-        class="addBgButton subBg3"
-        onclick="chooseFile('subImage3')"
-      />
     </div>
 
     <hr style="width: 100%; margin: 0 0 20px 0" id="articlePart" />
@@ -154,9 +157,13 @@ Mypage
       for (var i = 0; i < profileDivs.length; i++) {
         profileDivs[i].style.display = "none";
       }
-      var btns = document.getElementsByClassName("addBgButton");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].style.display = "block";
+      var addbtns = document.getElementsByClassName("addBgButton");
+      for (var i = 0; i < addbtns.length; i++) {
+        addbtns[i].style.display = "block";
+      }
+      var delbtns = document.getElementsByClassName("deleteImgBtn");
+      for (var i = 0; i < delbtns.length; i++) {
+        delbtns[i].style.display = "block";
       }
       var addImageBtn = document.getElementsByClassName("addImageBtn");
       for (var i = 0; i < addImageBtn.length; i++) {
@@ -166,11 +173,24 @@ Mypage
       articlePart.forEach((element) => {
         element.style.display = "none";
       });
+
+      // Change the opacity of the img tags within imageBox divs
+      var imageBoxImages = document.querySelectorAll(".imageBox img");
+      imageBoxImages.forEach((image) => {
+        image.style.opacity = "0.6";
+      });
+
+      // Reset the opacity of the buttons within imageBox divs
+      var imageBoxButtons = document.querySelectorAll(".imageBox .addBgButton");
+      imageBoxButtons.forEach((button) => {
+        button.style.opacity = "1";
+      });
     } else {
       window.location.href = `/myPage/${id}/`;
     }
     isEditing = !isEditing;
   };
+
   function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== "") {
@@ -234,5 +254,36 @@ Mypage
     document.body.appendChild(fileInput);
     fileInput.click();
   }
+
+  function confirmDeleteImage(imageId) {
+    var confirmResult = window.confirm("이미지를 삭제하시겠습니까?");
+
+    if (confirmResult) {
+      deleteImage(imageId);
+    }
+  }
+  function deleteImage(imageId) {
+  var formData = new FormData();
+  formData.append("imageId", imageId);
+  
+  fetch("/myPage/deleteImage/", {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("이미지 삭제 성공");
+        window.location.href = response.url;
+      } else {
+        console.log("이미지 삭제 실패");
+      }
+    })
+    .catch((error) => {
+      console.error("이미지 삭제 중 오류 발생:", error);
+    });
+}
 </script>
 {%endblock extrabody %}

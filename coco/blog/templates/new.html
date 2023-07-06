@@ -6,58 +6,84 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="{% static 'css/new.css'%}" />
     <title>Document</title>
-
-  
   </head>
   <body>
     <header id="header">
-        <div class="header_div">
-            <div class="logo inline">
-              <a href="{% url 'town:mainPage'%}">
-                <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
-              </a>
-            </div>
-
-            <ul class="layout">
-                <li>
-                    <img src="{% static 'img/home.png'%}" alt="" class="size">
-                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
-                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/article.png'%}" alt="" class="size">
-                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
-                    <a href="{% url 'town:setting'%}" class="setting">설정</a>
-                </li>
-            </ul>
-            <a href="#" class="setting" onclick="toggleLayout()"
-            ><img
-              src="{% static 'image/hamburger.png'%}"
-              alt=""
-              class="navbar__toggleBtn"
-            /></a>
+      <div class="header_div">
+        <div class="logo inline">
+          <a href="{% url 'town:mainPage'%}">
+            <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
+          </a>
         </div>
+
+        <ul class="layout">
+          <li>
+            <img src="{% static 'img/home.png'%}" alt="" class="size" />
+            <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage"
+              >Mypage</a
+            >
+          </li>
+          <li>
+            <img
+              src="{% static 'img/building_.jpg'%}"
+              style="
+                width: 22px;
+                height: 22px;
+                padding-top: 3px;
+                margin-right: 5px;
+              "
+              alt=""
+            />
+            <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
+          </li>
+          <li>
+            <img src="{% static 'img/article.png'%}" alt="" class="size" />
+            <a href="{% url 'blog:home' %}" class="thread">게시판</a>
+          </li>
+          <li>
+            <img
+              src="{% static 'img/perm_identity.png'%}"
+              alt=""
+              class="size"
+            />
+            <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
+          </li>
+          <li>
+            <img
+              src="{% static 'img/Setting.png'%}"
+              style="width: 23px; height: 23px; margin-right: 5px"
+              alt=""
+            />
+            <a href="{% url 'town:setting'%}" class="setting">설정</a>
+          </li>
+        </ul>
+        <a href="#" class="setting" onclick="toggleLayout()"
+          ><img
+            src="{% static 'image/hamburger.png'%}"
+            alt=""
+            class="navbar__toggleBtn"
+        /></a>
+      </div>
     </header>
     <div class="main">
-        <div class="where">
-            <div class="location_div">
-                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
-            </div>
-            <input type="text" class="location" placeholder="Location" >
+      <div class="where">
+        <div class="location_div">
+          <img
+            src="{% static 'img/location.png'%}"
+            alt=""
+            class="location_img"
+          />
         </div>
+        <input type="text" class="location" placeholder="Location" />
+      </div>
     </div>
 
     <div class="container">
+      <div class="pre">
+        <a href="{% url 'blog:home' %}"
+          ><img src="{% static 'img/arrow_back.png' %}" alt="" class="backimg"
+        /></a>
+      </div>
       <div class="maxsize">
         <div class="top flex">
           <div class="category_div">
@@ -72,12 +98,10 @@
           <div class="upload-container">
             <input type="file" id="image-upload" class="imgadd" />
             <label for="image-upload">
-              <img src="{% static 'img/image2_bef.png'%}" alt="" id="imgdiv">
+              <img src="{% static 'img/image2_bef.png'%}" alt="" id="imgdiv" />
             </label>
           </div>
-
         </div>
-
 
         <div class="title_div">
           <input
@@ -89,10 +113,9 @@
         </div>
         <hr />
 
-        <div class="imgbox_div">                
+        <div class="imgbox_div">
           <img id="preview" src="" alt="사진 Preview" />
         </div>
-
 
         <div class="contents_div">
           <textarea
@@ -103,15 +126,13 @@
             id="content"
           ></textarea>
         </div>
-
       </div>
     </div>
-
+    {{err_message}}
     <div class="footer flex">
       <img src="{% static 'img/COCO.png'%}" alt="" class="logo" />
       <div class="button">
-        <a href="" class="close">취소</a>
-        <button class="close finish" onclick="submitButton()">완료</button>
+        <button class="close finish" onclick="submitButton()">작성하기</button>
       </div>
     </div>
 
@@ -136,16 +157,21 @@
           method: "POST",
           body: formData,
           headers: {
-            "X-CSRFToken": getCookie("csrftoken"), 
+            "X-CSRFToken": getCookie("csrftoken"),
           },
         }).then((response) => {
           if (response.redirected) {
             window.location.href = response.url; // 리다이렉션 처리
-          } else {
-            // 응답 처리
+          } else if (response.status === 400) {
+            // 오류 처리
+            response.json().then((data) => {
+              const errorMessage = data.error;
+              alert(errorMessage);
+              // 오류 메시지를 사용하여 필요한 동작 수행
+            });
           }
         });
-      };
+    };
 
       function getCookie(name) {
         let cookieValue = null;
@@ -164,31 +190,31 @@
         return cookieValue;
       }
       function toggleLayout() {
-            var layout = document.querySelector('.layout');
-            layout.classList.toggle('show');
-            }
-            setTimeout(function () {
-                var greeting = document.getElementById("greeting");
-                greeting.style.opacity = 1;
-            }, 1000);
-            setTimeout(function () {
-                var fade = document.getElementById("fade");
-                fade.style.opacity = 1;
-            }, 1000);
+        var layout = document.querySelector(".layout");
+        layout.classList.toggle("show");
+      }
+      setTimeout(function () {
+        var greeting = document.getElementById("greeting");
+        greeting.style.opacity = 1;
+      }, 1000);
+      setTimeout(function () {
+        var fade = document.getElementById("fade");
+        fade.style.opacity = 1;
+      }, 1000);
 
       // 이미지 로드
-      document.addEventListener("DOMContentLoaded", function() {
-        const imgdiv = document.querySelector('#imgdiv');
-        const imageInput = document.getElementById('image');
+      document.addEventListener("DOMContentLoaded", function () {
+        const imgdiv = document.querySelector("#imgdiv");
+        const imageInput = document.getElementById("image");
 
-        imgdiv.addEventListener('click', function() {
+        imgdiv.addEventListener("click", function () {
           imageInput.click();
         });
 
-        imageInput.addEventListener('change', function() {
+        imageInput.addEventListener("change", function () {
           if (imageInput.files && imageInput.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
               imgdiv.src = e.target.result; // Update the src directly on imgdiv
             };
             reader.readAsDataURL(imageInput.files[0]);
@@ -197,19 +223,19 @@
       });
 
       // 호버하면 이미지 변경
-      document.addEventListener("DOMContentLoaded", function() {
-        const imgdiv = document.querySelector('#imgdiv');
+      document.addEventListener("DOMContentLoaded", function () {
+        const imgdiv = document.querySelector("#imgdiv");
 
-        imgdiv.addEventListener('mouseover', function() {
+        imgdiv.addEventListener("mouseover", function () {
           imgdiv.src = "{% static 'img/image2_aft.png'%}";
         });
 
-        imgdiv.addEventListener('mouseout', function() {
+        imgdiv.addEventListener("mouseout", function () {
           imgdiv.src = "{% static 'img/image2_bef.png'%}";
         });
       });
 
-      //사진 프리뷰 
+      //사진 프리뷰
       document.addEventListener("DOMContentLoaded", function () {
         function previewImage(event) {
           var reader = new FileReader();
@@ -226,10 +252,6 @@
         var imageInput = document.getElementById("image-upload");
         imageInput.addEventListener("change", previewImage);
       });
-
-
-
-
     </script>
   </body>
 </html>

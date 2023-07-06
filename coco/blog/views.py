@@ -3,6 +3,7 @@ from .models import *
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
+from django.http import JsonResponse
 import os
 
 def home(request, category_name=None):
@@ -31,11 +32,15 @@ def detail(request,blog_id):
     blog.like_count = blog.likes.count()
     return render(request,'detail.html', {'blog':blog})
 
-def new(request):
-    return render(request,'new.html')
+def new(request, err_message =''):
+    print(err_message)
+    return render(request,'new.html', {'err_message':err_message})
 
 def create(request):
     if request.method == 'POST':
+        if not request.POST.get('title') or not request.POST.get('content'):
+            err_message = '제목과 내용을 전부 입력해주세요'
+            return JsonResponse({'error': err_message}, status=400)
         townblog = TownBlog.objects.get(town=request.user.town)
         new_blog = Blog()
         new_blog.townblog = townblog
@@ -54,6 +59,9 @@ def edit(request, blog_id):
     return render(request, 'edit.html',{'edit_blog':edit_blog})
 
 def update(request, blog_id):
+    if not request.POST.get('title') or not request.POST.get('content'):
+            err_message = '제목과 내용을 전부 입력해주세요'
+            return JsonResponse({'error': err_message}, status=400)
     old_blog = get_object_or_404(Blog, pk=blog_id)
     old_blog.title = request.POST.get('title')
     old_blog.content = request.POST.get('content')

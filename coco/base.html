@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    {% block csslink %}
     <link rel="stylesheet" href="{% static 'css/base.css'%}">
-    {% block csslink %}{% endblock csslink %}
+    {% endblock csslink %}
     <title>{% block title%} {% endblock title %}</title>
 </head>
 <body>

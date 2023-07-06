@@ -1,4 +1,4 @@
-@media only screen and (max-width: 742px) {
+/* @media only screen and (max-width: 742px) {
     body{
         width:max-content;
     }
@@ -6,13 +6,8 @@
         width: max-content;
     }
 
-}
-/* @media only screen and (max-width: px) {
-    body{
-        width:max-content;
-    }
-
 } */
+
 /* reset */
 
 .flex{
@@ -32,73 +27,6 @@ ul {
     list-style: none;
 }
 
-/* Header */
-header{
-    height : 5em;
-    width: 100%;
-    position: relative;
-    padding: 0 0 0 2rem;
-}
-.header_div{
-    width:100%;
-    position:relative;
-    top:42%;
-}
-.inline{
-    display:inline-block;
-    margin: 0 2rem 0 0;
-}
-
-.coco{
-    width: 98px;
-    height:26px;
-}
-
-.search_img{
-    width: 27px;
-    height:24px;
-    margin: 3px;
-}
-.searchbo{
-    display: inline-block;
-    width: 250px;
-    height: 30px;
-    background-color: #EFEFF4;
-    border-radius:7px;
-}
-input[type="search"]{
-    position:absolute;
-    height: 28px;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 18px;
-    padding: 5px 0 0 10px;
-}
-
-
-/* header right */
-.size{
-    width: 26px;
-    height:26px;
-}
-.layout{
-    display:flex;
-    float: right;
-    margin-right: 3rem;
-}
-.layout > li{
-    margin: 0 2.5rem;
-
-
-}
-.layout > li > a{
-    position:absolute;
-    padding:5px 0 0 5px;
-} 
-#menu{
-    padding:0;
-}
 
 /* main */
 .main{
@@ -153,8 +81,16 @@ input[type="search"]{
     max-width: 900px;
     width: 100%;
 }
-/*      */
-
+/* 이전 버튼으로  */
+div.pre img {
+    margin-left: 20px;
+    opacity: 0.5;
+    transition: 0.15s;
+    width:25px;
+}
+div.pre img:hover {
+    opacity: 1;
+}
 
 /* 카테고리 */
 .category_div{
