@@ -18,10 +18,6 @@
             </div>
             <ul class="layout">
                 <li>
-                    <img src="{% static 'image/home.png'%}" alt="" class="size">
-                    <a href="{% url 'myPage:myPage' request.user.id %}" class="mypage">Mypage</a>
-                </li>
-                <li>
                     <img src="{% static 'image/perm_identity.png'%}" alt="" class="size">
                     <a class="login" href="{%url 'user:signout'%}">Sign Out</a>
                 </li>
