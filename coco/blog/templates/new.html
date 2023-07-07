@@ -1,70 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="{% static 'css/new.css'%}" />
-    <title>Document</title>
-  </head>
-  <body>
-    <header id="header">
-      <div class="header_div">
-        <div class="logo inline">
-          <a href="{% url 'town:mainPage'%}">
-            <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
-          </a>
-        </div>
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/new.css'%}" />
+<link rel="stylesheet" href="{% static 'css/base.css'%}">
+{% endblock csslink %}
 
-        <ul class="layout">
-          <li>
-            <img src="{% static 'img/home.png'%}" alt="" class="size" />
-            <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage"
-              >Mypage</a
-            >
-          </li>
-          <li>
-            <img
-              src="{% static 'img/building_.jpg'%}"
-              style="
-                width: 22px;
-                height: 22px;
-                padding-top: 3px;
-                margin-right: 5px;
-              "
-              alt=""
-            />
-            <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-          </li>
-          <li>
-            <img src="{% static 'img/article.png'%}" alt="" class="size" />
-            <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-          </li>
-          <li>
-            <img
-              src="{% static 'img/perm_identity.png'%}"
-              alt=""
-              class="size"
-            />
-            <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
-          </li>
-          <li>
-            <img
-              src="{% static 'img/Setting.png'%}"
-              style="width: 23px; height: 23px; margin-right: 5px"
-              alt=""
-            />
-            <a href="{% url 'town:setting'%}" class="setting">설정</a>
-          </li>
-        </ul>
-        <a href="#" class="setting" onclick="toggleLayout()"
-          ><img
-            src="{% static 'image/hamburger.png'%}"
-            alt=""
-            class="navbar__toggleBtn"
-        /></a>
-      </div>
-    </header>
+{% block title %}
+Mytown New Article
+{% endblock title%}
+
+{% block extrabody %}
     <div class="main">
       <div class="where">
         <div class="location_div">
@@ -74,7 +20,9 @@
             class="location_img"
           />
         </div>
-        <input type="text" class="location" placeholder="Location" />
+        <p class="location font">
+          {{user.town.townname}} Town
+      </p>
       </div>
     </div>
 
@@ -189,19 +137,7 @@
         }
         return cookieValue;
       }
-      function toggleLayout() {
-        var layout = document.querySelector(".layout");
-        layout.classList.toggle("show");
-      }
-      setTimeout(function () {
-        var greeting = document.getElementById("greeting");
-        greeting.style.opacity = 1;
-      }, 1000);
-      setTimeout(function () {
-        var fade = document.getElementById("fade");
-        fade.style.opacity = 1;
-      }, 1000);
-
+  
       // 이미지 로드
       document.addEventListener("DOMContentLoaded", function () {
         const imgdiv = document.querySelector("#imgdiv");
@@ -253,5 +189,4 @@
         imageInput.addEventListener("change", previewImage);
       });
     </script>
-  </body>
-</html>
+{% endblock extrabody %}

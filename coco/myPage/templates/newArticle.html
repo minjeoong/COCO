@@ -9,7 +9,7 @@
 {% endblock csslink %}
 
 {% block title %}
-<title>Mytown NewArticle</title>
+Mypage NewArticle
 {% endblock title%}
 
 {% block extrabody %}
@@ -18,6 +18,17 @@
         textarea.style.height = "auto";
         textarea.style.height = textarea.scrollHeight + "px";
     }
+
+    function validateForm(event) {
+        var titleInput = document.getElementById("title");
+        var contentInput = document.getElementById("content");
+
+        if (titleInput.value.trim() === "" || contentInput.value.trim() === "") {
+            event.preventDefault(); 
+            alert("제목과 내용을 모두 입력해주세요.");
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         function previewImage(event) {
         var reader = new FileReader();
@@ -40,6 +51,9 @@
             uploadName.value = fileName;
         });
 
+        var form = document.querySelector("form");
+        form.addEventListener("submit", validateForm);
+
     });
 
 </script>
@@ -58,35 +72,39 @@
 <form action="{%url 'myPage:createArticle' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="container">
-    <div class="maxsize">
-
-        <div class="filebox">
-            <input class="upload-name"  value="첨부파일" placeholder="첨부파일">
-            <label for="image">파일찾기</label> 
-            <input name="image" type="file" id="image" class="imgadd" accept="image/*">            
-        </div>
-        <div class="title_div">
-            <input type='text' name="title" placeholder="제목을 입력하세요" class="title" id="title"/>
+        <div class="pre">
+            <a href="{% url 'myPage:myPage' request.user.id %}"><img src="{% static 'img/arrow_back.png' %}" alt="" class="backimg"></a>
         </div>
 
-        <hr />
-        <div class="imgbox_div">                
-            <img id="preview" src="" alt="사진 Preview" />
-            
-        </div>
 
-        <div class="contents_div">
-            <textarea type='text' name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요" id="content"></textarea>
-        </div>           
-    </div>
+
+        <div class="maxsize">
+
+            <div class="filebox">
+                <input class="upload-name"  value="첨부파일" placeholder="첨부파일">
+                <label for="image">파일찾기</label> 
+                <input name="image" type="file" id="image" class="imgadd" accept="image/*">            
+            </div>
+            <div class="title_div">
+                <input type='text' name="title" placeholder="제목을 입력하세요" class="title" id="title"/>
+            </div>
+
+            <hr />
+            <div class="imgbox_div">                
+                <img id="preview" src="" alt="사진 Preview" />
+            </div>
+
+            <div class="contents_div">
+                <textarea type='text' name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요" id="content"></textarea>
+            </div>           
+        </div>
     </div>
 
     <div class="footer flex">
-    <img src="{%static 'img/COCO.png'%}" alt="" class="logo" />
-    <div class="button">
-        <a href="{%url 'myPage:myPage' user.id%}" class="close">취소</a>
-        <input type='submit' value="작성하기" class="close finish"/>
-    </div>
+        <img src="{%static 'img/COCO.png'%}" alt="" class="logo" />
+        <div class="button">
+            <input type='submit' value="작성하기" class="close finish"/>
+        </div>
     </div>
 </form>
 

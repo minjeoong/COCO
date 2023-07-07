@@ -76,6 +76,8 @@ ul {
     margin:0 auto;
     display: flex;
     border-radius: 30px;
+    align-items: center;
+    overflow: hidden;
 }
 .location_div{
     display: flex;
@@ -91,9 +93,9 @@ ul {
     padding-top: 3px;
     background: none;
     border:none;
-    width:540px;
+    width:100%;
     outline: none;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* 게시물 Create 페이지 */
@@ -106,8 +108,8 @@ ul {
 }
 .maxsize{
     max-width: 900px;
-    padding: 0 50px 0 25px;
     width: 100%;
+    padding:0 2.5rem;
 }
 .flex{
     display: flex;
@@ -115,22 +117,22 @@ ul {
 
 
 /* 이전 버튼으로  */
-.backimg{
-    width:25px;
-}
-.backcategory{
-    align-items: center;
-    margin-bottom: 2rem;
-    gap:15px;
-}
+
+/* 이전 버튼으로  */
+
 div.pre img {
     margin-left: 20px;
+    margin-top: 6px;
+    width:30px;
     opacity: 0.5;
     transition: 0.15s;
 }
 div.pre img:hover {
     opacity: 1;
 }
+
+
+
 
 /* 게시물 제목 */
 .category{
@@ -143,6 +145,7 @@ div.pre img:hover {
 }
 
 .title{
+    margin-top: 1.4rem;
     font-size: 2.7rem;
     font-weight: 600;
     
@@ -219,17 +222,20 @@ div.pre img:hover {
 .input_massage{
     border:none;
     /* background-color: #e6e6e6; */
-    width:auto;
+    width:100%;
     resize: none;
     font-size:16px;
-    
-    
 }
 .input_massage:focus{
 
     outline:none;
 }
-
+.editCommentBox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+}
 .profile_img{
     height:65px;
     width:65px;
@@ -238,17 +244,25 @@ div.pre img:hover {
 .username{
     font-size: 22px;
     font-weight: 500;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
 }
 .massagedate{
     margin-top:3px;
     color:#8d8d8d;
 }
 .msg_contents{
-   
+   height: 25px;
+   display: flex;
+   align-items: center;
+   font-size: 16px;
     max-height: 100px; 
     max-width:745px;
     overflow: auto;
     overflow-x: hidden;
+    width: 100%;
     /* padding-right:15px; */
     
 }
@@ -257,6 +271,7 @@ div.pre img:hover {
     justify-content: space-between;
     /* padding:10px; */
     align-items: center;
+    gap: 12px;
 }
 .submit{
     padding:1.75rem 1.5rem;
@@ -293,9 +308,12 @@ div.pre img:hover {
 }
 
 .more{
-    float:right;
-
-    
+    gap: 8px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
 }
 .delete{
     margin:5px;

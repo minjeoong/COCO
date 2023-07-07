@@ -93,6 +93,7 @@ ul {
     display: flex;
     border-radius: 30px;
     align-items: center;
+    overflow: hidden;
 }
 .location_div{
     display: flex;
@@ -109,7 +110,7 @@ ul {
     padding-top: 3px;
     background: none;
     border:none;
-    width:540px;
+    width:100%;
     outline: none;
     font-size: 16px;
 }
@@ -147,6 +148,8 @@ ul {
 .top{
     gap:2rem;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 button{
     padding: 12px 14px;
@@ -282,10 +285,13 @@ div.create_div a:hover:before
 .searchbo{
     display: flex;
     align-items: center;
-    min-width: 400px;
+    max-width: 400px;
+    width: 50%;
     height: 40px;
     background-color: #EFEFF4;
     border-radius:7px;
+    padding: 0 12px 0 0;
+    overflow: hidden;
 }
 .search{
     width:100%;
@@ -306,7 +312,7 @@ input[type="search"]{
     flex-direction: column;
     align-items: center;
     gap:2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 

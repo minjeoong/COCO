@@ -72,6 +72,7 @@ ul {
 /* 게시물 Create 페이지 */
 
 /* 디폴트 */
+
 .container{
     margin: 6rem 0 8rem 0;
     display:flex;
@@ -80,17 +81,29 @@ ul {
 .maxsize{
     max-width: 900px;
     width: 100%;
+    padding:0 2.5rem;
 }
+.flex{
+    display: flex;
+}
+
+
+
 /* 이전 버튼으로  */
+
 div.pre img {
     margin-left: 20px;
+    margin-top: 6px;
+    width:30px;
     opacity: 0.5;
     transition: 0.15s;
-    width:25px;
 }
 div.pre img:hover {
     opacity: 1;
 }
+
+
+
 
 /* 카테고리 */
 .category_div{

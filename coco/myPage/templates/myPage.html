@@ -35,9 +35,7 @@ Mypage
     <div class="profileContainer">
       <div class="profileHeader">
         {% if user == owner%}
-        <a href="{%url 'user:new_profile'%}">
-          <img src="{% static 'img/settings.png' %}" class="settingBtn" />
-        </a>
+          <img src="{% static 'img/settings.png' %}" class="settingBtn" id="settingBtn" onclick="goToProfile()"/>
         {% endif %}
       </div>
       {% if profile.image %}
@@ -150,12 +148,22 @@ Mypage
   const goToNewArticle = () => {
     window.location.href = "/myPage/newArticle";
   };
+  const goToProfile = () =>{
+    window.location.href = "/user/new_profile";
+  }
   let isEditing = false;
   const editBackground = (id) => {
     if (!isEditing) {
+      var settingBtn = document.getElementById('settingBtn');
+      settingBtn.onclick = null;
+      
       var profileDivs = document.getElementsByClassName("profileContainer");
       for (var i = 0; i < profileDivs.length; i++) {
-        profileDivs[i].style.display = "none";
+        // profileDivs[i].style.display = "none";
+        profileDivs[i].style.opacity = "0";
+        profileDivs[i].style.transition = "opacity 0.5s ease"; 
+        // profileDivs[i].style.transition = "opacity 0.5s ease";
+        // profileDivs[i].style.hidden.opacity = "0";
       }
       var addbtns = document.getElementsByClassName("addBgButton");
       for (var i = 0; i < addbtns.length; i++) {
@@ -168,10 +176,19 @@ Mypage
       var addImageBtn = document.getElementsByClassName("addImageBtn");
       for (var i = 0; i < addImageBtn.length; i++) {
         addImageBtn[i].style.transform = "rotate(45deg)";
+        addImageBtn[i].style.transition = "0.4s";
+
       }
       var articlePart = document.querySelectorAll("#articlePart");
       articlePart.forEach((element) => {
-        element.style.display = "none";
+        // element.style.display = "none";
+        element.style.opacity = "0";
+        element.style.transition = "opacity 0.5s ease"; 
+
+        // setTimeout(function() {
+        //   element.style.zIndex = "-1";
+        // } ,500);
+
       });
 
       // Change the opacity of the img tags within imageBox divs
@@ -185,8 +202,63 @@ Mypage
       imageBoxButtons.forEach((button) => {
         button.style.opacity = "1";
       });
+
+      // setTimeout(function() {
+      //   for (var i = 0; i < profileDivs.length; i++) {
+      //     profileDivs[i].style.zIndex = "-1";
+      //   }
+      // }, 500);
+
+
     } else {
-      window.location.href = `/myPage/${id}/`;
+      var settingBtn = document.getElementById('settingBtn');
+      settingBtn.onclick = goToProfile;
+      // window.location.href = `/myPage/${id}/`;
+      var profileDivs = document.getElementsByClassName("profileContainer");
+      for (var i = 0; i < profileDivs.length; i++) {
+        profileDivs[i].style.opacity = "1";
+        profileDivs[i].style.transition = "opacity 0.5s ease"; 
+        profileDivs[i].style.display = "flex";
+      }
+      var addbtns = document.getElementsByClassName("addBgButton");
+      for (var i = 0; i < addbtns.length; i++) {
+        addbtns[i].style.display = "none";
+      }
+      var delbtns = document.getElementsByClassName("deleteImgBtn");
+      for (var i = 0; i < delbtns.length; i++) {
+        delbtns[i].style.display = "none";
+      }
+      var addImageBtn = document.getElementsByClassName("addImageBtn");
+      for (var i = 0; i < addImageBtn.length; i++) {
+        addImageBtn[i].style.transform = "rotate(0deg)";
+        addImageBtn[i].style.transition = "0.4s";
+      }
+      var articlePart = document.querySelectorAll("#articlePart");
+      articlePart.forEach((element) => {
+        // element.style.display = "none";
+        element.style.opacity = "1";
+        element.style.transition = "opacity 0.5s ease"; 
+        element.style.display = "flex";
+
+
+      });
+
+      // Change the opacity of the img tags within imageBox divs
+      var imageBoxImages = document.querySelectorAll(".imageBox img");
+      imageBoxImages.forEach((image) => {
+        image.style.opacity = "1";
+      });
+
+      // Reset the opacity of the buttons within imageBox divs
+      var imageBoxButtons = document.querySelectorAll(".imageBox .addBgButton");
+      imageBoxButtons.forEach((button) => {
+        button.style.opacity = "0";
+      });
+
+      // setTimeout(function() {
+      //   window.location.href = `/myPage/${id}/`;
+      // },500);
+
     }
     isEditing = !isEditing;
   };

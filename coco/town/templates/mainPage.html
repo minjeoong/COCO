@@ -1,7 +1,9 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block csslink %}
-<link rel="stylesheet" href="{% static 'css/mainPage.css'%}" /> 
+<link rel="stylesheet" href="{% static 'css/mainPage.css'%}" />
+<link rel="stylesheet" href="{% static 'css/base.css'%}" />
+
 {% endblock csslink %}
 {% block title %}
 MainPage
@@ -11,20 +13,21 @@ MainPage
 <article class="font">
   <div class="article-container">
     <div class="name">
-      <h1 id="greeting">Welcome to COCO Town</h1>
+      <h1 id="greeting">Welcome to COCO TOWN</h1>
     </div>
+    
+    <span class="article-footer">Today News</span>
     <div class="search-container">
       <p id="fade">
         {{town.townname}} Town &ensp; 이웃 수 : {{town.usercount}}
       </p>
     </div>
-    <span class="article-footer">Today News</span>
   </div>
 </article>
 <footer class="font">
   <div class="footer-container">
     <div class="content">
-      <p class="p-title new">New</p>
+      <p class="p-title new">new</p>
       {% if latest_blog %}
       <a href="{% url 'blog:detail' latest_blog.id%}">
         <p class="news-title">{{latest_blog.title}}</p>
@@ -33,7 +36,7 @@ MainPage
       {% endif %}
     </div>
     <div class="content">
-      <p class="p-title hot">Hot</p>
+      <p class="p-title hot">hot</p>
       {% if most_viewed_blog %}
       <a href="{% url 'blog:detail' most_viewed_blog.id%}">
         <p class="news-title">{{most_viewed_blog.title}}</p>
@@ -42,7 +45,7 @@ MainPage
       {% endif %}
     </div>
     <div class="content">
-      <p class="p-title attention">Attention</p>
+      <p class="p-title attention">attention</p>
       {% if most_liked_blog %}
       <a href="{% url 'blog:detail' most_liked_blog.id%}">
         <p class="news-title">{{most_liked_blog.title}}</p>

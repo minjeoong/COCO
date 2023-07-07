@@ -107,8 +107,8 @@ ul {
 }
 .maxsize{
     max-width: 900px;
-    padding: 0 50px 0 25px;
     width: 100%;
+    padding:0 2.5rem;
 }
 .flex{
     display: flex;
@@ -116,14 +116,14 @@ ul {
 
 
 /* 이전 버튼으로  */
-.backimg{
-    width:25px;
-}
+/* 이전 버튼으로  */
+
 div.pre img {
     margin-left: 20px;
+    margin-top: 6px;
+    width:30px;
     opacity: 0.5;
     transition: 0.15s;
-    margin-top:10px;
 }
 div.pre img:hover {
     opacity: 1;
@@ -216,11 +216,9 @@ div.pre img:hover {
 .input_massage{
     border:none;
     /* background-color: #e6e6e6; */
-    width:auto;
+    width:100%;
     resize: none;
     font-size:16px;
-    
-    
 }
 .input_massage:focus{
 
@@ -235,6 +233,10 @@ div.pre img:hover {
 .username{
     font-size: 22px;
     font-weight: 500;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
 }
 .massagedate{
     margin-top:3px;
@@ -246,6 +248,7 @@ div.pre img:hover {
     max-width:745px;
     overflow: auto;
     overflow-x: hidden;
+    width: 100%;
     /* padding-right:15px; */
     
 }
@@ -254,6 +257,7 @@ div.pre img:hover {
     justify-content: space-between;
     /* padding:10px; */
     align-items: center;
+    gap: 12px;
 }
 .submit{
     padding:1.75rem 1.5rem;
@@ -290,9 +294,12 @@ div.pre img:hover {
 }
 
 .more{
-    float:right;
-
-    
+    gap: 8px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
 }
 .delete{
     margin:5px;
@@ -331,4 +338,11 @@ div.pre img:hover {
 .btn2:hover{
     background-color: #FFCD29;
 
+}
+
+.editCommentBox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
 }

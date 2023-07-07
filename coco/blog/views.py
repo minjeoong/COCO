@@ -25,12 +25,35 @@ def home(request, category_name=None):
     return render(request, 'home.html', {'delivery_blogs': page_obj, 'searched': search_query})
 
 
-def detail(request,blog_id):
-    blog = get_object_or_404(Blog,pk=blog_id)
+from django.http import JsonResponse
+
+def detail(request, blog_id):
+    blog = get_object_or_404(Blog, pk=blog_id)
     blog.update_counter
-    blog.is_liked = blog.likes.filter(user=request.user).exists()
-    blog.like_count = blog.likes.count()
-    return render(request,'detail.html', {'blog':blog})
+
+    # 좋아요 수와 좋아요 상태 업데이트
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.user.is_authenticated:
+            blog.is_liked = blog.likes.filter(user=request.user).exists()
+        else:
+            blog.is_liked = False
+        blog.like_count = blog.likes.count()
+
+        data = {
+            'like_count': blog.like_count,
+            'is_liked': blog.is_liked,
+        }
+        return JsonResponse(data)
+
+    # 초기 데이터 추가
+    initial_data = {
+        'like_count': blog.likes.count(),
+        'is_liked': blog.likes.filter(user=request.user).exists() if request.user.is_authenticated else False,
+    }
+
+    return render(request, 'detail.html', {'blog': blog, 'initial_data': initial_data})
+
+
 
 def new(request, err_message =''):
     print(err_message)

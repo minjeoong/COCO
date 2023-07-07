@@ -41,7 +41,7 @@
       height: 23px;
   }
   #greeting {
-      font-size: 3rem;
+      font-size: 3.5rem;
   }
   img:active {
       transform: scale(0.9); /* 이미지 크기를 0.9배로 축소 */
@@ -61,7 +61,21 @@
     display: none;
   }
 }
-
+@media only screen and (max-width: 768px) {
+  #greeting {
+    font-size: 3rem;
+  }
+}
+@media only screen and (max-width: 650px) {
+  #greeting {
+    font-size: 2.5rem;
+}
+}
+@media only screen and (max-width: 600px) {
+  #greeting {
+    font-size: 2rem;
+}
+}
 /* reset */
 
 * {

@@ -60,7 +60,6 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-bottom: 40px;
   gap: 20px;
 }
 
@@ -112,6 +111,7 @@
   aspect-ratio: 1/1;
   right: 40px;
   top: 460px;
+  
 }
 
 .subImage {
@@ -180,7 +180,7 @@
   justify-content: space-between;
   align-items: center;
   aspect-ratio: 1/0.5;
-  background-color: #bde3ff;
+  background-color: rgba(189, 227, 255, 0.5);
   padding: 12px;
   border-radius: 12px;
   word-break: break-word; /* 내용이 너비를 초과하면 줄바꿈 */

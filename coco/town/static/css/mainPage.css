@@ -1,73 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Roboto+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Kanit:wght@300&family=Nanum+Pen+Script&family=Roboto+Condensed:wght@300&display=swap");
-@media only screen and (max-width: 900px) {
-  /* body{
-        width:max-content;
-    } */
-  .layout {
-    display: none !important;
-  }
-  .layout.show {
-    display: flex !important;
-    z-index: 10;
-    width: 100vw;
-    /* height: 20rem; */
-    padding: 0.5rem;
-    background: #fff;
-    justify-content: center;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 0;
-    top: 47px;
-    right: 0;
-    position: absolute;
-  }
-  .layout li {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 2.5rem;
-    
-    /* border: 1px solid #000; */
-  }
-  .layout a {
-    position: relative !important;
-    /* width: 100%; */
-  }
-  .navbar__toggleBtn {
-    color: var(--accent-color);
-    position: absolute;
-    top: 2px;
-    right: 15px;
-    width: 23px;
-    height: 23px;
-  }
-  #greeting {
-    font-size: 3rem;
-    font-family: "Agdasima", sans-serif;
-  }
-  img:active {
-    transform: scale(0.9); /* 이미지 크기를 0.9배로 축소 */
-    opacity: 0.7; /* 이미지의 투명도를 0.7로 조정 */
-  }
-  .layout li:hover {
-    /* transform: scale(0.9); 이미지 크기를 0.9배로 축소 */
-    background: #efefef; /* 이미지의 투명도를 0.7로 조정 */
-  }
-  .news-title{
-    font-size: 0.5rem;
-  }
+@font-face {
+  font-family: 'TheJamsil5Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
-@media only screen and (min-width: 900px) {
-  /* body{
-        width:max-content;
-    } */
-  .navbar__toggleBtn {
-    display: none;
-  }
+
+@font-face {
+  font-family: 'GowunDodum-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'ChosunSg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* reset */
 * {
@@ -87,39 +40,6 @@ ul {
   list-style: none;
 }
 
-/* Header */
-header {
-  height: 5em;
-  width: 100%;
-  position: relative;
-  padding: 0 0 0 2rem;
-}
-.header_div {
-  width: 100%;
-  position: relative;
-  top: 42%;
-}
-
-/*  header right  */
-.size {
-  width: 26px;
-  height: 26px;
-}
-.layout {
-  display: flex;
-  float: right;
-  margin-right: 3rem;
-}
-.layout > li {
-  margin: 0 2.5rem;
-}
-.layout > li > a {
-  position: absolute;
-  padding: 5px 0 0 5px;
-}
-#menu {
-  padding: 0;
-}
 
 /* 검색기능 */
 
@@ -134,7 +54,7 @@ header {
 article {
   height: 50vh;
   /* background: #ffcd29; */
-  background: linear-gradient(to right, #ffce2b, #bdff41);
+  background: linear-gradient(to right, #ffce2b, #e5ff3c);
   color: #000;
 }
 article .name {
@@ -148,28 +68,24 @@ article .article-container {
   justify-content: center;
   align-items: center;
   color: #021029;
+  margin-top: 12px;
 }
+
 #greeting {
   opacity: 0;
-  font-family: "Agdasima", sans-serif;
+  font-size: 4rem;
+  font-family: 'TheJamsil5Bold';
   transition: opacity 1s ease-in-out;
+
 }
 #fade {
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
 article .search-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  position: absolute;
-  font-size: 1rem;
-  font-weight: bold;
-  top: 0;
-  right: 0;
-  margin: 1rem 1rem 0 0;
-  padding-bottom: 1rem;
+  font-family: 'GowunDodum-Regular';
+  margin: 1rem 0rem 0 0;
+  font-size: 1.2rem;
 }
 .search-container {
   font-size: 1.5rem;
@@ -213,15 +129,19 @@ article .search-button {
   position: absolute;
   background: #021029;
   color: #fff;
+  font-size: 20px;
   padding: 1rem 10rem;
   bottom: -1rem;
   border-radius: 1rem;
+  font-family: 'TheJamsil5Bold';
 }
 .footer-container {
+  font-family: 'ChosunSg';
+
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 1rem;
+  margin: 3.3rem 1rem 1rem 1rem;
 }
 .footer-container .content {
   width: 22.2rem;
@@ -230,6 +150,10 @@ article .search-button {
 .footer-container > div {
   flex: 1;
 }
+
+
+
+
 footer .footer-container .content {
   margin: 1rem 3rem;
   padding: 0 1rem;
@@ -237,15 +161,12 @@ footer .footer-container .content {
   border-radius: 20px;
   transition: transform 0.7s ease-in-out;
 }
-footer .footer-container .content:hover {
-  transform: scale(1.1);
-}
+
 footer .footer-container .p-title {
   font-size: 2.5rem;
-  /* margin: 1rem 0; */
+  /* margin: 0 0 1rem 0; */
 }
-footer .footer-container .p-title {
-}
+
 footer .footer-container p {
   margin: 1rem 0;
 }
@@ -256,13 +177,19 @@ footer .footer-container p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0 0 2rem 0;
 }
-.hot {
+
+.content{
+  
+}
+
+/* .hot {
   color: rgb(248, 0, 0);
 }
 .attention {
   color: blue;
-}
+} */
 textarea {
   border: none;
 }
