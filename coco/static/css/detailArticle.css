@@ -1,11 +1,12 @@
 @media only screen and (min-width: 900px) {
-  /* body{
-        width:max-content;
-    } */
-  .navbar__toggleBtn {
-    display: none;
-  }
+    /* body{
+          width:max-content;
+      } */
+    .navbar__toggleBtn {
+      display: none;
+    }
 }
+ 
 @media only screen and (max-width: 780px) {
     .detail{
         flex-direction: column !important;
@@ -76,8 +77,6 @@ ul {
     margin:0 auto;
     display: flex;
     border-radius: 30px;
-    align-items: center;
-    overflow: hidden;
 }
 .location_div{
     display: flex;
@@ -93,9 +92,9 @@ ul {
     padding-top: 3px;
     background: none;
     border:none;
-    width:100%;
+    width:540px;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 /* 게시물 Create 페이지 */
@@ -117,7 +116,6 @@ ul {
 
 
 /* 이전 버튼으로  */
-
 /* 이전 버튼으로  */
 
 div.pre img {
@@ -131,9 +129,6 @@ div.pre img:hover {
     opacity: 1;
 }
 
-
-
-
 /* 게시물 제목 */
 .category{
     color:#818181;
@@ -145,7 +140,6 @@ div.pre img:hover {
 }
 
 .title{
-    margin-top: 1.4rem;
     font-size: 2.7rem;
     font-weight: 600;
     
@@ -230,12 +224,7 @@ div.pre img:hover {
 
     outline:none;
 }
-.editCommentBox{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    gap: 12px;
-}
+
 .profile_img{
     height:65px;
     width:65px;
@@ -254,10 +243,7 @@ div.pre img:hover {
     color:#8d8d8d;
 }
 .msg_contents{
-   height: 25px;
-   display: flex;
-   align-items: center;
-   font-size: 16px;
+    
     max-height: 100px; 
     max-width:745px;
     overflow: auto;
@@ -294,7 +280,7 @@ div.pre img:hover {
 }
 ::-webkit-scrollbar-thumb {
     background-color: gray;
-  }
+}
 ::-webkit-scrollbar-track{
     background-color: #e6e6e6;
 }
@@ -352,4 +338,11 @@ div.pre img:hover {
 .btn2:hover{
     background-color: #FFCD29;
 
+}
+
+.editCommentBox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
 }

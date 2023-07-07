@@ -1,7 +1,7 @@
 from .base import *
-DEBUG = False
+DEBUG = os.getenv('DEBUG', False) == 'True'
 
-ALLOWED_HOSTS = [""]
+ALLOWED_HOSTS = ["*"]
 
 STATIC_ROOT = BASE_DIR / 'static'
 
