@@ -147,6 +147,9 @@
   width: 20px;
   aspect-ratio: 1/1;
 }
+.settingBtn:hover{
+  cursor: pointer;
+}
 .profileImage {
   width: 160px;
   object-fit: cover;
