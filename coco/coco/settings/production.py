@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["35.78.169.152"]
+ALLOWED_HOSTS = ["*"]
 
 STATIC_ROOT = BASE_DIR / 'static'
 
