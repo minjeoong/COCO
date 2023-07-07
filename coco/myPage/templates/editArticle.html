@@ -1,81 +1,59 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="stylesheet" href="{% static 'css/newArticle.css'%}" />
-    <title>Document</title>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function autoResize(textarea) {
-            textarea.style.height = "auto";
-            textarea.style.height = textarea.scrollHeight + "px";
-            }
-            function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                var imagePreview = document.getElementById("preview");
-                imagePreview.src = reader.result;
 
-                var imgBoxdiv = document.querySelector(".imgbox_div");
-                imgBoxdiv.style.display = "block";
-            };
-            reader.readAsDataURL(event.target.files[0]);
-            }
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/newArticle.css'%}" />
+<link rel="stylesheet" href="{% static 'css/base.css'%}">
+{% endblock csslink %}
 
-            var imageInput = document.getElementById("image");
-            imageInput.addEventListener("change", previewImage);
-        });
-    </script>
-  </head>
-  <body>
-    <header id="header">
-        <div class="header_div">
-            <div class="logo inline">
-                <a href="{% url 'town:mainPage'%}">
-                    <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
-                  </a>
-            </div>
+{% block title %}
+Mypage Edit Article
+{% endblock title%}
 
-            <ul class="layout">
-                <li>
-                    <img src="{% static 'img/home.png'%}" alt="" class="size">
-                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
-                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/article.png'%}" alt="" class="size">
-                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
-                    <a href="{% url 'town:setting'%}" class="setting">설정</a>
-                </li>
-            </ul>
+{% block extrabody %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function autoResize(textarea) {
+        textarea.style.height = "auto";
+        textarea.style.height = textarea.scrollHeight + "px";
+        }
+        function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var imagePreview = document.getElementById("preview");
+            imagePreview.src = reader.result;
+
+            var imgBoxdiv = document.querySelector(".imgbox_div");
+            imgBoxdiv.style.display = "block";
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        }
+
+        var imageInput = document.getElementById("image");
+        imageInput.addEventListener("change", previewImage);
+    });
+</script>
+
+
+
+
+<div class="main">
+    <div class="where">
+        <div class="location_div">
+            <img src="{% static 'img/location.png'%}" alt="" class="location_img">
         </div>
-    </header>
-    <div class="main">
-        <div class="where">
-            <div class="location_div">
-                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
-            </div>
-            <input type="text" class="location" placeholder="Location" >
-        </div>
+        <input type="text" class="location" placeholder="Location" >
     </div>
+</div>
 
-    <form action="{%url 'myPage:updateArticle' edit_article.id%}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="container">
+<form action="{%url 'myPage:updateArticle' edit_article.id%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="pre">
+            <a href="{% url 'myPage:detailArticle' edit_article.id%}"><img src="{% static 'img/arrow_back.png' %}" alt="" class="backimg"></a>
+        </div>
         <div class="maxsize">
 
             <div class="filebox">
@@ -90,26 +68,25 @@
             <hr />
             {% if edit_article.image %}
             <div class="imgbox_div" style="display: block;">
-              <img id="preview" src="{{edit_article.image.url}}" alt="사진 Preview" />
+                <img id="preview" src="{{edit_article.image.url}}" alt="사진 Preview" />
             </div>
             {% else %}
             <div class="imgbox_div">
-              <img id="preview" src="" alt="사진 Preview" />
+                <img id="preview" src="" alt="사진 Preview" />
             </div>
             {% endif %}
             <div class="contents_div">
                 <textarea type='text' name="content" class="content" oninput="autoResize(this)" placeholder="텍스트를 입력하세요" id="content">{{edit_article.content_text}}</textarea>
             </div>           
         </div>
-        </div>
+        
 
         <div class="footer flex">
-        <img src="{%static 'img/COCO.png'%}" alt="" class="logo" />
-        <div class="button">
-            <a href="{% url 'myPage:detailArticle' edit_article.id %}" class="close">취소</a>
-            <input type='submit' value="작성하기" class="close finish"/>
+            <img src="{%static 'img/COCO.png'%}" alt="" class="logo" />
+            <div class="button">
+                <input type='submit' value="작성하기" class="close finish"/>
+            </div>
         </div>
-        </div>
-    </form>
-  </body>
-</html>
+    </div>
+</form>
+{%endblock extrabody %}

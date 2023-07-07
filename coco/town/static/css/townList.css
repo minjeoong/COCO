@@ -101,6 +101,8 @@ input[type="search"]{
     margin:0 auto;
     display: flex;
     border-radius: 30px;
+    justify-content: center;
+    align-items: center;
 }
 .location_div{
     display: flex;

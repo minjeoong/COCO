@@ -7,6 +7,21 @@
     }
 
 }
+@font-face {
+    /* 넥슨 lv1 고딕 */
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    
+}
+@font-face {
+    font-family: 'designhouseOTFLight00';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/designhouseOTFLight00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
 
 *{
     margin:0;   
@@ -19,6 +34,12 @@ a {
 }
 ul {
     list-style: none;
+}
+.font{
+    font-family: 'NEXON Lv1 Gothic OTF';
+}
+.font1{
+    font-family: 'designhouseOTFLight00';
 }
 
 
@@ -141,6 +162,7 @@ input[type="search"]{
 }
 .maxsize{
     max-width: 900px;
+    padding: 0 20px 0 20px;
     width: 100%;
 }
 .flex{
@@ -149,6 +171,12 @@ input[type="search"]{
 
 
 /* 게시물 제목 */
+.category{
+    color:#818181;
+    font-size: 18px;
+    text-decoration: underline;
+    margin-bottom: 2rem;
+}
 .article{
     margin-bottom: 5rem;
 }
@@ -156,27 +184,49 @@ input[type="search"]{
 .title{
     font-size: 2.7rem;
     font-weight: 600;
+    
 }
 .detail{
     justify-content: space-between;
+    border-bottom: 1px solid #d9d9d9;
 
-    margin:1rem 0 4.5rem 0;
+    padding:1.5rem 0 1.9rem 0;
 }
 .createuser2{
     margin-left:0.5rem;
+    margin-right:1.5rem;
 }
 .image{
-    width:100%;
-    /* margin:1.8rem 0; */
+    width:80%;
+    margin-top:1.8rem;
+    margin-left:auto;
 }
 .date{
-    margin-right:3rem;
+    margin-right:1rem;
+}
+.cu::before{
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    margin-right: 1.5rem;
+    background-color: #bfbfbf;
+    vertical-align: baseline;
+}
+
+
+
+/* 본문 */
+
+.content{
+    margin:4rem 0 4rem 0 ;
 }
 
 /* 좋아요 */
 .like{
     align-items: center;
     gap:12px;
+    margin:13px;
 }
 .like_img{
     width:32px;
@@ -250,6 +300,7 @@ input[type="search"]{
     background-color: #FFCD29;
     transition: 0.3s;
     border:none;
+    cursor:pointer;
 }
 .submit:hover{
     background-color: #000000;
@@ -318,5 +369,3 @@ input[type="search"]{
     background-color: #FFCD29;
 
 }
-
-

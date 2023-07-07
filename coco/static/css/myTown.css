@@ -1,19 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Roboto+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Kanit:wght@300&family=Nanum+Pen+Script&family=Roboto+Condensed:wght@300&display=swap");
 @media only screen and (max-width: 900px) {
-  body{
-      width:max-content;
+  /* body{
+        width:max-content;
+    } */
+  .layout {
+    display: none !important;
   }
-
+  .layout.show {
+    display: flex !important;
+    z-index: 10;
+    width: 100vw;
+    /* height: 20rem; */
+    padding: 0.5rem;
+    background: #fff;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    top: 47px;
+    right: 0;
+    position: absolute;
+  }
+  .layout li {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 2.5rem;
+    margin: 0 !important;
+    /* border: 1px solid #000; */
+  }
+  .layout a {
+    position: relative !important;
+    /* width: 100%; */
+  }
+  .navbar__toggleBtn {
+    color: var(--accent-color);
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    width: 23px;
+    height: 23px;
+  }
+  #greeting {
+    font-size: 3rem;
+    font-family: "Agdasima", sans-serif;
+  }
+  img:active {
+    transform: scale(0.9); /* 이미지 크기를 0.9배로 축소 */
+    opacity: 0.7; /* 이미지의 투명도를 0.7로 조정 */
+  }
+  .layout li:hover {
+    /* transform: scale(0.9); 이미지 크기를 0.9배로 축소 */
+    background: #efefef; /* 이미지의 투명도를 0.7로 조정 */
+  }
 }
+@media only screen and (min-width: 900px) {
+  /* body{
+        width:max-content;
+    } */
+  .navbar__toggleBtn {
+    display: none;
+  }
+}
+
 
 /* reset */
-*
-{
-  margin : 0;
-  padding:0;
-  box-sizing: border-box; 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 a {
-  text-decoration:none;
+  text-decoration: none;
   color: #000;
 }
 ul {
@@ -21,113 +82,121 @@ ul {
 }
 
 /* Header */
-header{
-  height : 5em;
+header {
+  height: 5em;
   width: 100%;
   position: relative;
   padding: 0 0 0 2rem;
 }
-.header_div{
-  width:100%;
-  position:relative;
-  top:42%;
+.header_div {
+  width: 100%;
+  position: relative;
+  top: 42%;
 }
-
-
 
 /*  header right  */
-.size{
+.size {
   width: 26px;
-  height:26px;
+  height: 26px;
 }
-.layout{
-  display:flex;
+.layout {
+  display: flex;
   float: right;
   margin-right: 3rem;
 }
-.layout > li{
+.layout > li {
   margin: 0 2.5rem;
-
-
 }
-.layout > li > a{
-  position:absolute;
-  padding:5px 0 0 5px;
-} 
-#menu{
-  padding:0;
+.layout > li > a {
+  position: absolute;
+  padding: 5px 0 0 5px;
 }
-
+#menu {
+  padding: 0;
+}
 
 /* 검색기능 */
 
-.inline{
-  display:inline-block;
+.inline {
+  display: inline-block;
   margin: 0 2rem 0 0;
 }
-.coco{
+.coco {
   width: 98px;
-  height:26px;
+  height: 26px;
 }
-article{
+article {
   position: relative;
   margin-top: 7rem;
   /* background: #ffcd29; */
 }
-article .article-header{
-  position: absolute;
-  top: 0;
-  left: 7.4rem;
-}
-article .card-container{
+article .article-header {
   display: flex;
-  justify-content: flex-start;
-  flex-grow: 1;
-  margin: 1rem 6.5rem 1rem 6.5rem;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+article .card-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 6rem;
   flex-wrap: wrap;
   gap: 2rem;
   /* padding: 1rem; */
 }
-article .card-container > div{
+article .card-container > div {
   /* flex: 1 1 24%; */
 }
-article .card-container .card{
-  width: 22.2rem;
-  height: 26rem;
+article .card-container .card {
+  min-width: 18rem;
+  height: 28rem;
   margin: 2rem 1rem;
+  border: 1px solid #ebebeb;
+  border-radius: 2rem;
   background: #fff;
 }
+/* @media only screen and (max-width: 1400px) {
+  article .card-container {
+    display: flex !important;
+    justify-content: center !important;
+  }
+} */
 .profile-background {
   /* width: 100%; */
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   height: 40%;
-  background-color: #D9D9D9;
+  border-radius: 2rem 2rem 0 0;
+  background: #d9d9d9;
+  /* background: linear-gradient(to right, #ffce2b, #bdff41); */
 }
-.profile-photo{
+.profile-photo {
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fff;
-  width: 50%;
-  height: 70%;
-  border-radius: 50%;
+  width: 65%;
+  aspect-ratio: 1/1;
+  border-radius:100%;
   position: absolute;
   top: -6.5rem;
+  border: 1px solid #d9d9d9;
+  object-fit: cover;
 }
 
 .profile-footer {
   /* width: 100%; */
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   height: 60%;
-  background-color: #CEEAFF;
+  border-radius: 0 0 2rem 2rem;
+  background-color: #fff;
   position: relative;
 }
-.profile{
+.profile {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -136,24 +205,25 @@ article .card-container .card{
   /* background: #fff; */
   width: 80%;
 }
-.profile p{
+.profile p {
   padding: 0.5rem;
 }
-.profile-message{
+.profile-message {
   width: 80%;
+  height: 36px;
   margin-top: 0.5rem;
   background: #fff;
-  word-wrap:break-word;
+  word-wrap: break-word;
   border-radius: 2rem;
   border: 1px solid #000;
 }
-.profile-message p{
+.profile-message p {
   padding: 0.5rem;
 }
-.button-container{
+.button-container {
   display: flex;
   align-items: center;
 }
-.button-container img{
-  width: 1rem;
+.button-container img {
+  /* width: 1.5rem; */
 }

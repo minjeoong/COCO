@@ -1,11 +1,22 @@
-@media only screen and (max-width: 744px) {
-    body{
+@media only screen and (min-width: 900px) {
+  /* body{
         width:max-content;
+    } */
+  .navbar__toggleBtn {
+    display: none;
+  }
+}
+@media only screen and (max-width: 780px) {
+    .detail{
+        flex-direction: column !important;
+        gap:1.4rem;
     }
-    .footer{
-        width: max-content;
-    }
+}
 
+@media only screen and (max-width: 400px) {
+    body{
+        width:min-content;
+    }
 }
 @font-face {
     /* 넥슨 lv1 고딕 */
@@ -43,73 +54,6 @@ ul {
 }
 
 
-/* Header */
-header{
-    height : 5em;
-    width: 100%;
-    position: relative;
-    padding: 0 0 0 2rem;
-}
-.header_div{
-    width:100%;
-    position:relative;
-    top:42%;
-}
-.inline{
-    display:inline-block;
-    margin: 0 2rem 0 0;
-}
-
-.coco{
-    width: 98px;
-    height:26px;
-}
-
-.search_img{
-    width: 27px;
-    height:24px;
-    margin: 3px;
-}
-.searchbo{
-    display: inline-block;
-    width: 250px;
-    height: 30px;
-    background-color: #EFEFF4;
-    border-radius:7px;
-}
-input[type="search"]{
-    position:absolute;
-    height: 28px;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 18px;
-    padding: 5px 0 0 10px;
-}
-
-
-/* header right */
-.size{
-    width: 26px;
-    height:26px;
-}
-.layout{
-    display:flex;
-    float: right;
-    margin-right: 3rem;
-}
-.layout > li{
-    margin: 0 2.5rem;
-
-
-}
-.layout > li > a{
-    position:absolute;
-    padding:5px 0 0 5px;
-} 
-#menu{
-    padding:0;
-}
 
 /* main */
 .main{
@@ -132,6 +76,8 @@ input[type="search"]{
     margin:0 auto;
     display: flex;
     border-radius: 30px;
+    align-items: center;
+    overflow: hidden;
 }
 .location_div{
     display: flex;
@@ -147,9 +93,9 @@ input[type="search"]{
     padding-top: 3px;
     background: none;
     border:none;
-    width:540px;
+    width:100%;
     outline: none;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* 게시물 Create 페이지 */
@@ -163,10 +109,29 @@ input[type="search"]{
 .maxsize{
     max-width: 900px;
     width: 100%;
+    padding:0 2.5rem;
 }
 .flex{
     display: flex;
 }
+
+
+/* 이전 버튼으로  */
+
+/* 이전 버튼으로  */
+
+div.pre img {
+    margin-left: 20px;
+    margin-top: 6px;
+    width:30px;
+    opacity: 0.5;
+    transition: 0.15s;
+}
+div.pre img:hover {
+    opacity: 1;
+}
+
+
 
 
 /* 게시물 제목 */
@@ -174,13 +139,13 @@ input[type="search"]{
     color:#818181;
     font-size: 18px;
     text-decoration: underline;
-    margin-bottom: 2rem;
 }
 .article{
     margin-bottom: 5rem;
 }
 
 .title{
+    margin-top: 1.4rem;
     font-size: 2.7rem;
     font-weight: 600;
     
@@ -190,7 +155,11 @@ input[type="search"]{
     border-bottom: 1px solid #d9d9d9;
 
     padding:1.5rem 0 1.9rem 0;
+    
 }
+/* 게시물 Create 페이지 */
+
+
 .createuser2{
     margin-left:0.5rem;
     margin-right:1.5rem;
@@ -253,18 +222,20 @@ input[type="search"]{
 .input_massage{
     border:none;
     /* background-color: #e6e6e6; */
-    min-width:500px;
-    width:auto;
+    width:100%;
     resize: none;
     font-size:16px;
-    
-    
 }
 .input_massage:focus{
 
     outline:none;
 }
-
+.editCommentBox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+}
 .profile_img{
     height:65px;
     width:65px;
@@ -273,17 +244,25 @@ input[type="search"]{
 .username{
     font-size: 22px;
     font-weight: 500;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
 }
 .massagedate{
     margin-top:3px;
     color:#8d8d8d;
 }
 .msg_contents{
-   
+   height: 25px;
+   display: flex;
+   align-items: center;
+   font-size: 16px;
     max-height: 100px; 
     max-width:745px;
     overflow: auto;
     overflow-x: hidden;
+    width: 100%;
     /* padding-right:15px; */
     
 }
@@ -292,6 +271,7 @@ input[type="search"]{
     justify-content: space-between;
     /* padding:10px; */
     align-items: center;
+    gap: 12px;
 }
 .submit{
     padding:1.75rem 1.5rem;
@@ -328,8 +308,12 @@ input[type="search"]{
 }
 
 .more{
-    float:right;
-    
+    gap: 8px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
 }
 .delete{
     margin:5px;
@@ -362,6 +346,7 @@ input[type="search"]{
     border:#FFCD29 3px solid;
     border-radius: 10px;
     transition: 0.3s;
+    
     /* border:none; */
 }
 .btn2:hover{

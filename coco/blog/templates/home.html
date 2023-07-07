@@ -1,183 +1,139 @@
+
+{% extends 'base.html' %}
 {% load static %}
 
-<!-- <html lang="en"> -->
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/home.css'%}">
-    <title>Document</title>
-</head>
-<body>
-    <header id="header">
-        <div class="header_div">
-            <div class="logo inline">
-                <a href="{% url 'town:mainPage'%}">
-                    <img src="{% static 'img/COCO.png'%}" alt="" class="coco">
-                </a>
-            </div>
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/home.css'%}">
+<link rel="stylesheet" href="{% static 'css/base.css'%}">
+{% endblock csslink %}
 
-            <ul class="layout">
-                <li>
-                    <img src="{% static 'img/home.png'%}" alt="" class="size">
-                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
-                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/article.png'%}" alt="" class="size">
-                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="{% url 'user:signout'%}" class="login">Sign Out</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
-                    <a href="{% url 'town:setting'%}" class="setting">설정</a>
-                </li>
-            </ul>
-            <a href="#" class="setting" onclick="toggleLayout()"
-            ><img
-              src="{% static 'image/hamburger.png'%}"
-              alt=""
-              class="navbar__toggleBtn"
-          /></a>
+{% block title %}
+MyTown Article
+{%endblock title%}
+
+{% block extrabody %}
+
+<div class="main">
+    <div class="where">
+        <div class="location_div">
+            <img src="{% static 'img/location.png'%}" alt="" class="location_img">
         </div>
-    </header>
-    <div class="main">
-        <div class="where">
-            <div class="location_div">
-                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
-            </div>
-            <input type="text" class="location" placeholder="Location" >
-        </div>
+        <p class="location font">
+            {{user.town.townname}} Town
+        </p>
     </div>
+</div>
 
+<div class="container font"> 
+    <div class="maxsize">
 
+        <div class="flex_mid">
+            <div class="searchbo">
+                <img src="{% static 'img/Search Glyph.png'%}" alt="" class="search_img">
+                <form method="GET" action="{% url 'blog:home' %}" style="width: 100%;">
+                    {% csrf_token %}
+                    <input type="text" name="searched" placeholder="검색어를 입력하세요" value="{{ searched }}" class="location font">
+                </form>
+            </div>
+            
+            <div class="toptop">
 
-    <div class="container font"> 
-        <div class="maxsize">
+                <div class="top flex">
+                    <a href="{% url 'blog:home' %}" class="button"><button class = "category"> 전체 </button></a>
+                    <a href="{% url 'blog:category_home' '배달열차' %}" class="button"><button class = "category"> 배달열차 </button></a>
+                    <a href="{% url 'blog:category_home' '공구mate' %}" class="button"><button class = "category"> 공구 mate </button></a>
+                    <a href="{% url 'blog:category_home' '대신해드립니다' %}" class="button"><button class = "category"> 대신해드립니다 </button></a>
+                    <a href="{% url 'blog:category_home' '우리동네소식' %}" class="button"><button class = "category"> 우리동네소식 </button></a>  
+                    <a href="{% url 'blog:category_home' '공지사항' %}" class="button"><button class = "category"> 공지사항 </button></a>  
 
-            <div class="flex_mid">
-                <div class="searchbo">
-                    <img src="{% static 'img/Search Glyph.png'%}" alt="" class="search_img">
-                    <form method="GET" action="{% url 'blog:home' %}">
-                        {% csrf_token %}
-                        <input type="text" name="searched" placeholder="검색어를 입력하세요" value="{{ searched }}" class="location">
-                        <input type="submit" value="검색">
-                    </form>
                 </div>
-                
-                <div class="toptop">
-
-                    <div class="top flex">
-                        <a href="{% url 'blog:home' %}" class="button"><button class = "category"> 전체 </button></a>
-                        <a href="{% url 'blog:category_home' '배달열차' %}" class="button"><button class = "category"> 배달열차 </button></a>
-                        <a href="{% url 'blog:category_home' '공구mate' %}" class="button"><button class = "category"> 공구 mate </button></a>
-                        <a href="{% url 'blog:category_home' '대신해드립니다' %}" class="button"><button class = "category"> 대신해드립니다 </button></a>
-                        <a href="{% url 'blog:category_home' '우리동네소식' %}" class="button"><button class = "category"> 우리동네소식 </button></a>  
-                        <a href="{% url 'blog:category_home' '공지사항' %}" class="button"><button class = "category"> 공지사항 </button></a>  
-
-                    </div>
+                <div style="width:161px; height:40px; ">
                     <div class= "create_div">
                         <a href="{% url 'blog:new' %}" class="create">글쓰기</a>
                     </div>
-                </div>          
 
-            </div>
-   
-            {% for blog in delivery_blogs %}
-            <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
-                <div >
-                    {% if blog.image %}
-                    <img src="{{blog.image.url}}" class="img" />
-                    {% else %}
-                    <img src="{% static 'img/image.png' %}" alt="" class="img">
-                    {% endif %}
                 </div>
-                <div class="article_contents flex">
-                    <div class="title">
-                        {{blog.title}}
-                    </div>
-                    <div class="contents">
-                        {{blog.summary}}
-                    </div>
-                </div>
-            </a>
-            {% empty %}
-                {% if searched %}
-                    <p>검색 결과가 없습니다.</p>
-                {% else %}
-                    <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
-                        {% if blog.image %}
-                            <img src="{{blog.image.url}}" class="img" />
-                        {% else %}
-                            <img src="{% static 'img/image.png' %}" alt="" class="img">
-                        {% endif %}
-                        <div class="article_contents flex">
-                            <div class="title">
-                                {{blog.title}}
-                            </div>
-                            <div class="contents">
-                                {{blog.summary}}
-                            </div>
-                        </div>
-                    </a>
-                {% endif %}
-            {% endfor %}
-            <span>
-                <ul class="pagination">
-
-                    {% if delivery_blogs.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" tabindex="-1"  href="?page={{ delivery_blogs.previous_page_number }}">&#60;</a>
-                    </li>
-
-                    {% endif %}
-                    {% for page_number in delivery_blogs.paginator.page_range %}
-                    
-
-                    {% if page_number == delivery_blogs.number %} 
-                    <li class="page-item active" aria-current="page">
-                        <a class="page-link current-page" href="?page={{ page_number }}">{{ page_number }}</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-                   </li>
-                    {% endif %}
-
-                    {% endfor %}
-
-                    {% if delivery_blogs.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ delivery_blogs.next_page_number }}">&#62;</a>
-                    </li>
-
-                    {% endif %}
-
-                </ul>
-
-              </span>
+                
+            </div>          
 
         </div>
-    </div>
-    <script>
-          function toggleLayout() {
-            var layout = document.querySelector('.layout');
-            layout.classList.toggle('show');
-            }
-            setTimeout(function () {
-                var greeting = document.getElementById("greeting");
-                greeting.style.opacity = 1;
-            }, 1000);
-            setTimeout(function () {
-                var fade = document.getElementById("fade");
-                fade.style.opacity = 1;
-            }, 1000);
 
-    </script>
-    
-</body>
-</html>
+        {% for blog in delivery_blogs %}
+        <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
+            <div >
+                {% if blog.image %}
+                <img src="{{blog.image.url}}" class="img" />
+                {% else %}
+                <img src="{% static 'img/article_logo.png' %}" alt="" class="img">
+                {% endif %}
+            </div>
+            <div class="article_contents flex">
+                <div class="title">
+                    {{blog.title}}
+                </div>
+                <div class="contents">
+                    {{blog.summary}}
+                </div>
+            </div>
+        </a>
+        {% empty %}
+            {% if searched %}
+                <p>검색 결과가 없습니다.</p>
+            {% elif blog%}
+                <a href="{% url 'blog:detail' blog.id %}" class="middle flex">
+                    {% if blog.image %}
+                        <img src="{{blog.image.url}}" class="img" />
+                    {% else %}
+                        <img src="{% static 'img/image.png' %}" alt="" class="img">
+                    {% endif %}
+                    <div class="article_contents flex">
+                        <div class="title">
+                            {{blog.title}}
+                        </div>
+                        <div class="contents">
+                            {{blog.summary}}
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+        {% if delivery_blogs %}
+        <div>
+            <ul class="pagination">
+
+                {% if delivery_blogs.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" tabindex="-1"  href="?page={{ delivery_blogs.previous_page_number }}">&#60;</a>
+                </li>
+
+                {% endif %}
+                {% for page_number in delivery_blogs.paginator.page_range %}
+                
+
+                {% if page_number == delivery_blogs.number %} 
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link current-page" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+
+                {% endfor %}
+
+                {% if delivery_blogs.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ delivery_blogs.next_page_number }}">&#62;</a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{%endblock extrabody %}

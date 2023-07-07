@@ -1,103 +1,65 @@
+{% extends 'base.html' %} 
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="{% static 'css/myTown.css' %}" />
-    <title>My Town</title>
-  </head>
-  <body>
-    <header id="header">
-      <div class="header_div">
-        <div class="logo inline">
-          <a href="{% url 'town:mainPage'%}">
-            <img src="{% static 'img/COCO.png'%}" alt="" class="coco" />
-          </a>
-        </div>
 
-        <ul class="layout">
-          <li>
-            <img src="{% static 'img/home.png'%}" alt="" class="size" />
-            <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage"
-              >Mypage</a
-            >
-          </li>
-          <li>
-            <img
-              src="{% static 'img/building_.jpg'%}"
-              style="
-                width: 22px;
-                height: 22px;
-                padding-top: 3px;
-                margin-right: 5px;
-              "
-              alt=""
-            />
-            <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-          </li>
-          <li>
-            <img src="{% static 'img/article.png'%}" alt="" class="size" />
-            <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-          </li>
-          <li>
-            <img
-              src="{% static 'img/perm_identity.png'%}"
-              alt=""
-              class="size"
-            />
-            <a class="login" href="{%url 'user:signout'%}">Sign Out</a>
-          </li>
-          <li>
-            <img
-              src="{% static 'img/Setting.png'%}"
-              style="width: 23px; height: 23px; margin-right: 5px"
-              alt=""
-            />
-            <a href="{% url 'town:setting'%}" class="setting">설정</a>
-          </li>
-        </ul>
-      </div>
-    </header>
-    <article>
-      <p class="article-header">Members</p>
-      <div class="card-container">
-        {% for member in users %}
-        <div class="card">
-          <div class="profile-background"></div>
-          <div class="profile-footer">
-              {% if member.profile.image %}
-              <img
-              class="profile-photo"
-                src="{{member.profile.image.url}}"
-              />
-              {% else %}
-              <img
-              class="profile-photo"
-                src="{% static 'image/profile.png'%}"
-              />
-              {% endif %}
-            <div class="profile">
-              <p>Name</p>
-              <div class="button-container">
-                <a href="{% url 'myPage:myPage' member.id%}">
-                  <img src="{% static 'image/mypage.svg'%}" alt="User Page" />
-                </a>
-                <a href="#"
-                  ><img src="{% static 'image/heart.svg'%}" alt="User Page"
-                /></a>
-                <a href="#"
-                  ><img src="{% static 'image/plus.svg'%}" alt="User Page"
-                /></a>
-              </div>
-            </div>
-            <div class="profile-message">
-              <p>{{member.profile.introduce}}</p>
-            </div>
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/myTown.css' %}" />
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+
+{% endblock csslink %}
+
+{% block title %}
+My Town
+{% endblock title %}
+
+{% block extrabody %}
+
+<article>
+  <p class="article-header">Members</p>
+  <div class="card-container">
+    {% for member in users %}
+    <div class="card">
+      <div class="profile-background"></div>
+      <div class="profile-footer">
+          {% if member.profile.image %}
+          <img
+          class="profile-photo"
+            src="{{member.profile.image.url}}"
+          />
+          {% else %}
+          <img
+          class="profile-photo"
+            src="{% static 'image/profile.png'%}"
+          />
+          {% endif %}
+        <div class="profile">
+          <h3>{{member.profile.nickname}}</h3>
+          <div class="button-container">
+            <a href="{% url 'myPage:myPage' member.id%}">
+              <img src="{% static 'image/mypage.svg'%}" alt="User Page" />
+            </a>
           </div>
         </div>
-        {% endfor %}
+        <div class="profile-message">
+          <p>{{member.profile.introduce}}</p>
+        </div>
       </div>
-    </article>
-  </body>
-</html>
+    </div>
+    {% endfor %}
+  </div>
+</article>
+
+<script>
+  function toggleLayout() {
+    var layout = document.querySelector(".layout");
+    layout.classList.toggle("show");
+  }
+  setTimeout(function () {
+    var greeting = document.getElementById("greeting");
+    greeting.style.opacity = 1;
+  }, 1000);
+  setTimeout(function () {
+    var fade = document.getElementById("fade");
+    fade.style.opacity = 1;
+  }, 1000);
+</script>
+{%endblock extrabody %}

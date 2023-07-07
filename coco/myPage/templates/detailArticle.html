@@ -1,195 +1,217 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <link rel="stylesheet" href="{% static 'css/detail.css'%}">
-    <title>Document</title>
-</head>
-<body>
-    <header id="header">
-        <div class="header_div">
-            <div class="logo inline">
-                <a href="{% url 'town:mainPage'%}">
-                    <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
-                  </a>
-            </div>
 
-            <ul class="layout">
-                <li>
-                    <img src="{% static 'img/home.png'%}" alt="" class="size">
-                    <a href="{% url 'myPage:myPage' request.user.id%}" class="mypage">Mypage</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/building_.jpg'%}" style="width:22px;height:22px;padding-top:3px;margin-right:5px;" alt="" >
-                    <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/article.png'%}" alt="" class="size">
-                    <a href="{% url 'blog:home' %}" class="thread">게시판</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/perm_identity.png'%}" alt="" class="size">
-                    <a href="" class="login">Log in</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/Setting.png'%}" style="width:23px;height:23px;margin-right:5px;" alt="">
-                    <a href="{% url 'town:setting'%}" class="setting">설정</a>
-                </li>
-            </ul>
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/detailArticle.css'%}">
+<link rel="stylesheet" href="{% static 'css/base.css'%}">
+{% endblock csslink %}
+
+{% block title %}
+Mytown Article detail
+{% endblock title%}
+
+{% block extrabody %}
+
+<div class="main">
+    <div class="where">
+        <div class="location_div">
+            <img src="{% static 'img/location.png'%}" alt="" class="location_img">
         </div>
-    </header>
-    <div class="main">
-        <div class="where">
-            <div class="location_div">
-                <img src="{% static 'img/location.png'%}" alt="" class="location_img">
-            </div>
-            <input type="text" class="location" placeholder="Location" >
-        </div>
+        <input type="text" class="location" placeholder="Location" >
     </div>
+</div>
 
-    <div class="container"> 
-        <div class="maxsize">
-            <!-- 글 본문 -->
-            <div class="article">
-                <div class="title">
-                    {{article.title}}
+<div class="container"> 
+    <div class="pre">
+        <a href="{% url 'myPage:myPage' request.user.id%}"><img src="{% static 'img/arrow_back.png' %}" alt="" class="backimg"></a>
+    </div>
+    <div class="maxsize">
+        
+        <!-- 글 본문 -->
+        <div class="article">
+            <div class="title">
+                {{article.title}}
+            </div>
+            <div class="detail flex">
+                <div>
+                    <span class="date">{{article.created_at}}</span>
+                    <span style="color:#11111183">작성자</span>
+                    <span class="createuser2">{{article.mypage.user.profile.nickname}}</span>
                 </div>
-                <div class="detail flex">
-                    <div>
-                        <span class="date">{{article.created_at}}</span>
-                        <span style="color:#11111183">작성자</span>
-                        <span class="createuser2">{{article.mypage.user.profile.nickname}}</span>
-                    </div>
 
-                    {% if user == article.mypage.user%}
-                    <div>
-                        <a href="{% url 'myPage:editArticle' article.id %}" class= "edit btn2">수정</a>
-                        <a href="{% url 'myPage:deleteArticle' article.id %}" class="delete btn2" onclick="return confirmDelete(event)">삭제</a>
-                    </div>
-                    {% endif %}
-
-                </div>
-                {% if article.image %}
-                <div class="image">
-                    <img src="{{article.image.url}}" alt="" class="image">
+                {% if user == article.mypage.user%}
+                <div>
+                    <a href="{% url 'myPage:editArticle' article.id %}" class= "edit btn2">수정</a>
+                    <a href="{% url 'myPage:deleteArticle' article.id %}" class="delete btn2" onclick="return confirmDelete(event)">삭제</a>
                 </div>
                 {% endif %}
-                <div class="content">
-                    {{article.content_text}}
-                </div>
-    
+
             </div>
-            <!-- 좋아요 -->
-            <div class="like flex">
-                <!-- 좋아요 눌렀을 때 -->
-                <a href="{% url 'myPage:like_article' article.id %}">
-                    {% if article.is_liked %} 
-                    <img src="{% static 'img/heart (1).png' %}" alt="" class="like_img">
-                <!-- 좋아요 안눌렀을 때 -->
-                    {% else %} 
-                    <img src="{% static 'img/heart.png' %}" alt="" class="like_img">
-                    {% endif %}
-                </a>
-                <span>좋아요 {{ article.article_like }}개 </span>
+            {% if article.image %}
+            <div class="image">
+                <img src="{{article.image.url}}" alt="" class="image">
+            </div>
+            {% endif %}
+            <div class="content">
+                {{article.content_text}}
             </div>
 
-            
-            <!-- 댓글 작성 칸 -->
-            <div class="massage_create flex">
-                <!-- 댓글 다는 유저 프로필 -->
-                <div class="profile_div">
-                    {% if request.user.profile.image %}
-                    <img src="{{request.user.profile.image.url}}" alt="" class="profile_img">
-                    {% else %}
-                    <img src="{% static 'img/image.png' %}" alt="" class="profile_img">
-                    {% endif %}
-                </div>
-                <form action="{% url 'myPage:create_comment' article.id %}" method="post" class="msg">
-                    {% csrf_token %}
-                    <div class="msg_contents">
-                        <input type="text" name="comment_text" id="mag" class="input_massage" placeholder="댓글을 입력하세요."></input>
-                    </div>
-                    <div class="submitbtn">
-                        <input type="submit" class="submit" value="전송"/>
-                    </div>
-                </form>
+        </div>
+        <!-- 좋아요 -->
+        <div class="like flex">
+            <!-- 좋아요 눌렀을 때 -->
+            <a href="{% url 'myPage:like_article' article.id %}">
+                {% if article.is_liked %} 
+                <img src="{% static 'img/heart (1).png' %}" alt="" class="like_img">
+            <!-- 좋아요 안눌렀을 때 -->
+                {% else %} 
+                <img src="{% static 'img/heart.png' %}" alt="" class="like_img">
+                {% endif %}
+            </a>
+            <span>좋아요 {{ article.article_like }}개 </span>
+        </div>
+
+        
+        <!-- 댓글 작성 칸 -->
+        <div class="massage_create flex">
+            <!-- 댓글 다는 유저 프로필 -->
+            <div class="profile_div">
+                {% if request.user.profile.image %}
+                <img src="{{request.user.profile.image.url}}" alt="" class="profile_img">
+                {% else %}
+                <img src="{% static 'img/image.png' %}" alt="" class="profile_img">
+                {% endif %}
             </div>
-            <!-- 이미 달린 댓글 -->
-            
-            {% for comment in article.comments.all %}
-            <div class="massage flex">
-                <!-- 댓글 달린 유저 프로필 -->
-                <div class="profile_div">
-                    {% if comment.user.profile.image %}
-                    <img src="{{comment.user.profile.image.url}}" alt="" class="profile_img">
-                    {% else %}
-                    <img src="{% static 'img/image.png' %}" alt="" class="profile_img">
-                    {% endif %}
+            <form action="{% url 'myPage:create_comment' article.id %}" method="post" class="msg">
+                {% csrf_token %}
+                <div class="msg_contents">
+                    <input type="text" name="comment_text" id="mag" class="input_massage" placeholder="댓글을 입력하세요."></input>
                 </div>
-                <div class="max">
-                    <div class = "Userdetail">
+                <div class="submitbtn">
+                    <input type="submit" class="submit" value="전송"/>
+                </div>
+            </form>
+        </div>
+        <!-- 이미 달린 댓글 -->
+        
+        {% for comment in article.comments.all %}
+        <div class="massage flex">
+            <!-- 댓글 달린 유저 프로필 -->
+            <div class="profile_div">
+                {% if comment.user.profile.image %}
+                <img src="{{comment.user.profile.image.url}}" alt="" class="profile_img">
+                {% else %}
+                <img src="{% static 'img/image.png' %}" alt="" class="profile_img">
+                {% endif %}
+            </div>
+            <div class="max">
+                <div class = "Userdetail">
+                    
+                    <div class="username">
+                        {{comment.user.profile.nickname}}
                         {% if request.user == comment.user %}
-                        <div class="more">
-                            <a href="" class= "edit btn">수정</a>
-                            <a href="{%url 'myPage:delete_comment' comment.id%}" class="delete btn">삭제</a>
-                        </div>
-                        {% endif %}
-                        <div class="username">{{comment.user.profile.nickname}}</div>
-                        
-                        <div class="massagedate">{{comment.created_at}}</div>
-
+                    <div class="more flex">
+                        <a href="" class= "edit btn">수정</a>
+                        <a href="{%url 'myPage:delete_comment' comment.id%}" class="delete btn">삭제</a>
                     </div>
-                    <div class="msg_contents">{{comment.text}}</div> 
-                    <form action="{% url 'myPage:update_comment' comment.id%}" method="post" class="edit-form hidden">
-                        {% csrf_token %}
+                    {% endif %}
+                    </div>
+                    
+                    <div class="massagedate">{{comment.created_at}}</div>
+
+                </div>
+                <div class="msg_contents">{{comment.text}}</div> 
+                <form action="{% url 'myPage:update_comment' comment.id%}" method="post" class="edit-form hidden">
+                    {% csrf_token %}
+                    <div class="editCommentBox">
                         <input type="text" name="comment" class="input_massage" placeholder="Edit your comment" value = "{{comment.text}}" />
                         <input type="submit" class="btn" value="Save" />
-                    </form>
-                </div>                
-            </div>
-            {% endfor %}
+                        <input type="button" class="btn" value="Cancel"/>
+                    </div>
+                </form>
+            </div>                
         </div>
-        
+        {% endfor %}
     </div>
-
-    <script>
-        // Edit 버튼 - 댓글 수정
-        const editButtons = document.querySelectorAll('.massage .edit');
-        const deleteBt = document.querySelector('.delete');
-        const editBt = document.querySelector('.edit');
     
-        editButtons.forEach((editButton) => {
-          editButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            const container = editButton.closest('.massage');
-            const commentContent = container.querySelector('.msg_contents');
-            const editForm = container.querySelector('.edit-form');
+</div>
+
+<script>
+// Edit 버튼 - 댓글 수정
+const editButtons = document.querySelectorAll('.more .edit');
+
+editButtons.forEach((editButton) => {
+  editButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const container = editButton.closest('.max');
+    const editForm = container.querySelector('.edit-form');
+    const deleteButtons = document.querySelectorAll('.max .delete');
+    const editButtons = document.querySelectorAll('.max .edit');
+
+    // 모든 댓글의 수정, 삭제 버튼 숨기기
+    deleteButtons.forEach((deleteButton) => {
+      deleteButton.style.display = 'none';
+    });
+
+    editButtons.forEach((editButton) => {
+      editButton.style.display = 'none';
+    });
+
+    // 선택한 댓글의 수정, 삭제 버튼 보이기
+    const commentContents = container.querySelectorAll('.msg_contents');
+    const deleteButton = container.querySelector('.delete');
+
+    commentContents.forEach((commentContent) => {
+      commentContent.style.display = 'none';
+    });
+
+    editForm.classList.remove('hidden');
+
+  });
+});
+
+// 삭제 버튼 팝업창
+function confirmDelete(event) {
+  event.preventDefault();
+  const confirmation = confirm('정말로 삭제 하시겠습니까?');
+  if (confirmation) {
+    window.location.href = event.target.href;
+  } else {
+  }
+}
+// Cancel 버튼 - 수정 취소
+const cancelButtons = document.querySelectorAll('.edit-form .btn[value="Cancel"]');
+
+cancelButtons.forEach((cancelButton) => {
+  cancelButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const editForm = cancelButton.closest('.edit-form');
+    const container = editForm.closest('.max');
+    const deleteButtons = document.querySelectorAll('.max .delete');
+    const editButtons = document.querySelectorAll('.max .edit');
+    const commentContents = document.querySelectorAll('.msg_contents');
+
+    // 숨겨진 수정, 삭제 버튼 보이기
+    deleteButtons.forEach((deleteButton) => {
+      deleteButton.style.display = 'block';
+    });
+
+    editButtons.forEach((editButton) => {
+      editButton.style.display = 'block';
+    });
+
+    // 숨겨진 댓글 내용 보이기
+    commentContents.forEach((commentContent) => {
+      commentContent.style.display = 'flex';
+    });
+
+    editForm.classList.add('hidden');
+  });
+});
 
     
-            commentContent.style.display = 'none';
-            editForm.classList.remove('hidden');
 
-            editBt.style.display = 'none';
-            deleteBt.style.display = 'none';
-          });
-        });
-
-        // 삭제 버튼 팝업창 
-        function confirmDelete(event) {
-            event.preventDefault();
-            const confirmation = confirm("정말로 삭제 하시겠습니까?");
-            if (confirmation) {
-                window.location.href = event.target.href;
-            } else {
-            }
-        }
-      
-    
-      </script>
-    
-</body>
-</html>
+</script>
+{%endblock extrabody %}

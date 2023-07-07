@@ -11,23 +11,25 @@
 </head>
 <body>
 <div class="container" id="container">
-  {error_massage}
+  <!-- {error_massage} -->
   <div class="form-container sign-in-container">
     <form action="" method="POST">
         {% csrf_token %}
       <h1>Sign in</h1>
       <input type="email" placeholder="Email" name = 'email'/>
       <input type="password" placeholder="Password" name = 'password'/>
-      <input type="submit" value="Sign In"/>
+      <div class="sign-btn">
+        <input class="signin-btn"type="submit" value="Sign In"/>
+        <input class="signup-btn" type="button" value="Sign Up" onclick="goToSignup()"/>
+      </div>
+      <!-- <div class="error_container"> -->
+        <span class="error_message">{{ error_message }}</span>
+      <!-- </div> -->
     </form>
+
   </div>
   <div class="overlay-container">
     <div class="overlay">
-      <div class="overlay-panel overlay-left">
-        <h1>Welcome Back!</h1>
-        <p>To keep connected with us please login with your personal info</p>
-        <button class="ghost" id="signIn">Sign In</button>
-      </div>
       <div class="overlay-panel overlay-right">
         <h1>Hello, Guys!</h1>
         <p>Enter your personal details and start</p>
@@ -39,8 +41,34 @@
 </body>
 </html>
 <script>
-  function goToSignup() {
-    const signup_url = `/user/signup/`;
-    window.location.href = signup_url;
-  }
+  const signInForm = document.querySelector('.form-container.sign-in-container');
+  const errorElement = signInForm.querySelector('.error_message');
+  const error_message = "{{ error_message }}";
+
+  // if (error_message) {
+  //   errorElement.textContent = error_message;
+  //   errorElement.style.display = 'inline';
+
+  //   setTimeout(() => {
+  //     errorElement.style.display = 'none';
+  //   }, 3000); // 에러 메시지를 3초 후에 숨김
+  // }
+  if (error_message) {
+  errorElement.textContent = error_message;
+  errorElement.style.opacity = '1';
+
+  setTimeout(() => {
+    errorElement.style.opacity = '0';
+    setTimeout(() => {
+      errorElement.style.display = 'none';
+    }, 300); // 투명도가 0이 된 후에 요소를 숨김
+  }, 3000); // 에러 메시지를 3초 후에 숨김
+}
+
+function goToSignup() {
+  console.log("tlqkf")
+  const signup_url = `/user/signup/`;
+  window.location.href = signup_url;
+}
+
 </script>

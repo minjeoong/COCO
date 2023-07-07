@@ -6,6 +6,7 @@ app_name = 'myPage'
 urlpatterns = [
     path('<int:user_id>/', login_required(myPage), name='myPage'),
     path('upload/', login_required(upload), name='upload'),
+    path('deleteImage/', login_required(deleteImage), name='deleteImage'),
     path('newArticle/', login_required(newArticle), name='newArticle'),
     path('createArticle/', login_required(createArticle), name='createArticle'),
     path('detailArticle/<int:article_id>/', login_required(detailArticle), name='detailArticle'),

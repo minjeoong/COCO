@@ -1,0 +1,301 @@
+@media only screen and (max-width: 742px) {
+    body{
+        width:max-content;
+    }
+    .footer{
+        width: max-content;
+    }
+
+}
+/* @media only screen and (max-width: px) {
+    body{
+        width:max-content;
+    }
+
+} */
+/* reset */
+
+.flex{
+    display: flex;
+}
+
+*{
+    margin:0;   
+    padding:0;   
+    box-sizing: border-box; 
+}
+a {
+    text-decoration:none;  
+    color: #000;
+}
+ul {
+    list-style: none;
+}
+
+/* Header */
+header{
+    height : 5em;
+    width: 100%;
+    position: relative;
+    padding: 0 0 0 2rem;
+}
+.header_div{
+    width:100%;
+    position:relative;
+    top:42%;
+}
+.inline{
+    display:inline-block;
+    margin: 0 2rem 0 0;
+}
+
+.coco{
+    width: 98px;
+    height:26px;
+}
+
+.search_img{
+    width: 27px;
+    height:24px;
+    margin: 3px;
+}
+.searchbo{
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    background-color: #EFEFF4;
+    border-radius:7px;
+}
+input[type="search"]{
+    position:absolute;
+    height: 28px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    padding: 5px 0 0 10px;
+}
+
+
+/* header right */
+.size{
+    width: 26px;
+    height:26px;
+}
+.layout{
+    display:flex;
+    float: right;
+    margin-right: 3rem;
+}
+.layout > li{
+    margin: 0 2.5rem;
+
+
+}
+.layout > li > a{
+    position:absolute;
+    padding:5px 0 0 5px;
+} 
+#menu{
+    padding:0;
+}
+
+/* main */
+.main{
+    margin:1.2rem 0 1rem 0 ;
+    height:95px;
+    width: 100%;
+
+    background-color: #FFCD29;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+.where{
+    width: 600px;
+    height: 40px;
+    background-color: #ffffff92;
+    position:relative;
+    margin-right:2rem;
+    margin-left: 2rem;
+    margin:0 auto;
+    display: flex;
+    border-radius: 30px;
+}
+.location_div{
+    display: flex;
+    align-items: center;
+    padding: 0 13px 0 15px;
+    height:40px;
+}
+.location_img{
+    width: 16px;
+    height: 23px
+}
+.location{
+    padding-top: 3px;
+    background: none;
+    border:none;
+    width:540px;
+    outline: none;
+    font-size: 18px;
+}
+
+/* 게시물 Create 페이지 */
+
+/* 디폴트 */
+.container{
+    margin: 6rem 0 8rem 0;
+    display:flex;
+    justify-content: center;
+}
+.maxsize{
+    max-width: 900px;
+    width: 100%;
+}
+/*      */
+
+
+/* 카테고리 */
+.category_div{
+    margin-right: 2rem;
+}
+select{
+    width: 15rem;
+    height: 2.5em;
+    border: 2px solid #adadad;
+    font-size: 1rem;
+    padding: 0 1rem 0 1rem;
+    color:#898989;
+}
+
+/* 게시물 제목 */
+.title_div{
+    margin:3rem 0 3rem 0 ;
+
+}
+.title{
+    width: 100%;
+    font-size: 50px;
+    font-weight:100;
+    /* color: #9b9b9b; */
+    border:none;
+}
+input:focus{
+    outline:none;
+}
+
+/* 이미지 파일  */
+
+.imgbox_div{
+    height:30rem;
+    width:100%;
+    border: 2px solid #8d8d8d;
+    border-radius: 5px;
+    margin-top:5rem;
+}
+/* .imgadd{
+    height:100%;
+    width:100%;
+    /* flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center; 
+*/
+.imgadd{
+
+    width:100%;
+    margin:0 auto;
+}
+
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 30%;
+    color: #999999;
+}
+
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+
+/* 사진 프리뷰 */
+.imgbox_div{
+    display: none;
+}
+#preview{
+    display:inline;
+    position:relative;
+    width:100%;
+    /* margin-left:auto; */
+    height:100%;
+    object-fit: contain;
+}
+
+/* 게시뮬 내용 */
+.contents_div{
+    margin:5rem 0 5rem 0 ;
+}
+.content{
+    width:100%;
+    font-size: 20px;
+    border :none;
+    resize:none;
+}
+textarea:focus{
+    outline: none;
+}
+
+/* 마지막 제출 */
+
+.footer {
+    width: 100%;
+    height: 130px;
+    background-color: #E7E7E7;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+.logo {
+    width: 98px;
+    height: 29px;
+}
+.close{
+    padding:1rem 2.5rem 1rem 2.5rem;
+    border:2px solid #00000081;
+    height:50px;
+    border-radius: 30px;
+}
+.close:hover{
+    transition: 0.3s;
+    background-color: #c6c6c6;
+}
+
+.finish{
+    background-color: #FFCD29;
+    border:none;
+
+}

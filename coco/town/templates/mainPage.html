@@ -1,66 +1,33 @@
+{% extends 'base.html' %} 
 {% load static %}
+{% block csslink %}
 <link rel="stylesheet" href="{% static 'css/mainPage.css'%}" />
-<header id="header">
-  <div class="header_div">
-    <div class="logo inline">
-      <a href="{% url 'town:mainPage'%}">
-        <img src="{% static 'image/COCO.png'%}" alt="" class="coco" />
-      </a>
-    </div>
-    <ul class="layout">
-      <li>
-        <img src="{% static 'image/home.png'%}" alt="" class="size" />
-        <a href="{% url 'myPage:myPage' request.user.id %}" class="mypage"
-          >Mypage</a
-        >
-      </li>
-      <li>
-        <img
-          src="{% static 'img/building_.jpg'%}"
-          style="width: 22px; height: 22px; padding-top: 3px; margin-right: 5px"
-          alt=""
-        />
-        <a href="{% url 'town:myTown'%}" class="mytown">Mytown</a>
-      </li>
-      <li>
-        <img src="{% static 'image/article.png'%}" alt="" class="size" />
-        <a href="{% url 'blog:home'%}">게시판 </a>
-      </li>
-      <li>
-        <img src="{% static 'image/perm_identity.png'%}" alt="" class="size" />
-        <a class="login" href="{%url 'user:signout'%}">Sign Out</a>
-      </li>
-      <li>
-        <img src="{% static 'image/Setting.png'%}" alt="" class="size" />
-        <a href="{% url 'town:setting'%}" class="setting">설정</a>
-      </li>
-    </ul>
-    <a href="#" class="setting" onclick="toggleLayout()"
-      ><img
-        src="{% static 'image/hamburger.png'%}"
-        alt=""
-        class="navbar__toggleBtn"
-    /></a>
-  </div>
-</header>
+<link rel="stylesheet" href="{% static 'css/base.css'%}" />
 
+{% endblock csslink %}
+{% block title %}
+MainPage
+{% endblock title %}
+
+{% block extrabody %} 
 <article class="font">
   <div class="article-container">
     <div class="name">
-      <h1 id="greeting">Welcome to COCO Town</h1>
+      <h1 id="greeting">Welcome to COCO TOWN</h1>
     </div>
+    
+    <span class="article-footer">Today News</span>
     <div class="search-container">
       <p id="fade">
         {{town.townname}} Town &ensp; 이웃 수 : {{town.usercount}}
       </p>
     </div>
-    <span class="article-footer">Today News</span>
   </div>
 </article>
 <footer class="font">
   <div class="footer-container">
     <div class="content">
-      <p class="p-title new">New</p>
+      <p class="p-title new">new</p>
       {% if latest_blog %}
       <a href="{% url 'blog:detail' latest_blog.id%}">
         <p class="news-title">{{latest_blog.title}}</p>
@@ -69,7 +36,7 @@
       {% endif %}
     </div>
     <div class="content">
-      <p class="p-title hot">Hot</p>
+      <p class="p-title hot">hot</p>
       {% if most_viewed_blog %}
       <a href="{% url 'blog:detail' most_viewed_blog.id%}">
         <p class="news-title">{{most_viewed_blog.title}}</p>
@@ -78,7 +45,7 @@
       {% endif %}
     </div>
     <div class="content">
-      <p class="p-title attention">Attention</p>
+      <p class="p-title attention">attention</p>
       {% if most_liked_blog %}
       <a href="{% url 'blog:detail' most_liked_blog.id%}">
         <p class="news-title">{{most_liked_blog.title}}</p>
@@ -89,16 +56,5 @@
   </div>
 </footer>
 <script>
-  function toggleLayout() {
-    var layout = document.querySelector(".layout");
-    layout.classList.toggle("show");
-  }
-  setTimeout(function () {
-    var greeting = document.getElementById("greeting");
-    greeting.style.opacity = 1;
-  }, 1000);
-  setTimeout(function () {
-    var fade = document.getElementById("fade");
-    fade.style.opacity = 1;
-  }, 1000);
 </script>
+{%endblock extrabody %}
