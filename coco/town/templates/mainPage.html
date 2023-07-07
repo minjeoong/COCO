@@ -10,6 +10,7 @@ MainPage
 {% endblock title %}
 
 {% block extrabody %} 
+
 <article class="font">
   <div class="article-container">
     <div class="name">
@@ -27,27 +28,42 @@ MainPage
 <footer class="font">
   <div class="footer-container">
     <div class="content">
-      <p class="p-title new">new</p>
+      <p class="p-title new">new ❗</p> 
       {% if latest_blog %}
       <a href="{% url 'blog:detail' latest_blog.id%}">
+        {% if latest_blog.image %}
+        <img src="{{latest_blog.image.url}}" alt="" class="news-img">
+        {% else %}
+        <img src="{% static 'image/article_logo.png'%}" alt="" class="news-img">
+        {% endif %}
         <p class="news-title">{{latest_blog.title}}</p>
         <p class="news">{{latest_blog.content}}</p>
       </a>
       {% endif %}
     </div>
     <div class="content">
-      <p class="p-title hot">hot</p>
+      <p class="p-title hot">hot 🔥</p>
       {% if most_viewed_blog %}
       <a href="{% url 'blog:detail' most_viewed_blog.id%}">
+        {% if most_viewed_blog.image %}
+        <img src="{{most_viewed_blog.image.url}}" alt="" class="news-img">
+        {% else %}
+        <img src="{% static 'image/article_logo.png'%}" alt="" class="news-img">
+        {% endif %}
         <p class="news-title">{{most_viewed_blog.title}}</p>
-        <p class="news">{{most_viewed_blog.content}}</p>
+        <p class="news">{{most_viewed_blog.summary}}</p>
       </a>
       {% endif %}
     </div>
     <div class="content">
-      <p class="p-title attention">attention</p>
+      <p class="p-title attention">attention ✨</p>
       {% if most_liked_blog %}
       <a href="{% url 'blog:detail' most_liked_blog.id%}">
+        {% if most_liked_blog.image %}
+        <img src="{{most_liked_blog.image.url}}" alt="" class="news-img">
+        {% else %}
+        <img src="{% static 'image/article_logo.png'%}" alt="" class="news-img">
+        {% endif %}
         <p class="news-title">{{most_liked_blog.title}}</p>
         <p class="news">{{most_liked_blog.content}}</p>
       </a>

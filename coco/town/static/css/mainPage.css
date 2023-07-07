@@ -1,3 +1,16 @@
+
+@media only screen and (max-width: 900px) {
+  .footer-container{
+    flex-direction:column !important;
+    height: 100% !important;
+    align-items: center;
+  }
+  .footer-container .content{
+    width:420px;
+
+  }
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Roboto+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Kanit:wght@300&family=Nanum+Pen+Script&family=Roboto+Condensed:wght@300&display=swap");
 @font-face {
@@ -20,6 +33,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 
 
 /* reset */
@@ -137,15 +151,19 @@ article .search-button {
 }
 .footer-container {
   font-family: 'ChosunSg';
-
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 3.3rem 1rem 1rem 1rem;
+  height: 37rem;
+  /* align-items: center; */
 }
 .footer-container .content {
   width: 22.2rem;
   height: 20rem;
+}
+.footer-container .content:hover{
+  background-color: #e6e6e6;
 }
 .footer-container > div {
   flex: 1;
@@ -155,11 +173,14 @@ article .search-button {
 
 
 footer .footer-container .content {
-  margin: 1rem 3rem;
-  padding: 0 1rem;
+  margin: 1rem 1rem;
+  padding: 2rem;
   overflow: hidden;
-  border-radius: 20px;
   transition: transform 0.7s ease-in-out;
+  height: fit-content;
+  max-width:420px;
+  transition:0.3s;
+
 }
 
 footer .footer-container .p-title {
@@ -178,10 +199,6 @@ footer .footer-container p {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0 0 2rem 0;
-}
-
-.content{
-  
 }
 
 /* .hot {
@@ -205,4 +222,11 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 900;
+}
+.news-img{
+  width: 100%;
+  margin-bottom: 10px;
+  height: 16rem;
+  object-fit: cover;
 }

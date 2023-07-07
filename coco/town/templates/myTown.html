@@ -13,14 +13,14 @@ My Town
 
 {% block extrabody %}
 
+
 <article>
   <p class="article-header">Members</p>
   <div class="card-container">
     {% for member in users %}
     <div class="card">
-      <div class="profile-background"></div>
-      <div class="profile-footer">
-          {% if member.profile.image %}
+      <div class="profile-background" style="background-image: url('{% static 'image/YBG.jpeg' %}');">
+        {% if member.profile.image %}
           <img
           class="profile-photo"
             src="{{member.profile.image.url}}"
@@ -31,17 +31,30 @@ My Town
             src="{% static 'image/profile.png'%}"
           />
           {% endif %}
-        <div class="profile">
-          <h3>{{member.profile.nickname}}</h3>
-          <div class="button-container">
-            <a href="{% url 'myPage:myPage' member.id%}">
-              <img src="{% static 'image/mypage.svg'%}" alt="User Page" />
-            </a>
+          <div class="profile">
+            <h3>{{member.profile.nickname}}</h3>
           </div>
+          <div class="profile-messagediv">
+            <div class="profile-message">
+              <p>{{member.profile.introduce}}</p>
+            </div>
+          </div>
+
+      </div>
+
+
+      
+      
+      <div class="profile-footer">
+
+        <div class="button-container">
+          <a href="{% url 'myPage:myPage' member.id%}">
+            <img src="{% static 'image/mypage.svg'%}" alt="User Page" class="button-img" />
+          </a>
+          
         </div>
-        <div class="profile-message">
-          <p>{{member.profile.introduce}}</p>
-        </div>
+<span>Mypage</span>
+
       </div>
     </div>
     {% endfor %}
