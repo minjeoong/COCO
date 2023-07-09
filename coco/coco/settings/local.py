@@ -1,5 +1,6 @@
 from .base import *
-DEBUG = os.getenv('DEBUG', False) == 'True'
+
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
