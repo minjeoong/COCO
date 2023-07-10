@@ -1,4 +1,4 @@
-# COCO
+# community communication 서비스 COCO 
 
 Role : Front-End Web Programing 
 
